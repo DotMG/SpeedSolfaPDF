@@ -282,7 +282,6 @@ class Solfa {
      * $Q : point d'orgue
      */
     foreach (str_split($_note_template) as $_note_symbol) {
-      $this->marker = array();
       if ($_note_marker != '') {
 	$_note_marker .= $_note_symbol;
 	$this->marker[] = $_note_marker;
@@ -306,6 +305,7 @@ class Solfa {
   }
   function next_note($template_note, $separator='') {
     $_new_Block = new Block($template_note, $separator, $this->marker, $this->meta);
+    $this->marker = array();
     list($_sub_note, $_sub_mark) = $this->get_sub_notes($_new_Block->get_nb_note());
     $_new_Block->set_note($_sub_note);
     if ($_sub_mark) {
