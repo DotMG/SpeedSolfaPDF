@@ -488,7 +488,31 @@ class Solfa
     $pdf->recalc_width();
     $x = $pdf->canvas_left;
     $y = $pdf->canvas_top;
-    $pdf->SetFont('fir', '', $pdf->get_font_size_lyrics() + 14);
+    // ecriture entete
+    //title 
+    $pdf->SetXY($x, $y);
+    $pdf->SetFont('yan', '', $pdf->get_font_size_note()+6);
+    $pdf->Cell($pdf->canvas_width, $pdf->font_height, $this->meta['t'], align: 'C');
+    $y = $pdf->GetY() + $pdf->font_height * 1.5;
+    // author
+    $pdf->SetXY($x, $y);
+    $pdf->SetFont('yan', '', $pdf->get_font_size_lyrics()+2);
+    $pdf->Cell($pdf->canvas_width, $pdf->font_height, $this->meta['h'], align: 'R');
+    $pdf->SetXY($x, $y);
+    $pdf->MultiCell($pdf->canvas_width / 2, $pdf->font_height, $this->meta['a'], align: 'L');
+    //
+    $y = $pdf->GetY() + $pdf->font_height;
+    //tonalite + rythme
+    $pdf->SetFont('fir', '', $pdf->get_font_size_lyrics());
+    $tonalite_rythme = 'DO dia ' . $this->meta["c"] . '       ' . $this->meta['m'];
+    $pdf->SetXY($x, $y);
+    $pdf->Cell($pdf->GetStringWidth($tonalite_rythme), $pdf->font_height, $tonalite_rythme, align: 'L');
+    // speed 
+    $pdf->SetXY($x, $y);
+    $pdf->Cell($pdf->canvas_width, $pdf->font_height, $this->meta['r'], ln: 0, align: 'C');
+
+    $y = $pdf->GetY() + $pdf->font_height * 2;
+
     $pdf->SetXY($x, $y);
     $mark = array();
     foreach ($this->template as $_block) {
