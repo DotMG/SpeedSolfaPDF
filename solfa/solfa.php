@@ -42,13 +42,17 @@ class MyTFPDF extends tFPDF
       $this->Line($this->GetX() + 0.51, $this->GetY(), $this->GetX() + 0.51, $this->GetY() + $h);
       return;
     }
+    if ('!' == $separator) {
+      $separator = '|';
+    }
     $sep_repeat = rtrim(str_repeat($separator . "\n", $height));
+    $this->SetFont('yan', '', $this->get_font_size_note());
     $this->MultiCell(4, 0, $sep_repeat, align: 'L', border: 0);
   }
   function __construct($meta = null, $orientation = 'P', $unit = 'mm', $size = 'A4')
   {
     parent::__construct($orientation, $unit, $size);
-    $this->AddFont('yan', '', 'YanoneKaffeesatz-Light.ttf', true);
+    $this->AddFont('yan', '', 'YanoneDot-Light.ttf', true);
     $this->AddFont('fir', '', 'FiraDot-Regular.ttf', true);
     $this->AddPage($orientation);
     $this->SetAutoPageBreak(false);
