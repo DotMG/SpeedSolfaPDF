@@ -321,8 +321,8 @@ class Solfa
      * $= : marks end of < or >
      * $Q : point d'orgue
      */
+    $this->marker = array();
     foreach (str_split($_note_template) as $_note_symbol) {
-      $this->marker = array();
       if ($_note_marker != '') {
         $_note_marker .= $_note_symbol;
         $this->marker[] = $_note_marker;
@@ -360,6 +360,7 @@ class Solfa
       $this->i_lyrics = 0;
     }
     $this->i_block++;
+    $this->marker = array();
   }
   function load_notes()
   {
@@ -553,6 +554,14 @@ class Solfa
       $pdf->SetXY($x, $y + $delta_y);
       $pdf->SetFont('yan', '', $pdf->get_font_size_lyrics());
       $pdf->MultiCell($pdf->block_width, 0, $_block->lyrics_string, align: 'C');
+      if ($x === $pdf->canvas_left) {
+        //accolade
+        $pdf->SetFont('yan', '', $pdf->get_font_size_note() * 1.5);
+
+        $n2 = '⎨';
+        $pdf->SetXY($x - 2, $y + 1);
+        $pdf->MultiCell($pdf->GetStringWidth($n2), 0, $n2, 0, "L");
+      }
       $x += $pdf->block_width;
       $pdf->SetXY($x, $y);
       $pdf->SetFont('yan', '', $pdf->get_font_size_note());
