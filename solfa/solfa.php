@@ -214,9 +214,11 @@ class Block
         $_formatted = $_match[1];
         $_underlined[$i] = array(array('(', ')'));
       }
-      if (preg_match('/[\(\)]/', $_formatted)) {
-        print_r($note);
-        print_r($_formatted);
+      if (preg_match('/[\(\)]/', $_formatted, $match)) {
+        print_r($match);
+	$_underlined[$i] = array($match);
+	$_formatted = preg_replace('/[\(\)]/', '', $_formatted);
+        //print_r($_formatted);
       }
       $_return .= $_formatted . "\n";
     }
