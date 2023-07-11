@@ -180,11 +180,7 @@ class Block
   function get_mark($i)
   {
     if (!is_array($this->note_mark) || !isset($this->note_mark[$i]) || !is_array($this->note_mark[$i])) return array();
-    if (sizeof($this->note_mark[$i]) == 1) {
-      $return = array_values($this->note_mark[$i]);
-      return $return[0];
-    }
-    return $this->note_mark[$i];
+    return array_merge(...$this->note_mark[$i]);
   }
   function set_lyrics($sub)
   {
@@ -215,7 +211,6 @@ class Block
         $_underlined[$i] = array(array('(', ')'));
       }
       if (preg_match('/[\(\)]/', $_formatted, $match)) {
-        print_r($match);
 	$_underlined[$i] = array($match);
 	$_formatted = preg_replace('/[\(\)]/', '', $_formatted);
         //print_r($_formatted);
