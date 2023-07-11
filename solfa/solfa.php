@@ -482,6 +482,15 @@ class Solfa
     $this->i_lyrics += $nb_lyrics;
     return $_sub_lyrics;
   }
+  /**
+   * Set Hairpin : mark the start of a crescendo or a diminuendo
+   */
+  function SetHairpin($x, $marker) {
+    $this->hairpin = array($x, $marker);
+  }
+  function GetHairpin() {
+    return $this->hairpin;
+  }
   function render_pdf()
   {
     //@todo : 
@@ -506,7 +515,7 @@ class Solfa
     $y = $pdf->GetY() + $pdf->font_height;
     //tonalite + rythme
     $pdf->SetFont('fir', '', $pdf->get_font_size_lyrics());
-    $tonalite_rythme = 'DO dia ' . $this->meta["c"] . '       ' . $this->meta['m'];
+    $tonalite_rythme = 'Do dia ' . $this->meta["c"] . '       ' . $this->meta['m'];
     $pdf->SetXY($x, $y);
     $pdf->Cell($pdf->GetStringWidth($tonalite_rythme), $pdf->font_height, $tonalite_rythme, align: 'L');
     // speed 
@@ -520,6 +529,22 @@ class Solfa
     foreach ($this->template as $_block) {
       if (is_array($_block->marker) && sizeof($_block->marker) > 0) {
         foreach ($_block->marker as $_marker) {
+	  if ($_marker == '$<' || $_marker == '$>') {
+	    $this->SetHairpin($x, $_marker);
+	  }
+	  if ($_marker == '$=') {
+	    list($x0, $crescendoOrDiminuendo) = $this->GetHairpin();
+	    $upp = $pdf->font_height / 4;
+	    $baseY = $y - $pdf->font_height + $pdf->font_height / 2;
+	    if ($crescendoOrDiminuendo == '$>') {
+	      $pdf->Line($x0, $baseY-$upp, $x, $baseY);
+	      $pdf->Line($x0, $baseY+$upp, $x, $baseY);
+	    }
+	    if ($crescendoOrDiminuendo == '$<') {
+	      $pdf->Line($x0, $baseY, $x, $baseY-$upp);
+	      $pdf->Line($x0, $baseY, $x, $baseY+$upp);
+	    }
+	  }
           if ($_marker == '$Q') {
             $pdf->SetXY($x, $y - $pdf->font_height);
             $pdf->SetFont('fir', '', $pdf->get_font_size_lyrics());
@@ -562,7 +587,7 @@ class Solfa
       $pdf->SetFont('yan', '', $pdf->get_font_size_lyrics());
       if ($x >= 0 * $pdf->canvas_left + $pdf->canvas_width) {
         $x = $pdf->canvas_left;
-        $delta_y += $pdf->font_height * ($_block->get_lyrics_height() + 0.7);
+        $delta_y += $pdf->font_height * ($_block->get_lyrics_height() + 1.4);
         $y += $delta_y;
         if ($y >= $pdf->canvas_top + $pdf->canvas_height - $delta_y) {
           $y = $pdf->canvas_top;
