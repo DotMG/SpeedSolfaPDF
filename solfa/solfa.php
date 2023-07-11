@@ -556,11 +556,7 @@ class Solfa
       $pdf->MultiCell($pdf->block_width, 0, $_block->lyrics_string, align: 'C');
       if ($x === $pdf->canvas_left) {
         //accolade
-        $pdf->SetFont('yan', '', $pdf->get_font_size_note() * 1.5);
-
-        $n2 = '⎨';
-        $pdf->SetXY($x - 2, $y + 1);
-        $pdf->MultiCell($pdf->GetStringWidth($n2), 0, $n2, 0, "L");
+	$pdf->Image("img/accolade.png", $x - 2, $y + 1, 0, $delta_y * 0.92 );
       }
       $x += $pdf->block_width;
       $pdf->SetXY($x, $y);
