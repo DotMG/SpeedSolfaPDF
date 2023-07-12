@@ -291,6 +291,7 @@ class Solfa
       'a' => 'author',
       'c' => 'tonality', 
       'h' => 'composer',
+      'i' => 'interligne',
       'l' => 'lyrics font size',
       'm' => 'rythm',
       'n' => 'note font size',
@@ -532,6 +533,9 @@ class Solfa
     $pdf->Cell($pdf->canvas_width, $pdf->font_height, $this->meta['r'], ln: 0, align: 'C');
 
     $y = $pdf->GetY() + $pdf->font_height * 2;
+    if (isset($this->meta['i'])) {
+      $y += ($pdf->font_height) * ($this->meta['i'] - 1);
+    }
 
     $pdf->SetXY($x, $y);
     $mark = array();
@@ -605,6 +609,9 @@ class Solfa
       if ($x >= 0 * $pdf->canvas_left + $pdf->canvas_width) {
         $x = $pdf->canvas_left;
         $delta_y += $pdf->font_height * ($_block->get_lyrics_height() + 1.4);
+	if (isset($this->meta['i'])) {
+	  $delta_y += ($this->meta['i'] - 1) * $_block->get_note_height();
+	}
         $y += $delta_y;
         if ($y >= $pdf->canvas_top + $pdf->canvas_height - $delta_y) {
           $y = $pdf->canvas_top;
