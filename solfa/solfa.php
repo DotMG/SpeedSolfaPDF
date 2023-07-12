@@ -204,8 +204,9 @@ class Block
         $_formatted
       );
       $_formatted = str_replace('.-)', ')', $_formatted);
-      $_formatted = preg_replace('/\((.)\)/', '\1', $_formatted);
+      $_formatted = preg_replace('/\((.i*,*)\)/', '\1', $_formatted);
       $_formatted = preg_replace('/\.,-$/', '', $_formatted);
+      $_formatted = preg_replace('/\.-$/', '', $_formatted);
       if (preg_match('/^\((.*)\)$/', $_formatted, $_match)) {
         $_formatted = $_match[1];
         $_underlined[$i] = array(array('(', ')'));
