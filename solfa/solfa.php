@@ -207,6 +207,8 @@ class Block
       $_formatted = preg_replace('/\((.i*,*)\)/', '\1', $_formatted);
       $_formatted = preg_replace('/\.,-$/', '', $_formatted);
       $_formatted = preg_replace('/\.-$/', '', $_formatted);
+      $_formatted = str_replace(',,', '₂', $_formatted);
+      $_formatted = preg_replace('/(?<=[drmfsltia]),/', '₁', $_formatted);
       if (preg_match('/^\((.*)\)$/', $_formatted, $_match)) {
         $_formatted = $_match[1];
         $_underlined[$i] = array(array('(', ')'));

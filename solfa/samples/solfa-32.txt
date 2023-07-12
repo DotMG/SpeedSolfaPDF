@@ -1,0 +1,9 @@
+M0:|c:A|m:4/4|r:66.66. D|t:FFPM 32 - Misaotra Anao izahay Jehovah Tompo|a:J. Rakotonirainy, 1926-...|h:Feon-kira hebreo tranainy (Siekla faha-17)|n:19|l:14
+S0:/|:!
+T0:{:M|L:T!T:R|M:-!-/D|R:M!F:S|M:-!-/:T.F|D:R!M:F|S/T!D:F|M:-!R:F|D:-!-/:D|M:M!M:M|R:-!F/(D.T)|(L.T):(D.R)!M:L|L:-!S/:M.R|L:T!D:R|M/(R.M)!F:(M.R)|D:-!T:R|L:-!-}
+N1:m,l,t,drm|drmfsm|t,-drmfs|t,dfmr-d|dmmmmr-|dt,l,t,drml,(l,S,)|m,-l,t,drm|rmfmrdt,-l,T
+N2:m,m,m,m,l,S,|m,l,s,l,s,s,|s,-s,s,s,dt,|s,s,f,s,(s,f,)m,|m,s,s,s,s,(s,f,)|m,-m,-l,-l,f,m,-|m,-m,m,m,s,s,|S,l,l,l,-l,S,-m,T
+N3:dl,S,l,l,t,|ddddt,d|r-dt,ddr|rdl,dt,-d|s,ddddt,-|mrdrmrdd(dt,)|S,-l,S,l,t,d|fmrdrm-rdT
+N4:l,d,m,l,f,m,|l,f,m,r,s,d,|(s,f,)m,s,dl,s,|f,m,l,s,s,-d,|d,d,d,m,d,s,,-|S,,-l,,-l,,-d,r,m,-|(m,r,)d,m,l,s,d,|t,,d,r,m,f,m,m,-l,T
+
+L1:Mi_sao_tra A_nao _iza_hay/Je_ho_vah _Tom_po _ô!.../Fa _2e_fa _na_ha_ray/Ny _so_a _ta_mi_2nao./Ka _la_lan_da_va _no/Hi_sao_ra_nay _A_nao.../Ho __eo _am-_ba_va_nay/To_koa _ny _Te_ni__nao.
