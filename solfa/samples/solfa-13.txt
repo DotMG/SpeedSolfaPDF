@@ -1,0 +1,10 @@
+M0:|c:Eb|m:4/4|r:7.8.7.8.7.6.7.6.7.6.7.6|t:FFPM 13 - Misaora ny Mpahary|a:J. Gramann, 1487-1541, Nad. C. Borhgrevink 1841-1919, M.J. Meeg, 1851-1924, J. Johnson, 1864-1916|h:L.M. Linderman, 1812-1887
+S0:/|:!
+T0:{:M|S:-.F!M:D|L:S!-./S|F:F!M:S|D:M!R$Q${D.C.}/:S|S:F!L:D|T:L!-./T|M:L!S:L|T:-!/:S|S:F!L:D|T:L!-./T|M:L!S:F|S:-!/:M|S:-.F!M:D|L:-!T/D|S:F!M:M|R:-!/:M|F:S!L:T|D:-!L/F|M:M.S!R:R|D:-!}
+N1:msfmdls|sffmsdmr|ssFld'tl|tmlslt|ssFld'tl|tmlsFs|msfmd'lt|d'sfmmr|mfsltd'l|fmm-rrd
+N2:ddt,dddd|s,ds,s,dddt,|rddmrrr|rrdt,rr|rrrrrrr|rrdt,dt,|drrmmFs|drrrdd|Drt,drdd|rdd-dt,d
+N3:sssssfm|rdrmmmss|td'lmFsF|ssmrFs|slld'lsF|ssmrls|ssssd'd't|mrrssl|sffmfmf|lsl-lfm
+N4:dmrdmfd|t,l,t,dml,m,s,|s,l,l,drsr|s,ddrrs,|t,rrFFsr|t,ddrrs,|dt,t,dl,rs,|l,t,t,ddf,|l,rrdS,l,l,|td(l,s,)f,s,d
+
+L1:Mi_sao_ra _ny _Mpa_ha_ry, _/Tsa_ro_vi_nao _ny _a_sa_ny! _/Ny _he_lo_kao _re_he_tra _/Dia _vo_a_ve_la_ny, _/Fa _tsy _mba _mi_sy _fe_tra _/Ny _fi_ti_a_va_ny. _/Ny _Za_na_ny _na_foi_ny _/Mba _ho _Mpa_mo_nji_nao, _/Ka _i_a_nao _na_ntsoi_ny _/Han_dray _ny _2aim-_bao_vao.
+L2:Mi_sao_ra _ny _Mpa_ha_ry, _/De_rao _ny _so_a _vi_ta_ny!/

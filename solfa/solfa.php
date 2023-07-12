@@ -321,9 +321,15 @@ class Solfa
     $this->marker = array();
     foreach (str_split($_note_template) as $_note_symbol) {
       if ($_note_marker != '') {
+	if ($_note_symbol != '}' && substr($_note_marker, 0, 2) == '${') {
+	  $_note_marker .= $_note_symbol;
+	  continue;
+	}
         $_note_marker .= $_note_symbol;
-        $this->marker[] = $_note_marker;
-        $_note_marker = '';
+	if ($_note_symbol != '{') {
+          $this->marker[] = $_note_marker;
+          $_note_marker = '';
+	}
         continue;
       }
       if (in_array($_note_symbol, $this->separators)) {
@@ -477,6 +483,9 @@ class Solfa
     }
     $_sub_lyrics = array();
     foreach ($this->lyrics as $_i_lyrics => $_lyrics) {
+      if (!isset($_lyrics[$this->lyricsline]) || !is_array($_lyrics[$this->lyricsline])) {
+	$_lyrics[$this->lyricsline] = array();
+      }
       $_sub_lyrics[$_i_lyrics] = join('', array_slice($_lyrics[$this->lyricsline], $this->i_lyrics, $nb_lyrics));
     }
     $this->i_lyrics += $nb_lyrics;
@@ -528,6 +537,7 @@ class Solfa
     $mark = array();
     foreach ($this->template as $_block) {
       if (is_array($_block->marker) && sizeof($_block->marker) > 0) {
+	$yMarker = $y - $pdf->font_height;
         foreach ($_block->marker as $_marker) {
 	  if ($_marker == '$<' || $_marker == '$>') {
 	    $this->SetHairpin($x, $_marker);
@@ -535,7 +545,7 @@ class Solfa
 	  if ($_marker == '$=') {
 	    list($x0, $crescendoOrDiminuendo) = $this->GetHairpin();
 	    $upp = $pdf->font_height / 4;
-	    $baseY = $y - $pdf->font_height + $pdf->font_height / 2;
+	    $baseY = $yMarker + $pdf->font_height / 2;
 	    if ($crescendoOrDiminuendo == '$>') {
 	      $pdf->Line($x0, $baseY-$upp, $x, $baseY);
 	      $pdf->Line($x0, $baseY+$upp, $x, $baseY);
@@ -546,10 +556,17 @@ class Solfa
 	    }
 	  }
           if ($_marker == '$Q') {
-            $pdf->SetXY($x, $y - $pdf->font_height);
+            $pdf->SetXY($x, $yMarker);
             $pdf->SetFont('fir', '', $pdf->get_font_size_lyrics());
             $pdf->Cell($pdf->block_width, $pdf->font_height, "Ͼ", align: 'C');
+	    $yMarker -= $pdf->font_height;
           }
+	  if ('${' == substr($_marker, 0, 2)) {
+            $pdf->SetXY($x, $yMarker);
+            $pdf->SetFont('fir', '', $pdf->get_font_size_lyrics());
+            $pdf->Cell($pdf->block_width, $pdf->font_height, substr($_marker, 2, strlen($_marker)-3), align: 'C');
+	    $yMarker -= $pdf->font_height;
+	  }
         }
       }
       $pdf->SetXY($x, $y);
