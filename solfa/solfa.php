@@ -377,6 +377,9 @@ class Solfa
   }
   function load_note($notes, $_index)
   {
+    $notes = preg_replace_callback('/(.)(\d+)/', function ($matches) {
+      return str_repeat($matches[1], $matches[2]);
+    }, $notes);
     $_a_notes = str_split($notes);
     $current_note = '';
     $no_block = 0;
