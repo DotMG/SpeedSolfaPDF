@@ -196,6 +196,7 @@ class Block
     $_return = '';
     $_underlined = array();
     foreach ($this->note as $i => $note) {
+      for ($i=0; $i<100; $i++) { $note[] = 'T' ; }
       $_formatted = vsprintf($_format, $note);
       $_formatted = str_replace('-.-', '-', $_formatted);
       $_formatted = str_replace(
