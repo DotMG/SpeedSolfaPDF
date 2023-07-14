@@ -1,14 +1,14 @@
-M0:|c:F|m:3/4|r:8.8.8.8|t:FFPM-20 - Behold a Stranger at the Door|r:L.M|a:D.O. Jones, 1880 - 1951|h:R.H. Earnshaw|n:19|l:15
+M0:|c:F|m:3/4|r:8.8.8.8|t:FFPM-20 - Behold a Stranger at the Door|r:L.M|a:Joseph Grigg, 1720-1768|h:Robert Henry Earnshaw (1856-1923)|n:19|l:15
 S0:/|:!
 T0:{M:M:M|M:-:M|S:S:F|M:-:-/D:D:T|D:-.R:M|R:-:D|R:-:-/M:M:M|M:D:M|L:-:S|F:-:-/R:S:F|M:-:F.D|D:-.M:T|D:-:-}
 N1:mmmmms-fm|ddt,(dr)m|rdr|mmmm-mlsf|rsfmd-d-t,d
 N2:dddddr-t,d|ds,s,s,-d|l,l,t,|ddrd-ddDr|t,drdl,-s,-s,s,
 N3:ssslm(rs)ss|lsf(mf)s|fms|ssSl-Tlll|ssss(fm)(rm)fm
-N4:dddl,l,t,-s,d|fmrdd|f,l,s,|dddt,(l,d)dfmr|s,dt,df,-s,-s,d
+N4:dddl,l,t,-s,d|fmrd-d|f,l,s,|ddt,(l,d)dfmr|s,dt,df,-s,-s,d
 
 L1:Be_hold, _a _Stran_ger _at _2the _door/He _gen_tly _knows, _2has _knocked _be_fore,/He _wai_ted _long, __is _wai_ting _still:/You _treat _no _o_2ther _friend _2so _ill.
 L2:Rise, _touched _with _gra_ti_tude _2di_vine/Turn _out _His _e_2ne_my _and _thine,/That _soul _des_troy__ing _mon_ster, _sin,/And _let _the _hea_2venly _Stran_ _ger _in.
-L3:But _will _He _prove _a _Friend _2in_deed/He _will; _the _ve_2ry _Friend _youd _need;/The _Friend _of _sin__ners _yes, _'tis _He,/With _ga_rments _dyed _2on _Ca_ _lva_ry.
-L4:A_dmit _Him, _for _the _hu_2man _breast/Ne'er _en_ter_tained _2so _kind _a _Guest;/No _mor_tal _tongue __their _joys _can _tell,/With _whom _He _con_2de_scens _2to_dwell.
-L5:O _lo_vely _a_tti_tude! _2He _stands/With _mel_ting _heart _2and _la_den _hands;/O _match_less _kind__ness! _and _He_shows,/This _match_less  _kin_2dness _to _2His _foes.
+L3:But _will _He _prove _a _Friend _2in_deed/He _will; _the _ve_2ry _Friend _youd _need;/The _Friend _of _sin__ners _yes, _'tis _He,/With _gar_ments _dyed _2on _Ca_ _lva_ry.
+L4:Ad_mit _Him, _for _the _hu_2man _breast/Ne'er _en_ter_tained _2so _kind _a _Guest;/No _mor_tal _tongue __their _joys _can _tell,/With _whom _He _con_2de_scends _2to_dwell.
+L5:O _lo_vely _at_ti_tude! _2He _stands/With _mel_ting _heart _2and _la_den _hands;/O _match_less _kind__ness! _and _He_shows,/This _match_less  _kind_2ness _to _2His _foes.
 L6:So_vereign _of _souls, _Thou _Prince _2of _Peace/O _may _Thy _gen_2tle _reign _in_crease:/Throw _wide _the _door, __each _wil_ling _mind;/And _be _His _em_2pire _all _2man_kind.
