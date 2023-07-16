@@ -8,5 +8,5 @@ if (is_array($argv) && !empty($argv[1])) {
 } else {
   $solfa = new Solfa();
 }
-$solfa->render_pdf();
+$solfa->renderPDF();
 

@@ -24,51 +24,51 @@ class Block
     $this->marker = $marker;
     $this->meta = $meta;
   }
-  function get_lyrics_height()
+  function getLyricsHeight()
   {
     return sizeof($this->lyrics);
   }
-  function get_note_height()
+  function getNoteHeight()
   {
     return sizeof($this->note);
   }
-  function get_nb_note()
+  function getNbNote()
   {
     return $this->nb_note;
   }
-  function get_nb_lyrics()
+  function getNbLyrics()
   {
     return $this->nb_lyrics;
   }
-  function set_note($sub)
+  function setNote($sub)
   {
     if (null == $sub) {
       return;
     }
     $this->note  = $sub;
-    $this->note_as_multistring();
+    $this->noteAsMultistring();
   }
-  function set_mark($note_mark)
+  function setMark($note_mark)
   {
     if (array() == $note_mark) {
       return;
     }
     $this->note_mark = $note_mark;
   }
-  function get_mark($i)
+  function getMark($i)
   {
     if (!is_array($this->note_mark) || !isset($this->note_mark[$i]) || !is_array($this->note_mark[$i])) return array();
     return array_merge(...$this->note_mark[$i]);
   }
-  function set_lyrics($sub)
+  function setLyrics($sub)
   {
     if (null == $sub) {
       return;
     }
     $this->lyrics  = $sub;
-    $this->lyrics_as_multistring();
+    $this->lyricsAsMultistring();
   }
-  function note_as_multistring()
+  function noteAsMultistring()
   {
     $_format = preg_replace('/[DRMFSLT]/', '%s', $this->template);
     $_return = '';
@@ -99,19 +99,19 @@ class Block
       }
       $_return .= $_formatted . "\n";
     }
-    $this->set_mark($_underlined);
+    $this->setMark($_underlined);
     $this->note_string = rtrim($_return);
   }
-  function lyrics_as_multistring()
+  function lyricsAsMultistring()
   {
     if (is_array($this->lyrics))
       $this->lyrics_string = implode("\n", $this->lyrics);
-    $this->calc_min_width();
+    $this->calcMinWidth();
   }
-  function calc_min_width()
+  function calcMinWidth()
   {
     $_pdf = new PDF($this->meta);
-    list($this->note_width, $_lyrics_width, $_min_width) = $_pdf->calc_width($this->note_string, $this->lyrics_string);
+    list($this->note_width, $_lyrics_width, $_min_width) = $_pdf->calcWidth($this->note_string, $this->lyrics_string);
     $this->width = $_min_width;
     Block::$max_width = max($_min_width, Block::$max_width);
     return $_min_width;

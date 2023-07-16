@@ -4,7 +4,7 @@ namespace DotMG\SpeedSolfaPDF;
 
 class Solfa
 {
-  var $file_data = array();
+  var $fileData = array();
   var $meta = array();
   var $note = array();
   var $template = array();
@@ -16,17 +16,17 @@ class Solfa
   var $lyricsline = 0;
   function __construct($txt_file = 'assets/samples/solfa-60.txt')
   {
-    $_file_data = file($txt_file); //@todo error handling
-    array_walk($_file_data, array($this, 'parse_all_lines'));
-    $this->load_meta();
-    $this->load_separators();
-    $this->load_notes();
-    $this->load_all_lyrics();
-    $this->load_note_template();
-    $this->setup_blocks();
+    $_fileData = file($txt_file); //@todo error handling
+    array_walk($_fileData, array($this, 'parseAllLines'));
+    $this->loadMeta();
+    $this->loadSeparators();
+    $this->loadNotes();
+    $this->loadAllLyrics();
+    $this->loadNoteTemplate();
+    $this->setupBlocks();
     #$this->calc_size();
   } //fun __construct
-  function parse_all_lines($line)
+  function parseAllLines($line)
   {
     $key = '';
     if (':' == substr($line, 2, 1)) {
@@ -39,20 +39,20 @@ class Solfa
       $_val = substr($line, 4);
     }
     if ('' != trim($_key)) {
-      $this->file_data[$_key][$_index] = rtrim($_val);
+      $this->fileData[$_key][$_index] = rtrim($_val);
     }
   }
   function debug()
   {
     print_r($this);
   }
-  function load_meta()
+  function loadMeta()
   {
-    $_txt_meta_line = $this->file_data['M'][0];
+    $_txt_meta_line = $this->fileData['M'][0];
     $_meta_item_array = preg_split('/\|(?=[a-z]:)/', $_txt_meta_line);
-    array_walk($_meta_item_array, array($this, 'get_meta'));
+    array_walk($_meta_item_array, array($this, 'getMeta'));
   }
-  function get_meta($meta_item)
+  function getMeta($meta_item)
   {
     /* $_a_key_abbrev = array(
       'a' => 'author',
@@ -70,14 +70,14 @@ class Solfa
       $this->meta[$_key] = substr($meta_item, 2);
     }
   }
-  function load_separators()
+  function loadSeparators()
   {
-    $_separator_line = trim($this->file_data['S'][0]);
+    $_separator_line = trim($this->fileData['S'][0]);
     $this->separators = str_split($_separator_line);
   }
-  function load_note_template()
+  function loadNoteTemplate()
   {
-    $_note_template = $this->file_data['T'][0];
+    $_note_template = $this->fileData['T'][0];
     $is_on_paren = false;
     $_template_notes = '';
     $_note_marker    = '';
@@ -101,7 +101,7 @@ class Solfa
         continue;
       }
       if (in_array($_note_symbol, $this->separators)) {
-        $this->next_note($_template_notes, $_note_symbol);
+        $this->nextNote($_template_notes, $_note_symbol);
         $_template_notes = '';
         continue;
       }
@@ -112,19 +112,19 @@ class Solfa
       $_template_notes .= $_note_symbol;
     }
     if ($_template_notes) {
-      $this->next_note($_template_notes);
+      $this->nextNote($_template_notes);
     }
   }
-  function next_note($template_note, $separator = '')
+  function nextNote($template_note, $separator = '')
   {
     $_new_Block = new Block($template_note, $separator, $this->marker, $this->meta);
-    list($_sub_note, $_sub_mark) = $this->get_sub_notes($_new_Block->get_nb_note());
-    $_new_Block->set_note($_sub_note);
+    list($_sub_note, $_sub_mark) = $this->getSubNotes($_new_Block->getNbNote());
+    $_new_Block->setNote($_sub_note);
     if ($_sub_mark) {
-      $_new_Block->set_mark($_sub_mark);
+      $_new_Block->setMark($_sub_mark);
     }
-    $_sub_lyrics = $this->get_sub_lyrics($_new_Block->get_nb_lyrics());
-    $_new_Block->set_lyrics($_sub_lyrics);
+    $_sub_lyrics = $this->getSubLyrics($_new_Block->getNbLyrics());
+    $_new_Block->setLyrics($_sub_lyrics);
     $this->template[$this->i_block] = $_new_Block;
     if ('/' == $separator) {
       $this->lyricsline++;
@@ -133,13 +133,13 @@ class Solfa
     $this->i_block++;
     $this->marker = array();
   }
-  function load_notes()
+  function loadNotes()
   {
-    foreach ($this->file_data['N'] as $_index => $notes) {
-      $this->load_note($notes, $_index);
+    foreach ($this->fileData['N'] as $_index => $notes) {
+      $this->loadNoteAtIndex($notes, $_index);
     }
   }
-  function load_note($notes, $_index)
+  function loadNoteAtIndex($notes, $_index)
   {
     $notes = preg_replace_callback('/(.)(\d+)/', function ($matches) {
       return str_repeat($matches[1], $matches[2]);
@@ -202,13 +202,13 @@ class Solfa
       $this->note[$_index][$no_block] = $current_note;
     }
   }
-  function load_all_lyrics()
+  function loadAllLyrics()
   {
-    foreach ($this->file_data['L'] as $_index => $lyrics) {
-      $this->load_one_lyrics($lyrics, $_index);
+    foreach ($this->fileData['L'] as $_index => $lyrics) {
+      $this->loadOneLyrics($lyrics, $_index);
     }
   }
-  function load_one_lyrics($lyrics, $_index)
+  function loadOneLyrics($lyrics, $_index)
   {
     $lyrics = preg_replace_callback('/_(\d)/', function ($matches) {
       return str_repeat('_', $matches[1]);
@@ -222,10 +222,10 @@ class Solfa
       $this->lyrics[$_index][$_i] = preg_split('/_/', $_l);
     }
   }
-  function setup_blocks()
+  function setupBlocks()
   {
   }
-  function get_sub_notes($nb_note)
+  function getSubNotes($nb_note)
   {
     if (0 == $nb_note) {
       return array(array_fill(1, sizeof($this->note), array('')), array());
@@ -247,7 +247,7 @@ class Solfa
     $this->i_note += $nb_note;
     return array($_sub_note, $_sub_mark);
   }
-  function get_sub_lyrics($nb_lyrics)
+  function getSubLyrics($nb_lyrics)
   {
     if (0 == $nb_lyrics) {
       return array_fill(1, sizeof($this->lyrics), '');
@@ -271,124 +271,124 @@ class Solfa
   function GetHairpin() {
     return $this->hairpin;
   }
-  function render_pdf()
+  function renderPDF()
   {
     //@todo : 
     $pdf = new PDF($this->meta);
-    $pdf->setup_size();
-    $pdf->recalc_width();
+    $pdf->setupSize();
+    $pdf->recalcWidth();
     $x = $pdf->canvas_left;
     $y = $pdf->canvas_top;
     // ecriture entete
     //title 
-    $pdf->SetXY($x, $y);
-    $pdf->SetFont('yan', '', $pdf->get_font_size_note()+6);
-    $pdf->Cell($pdf->canvas_width, $pdf->font_height, $this->meta['t'], align: 'C');
-    $y = $pdf->GetY() + $pdf->font_height * 1.5;
+    $pdf->setXY($x, $y);
+    $pdf->setFont('yan', '', $pdf->getFontSizeNote()+6);
+    $pdf->cell($pdf->canvas_width, $pdf->font_height, $this->meta['t'], align: 'C');
+    $y = $pdf->getY() + $pdf->font_height * 1.5;
     // author
-    $pdf->SetXY($x, $y);
-    $pdf->SetFont('yan', '', $pdf->get_font_size_lyrics()+2);
-    $pdf->Cell($pdf->canvas_width, $pdf->font_height, $this->meta['h'], align: 'R');
-    $pdf->SetXY($x, $y);
-    $pdf->MultiCell($pdf->canvas_width / 2, $pdf->font_height, $this->meta['a'], align: 'L');
+    $pdf->setXY($x, $y);
+    $pdf->setFont('yan', '', $pdf->getFontSizeLyrics()+2);
+    $pdf->cell($pdf->canvas_width, $pdf->font_height, $this->meta['h'], align: 'R');
+    $pdf->setXY($x, $y);
+    $pdf->multiCell($pdf->canvas_width / 2, $pdf->font_height, $this->meta['a'], align: 'L');
     //
-    $y = $pdf->GetY() + $pdf->font_height;
+    $y = $pdf->getY() + $pdf->font_height;
     //tonalite + rythme
-    $pdf->SetFont('fir', '', $pdf->get_font_size_lyrics());
+    $pdf->setFont('fir', '', $pdf->getFontSizeLyrics());
     $tonalite_rythme = 'Do dia ' . $this->meta["c"] . '       ' . $this->meta['m'];
-    $pdf->SetXY($x, $y);
-    $pdf->Cell($pdf->GetStringWidth($tonalite_rythme), $pdf->font_height, $tonalite_rythme, align: 'L');
+    $pdf->setXY($x, $y);
+    $pdf->cell($pdf->getStringWidth($tonalite_rythme), $pdf->font_height, $tonalite_rythme, align: 'L');
     // speed 
-    $pdf->SetXY($x, $y);
-    $pdf->Cell($pdf->canvas_width, $pdf->font_height, $this->meta['r'], ln: 0, align: 'C');
+    $pdf->setXY($x, $y);
+    $pdf->cell($pdf->canvas_width, $pdf->font_height, $this->meta['r'], ln: 0, align: 'C');
 
-    $y = $pdf->GetY() + $pdf->font_height * 2;
+    $y = $pdf->getY() + $pdf->font_height * 2;
     if (isset($this->meta['i'])) {
       $y += ($pdf->font_height) * ($this->meta['i'] - 1);
     }
 
-    $pdf->SetXY($x, $y);
+    $pdf->setXY($x, $y);
     $mark = array();
     foreach ($this->template as $_block) {
       if (is_array($_block->marker) && sizeof($_block->marker) > 0) {
 	$yMarker = $y - $pdf->font_height;
         foreach ($_block->marker as $_marker) {
 	  if ($_marker == '$<' || $_marker == '$>') {
-	    $this->SetHairpin($x, $_marker);
+	    $this->setHairpin($x, $_marker);
 	  }
 	  if ($_marker == '$=') {
-	    list($x0, $crescendoOrDiminuendo) = $this->GetHairpin();
+	    list($x0, $crescendoOrDiminuendo) = $this->getHairpin();
 	    $upp = $pdf->font_height / 4;
 	    $baseY = $yMarker + $pdf->font_height / 2;
 	    if ($crescendoOrDiminuendo == '$>') {
-	      $pdf->Line($x0, $baseY-$upp, $x, $baseY);
-	      $pdf->Line($x0, $baseY+$upp, $x, $baseY);
+	      $pdf->line($x0, $baseY-$upp, $x, $baseY);
+	      $pdf->line($x0, $baseY+$upp, $x, $baseY);
 	    }
 	    if ($crescendoOrDiminuendo == '$<') {
-	      $pdf->Line($x0, $baseY, $x, $baseY-$upp);
-	      $pdf->Line($x0, $baseY, $x, $baseY+$upp);
+	      $pdf->line($x0, $baseY, $x, $baseY-$upp);
+	      $pdf->line($x0, $baseY, $x, $baseY+$upp);
 	    }
 	  }
           if ($_marker == '$Q') {
-            $pdf->SetXY($x, $yMarker);
-            $pdf->SetFont('fir', '', $pdf->get_font_size_lyrics());
-            $pdf->Cell($pdf->block_width, $pdf->font_height, "Ͼ", align: 'C');
+            $pdf->setXY($x, $yMarker);
+            $pdf->setFont('fir', '', $pdf->getFontSizeLyrics());
+            $pdf->cell($pdf->block_width, $pdf->font_height, "Ͼ", align: 'C');
 	    $yMarker -= $pdf->font_height;
           }
 	  if ('${' == substr($_marker, 0, 2)) {
-            $pdf->SetXY($x, $yMarker);
-            $pdf->SetFont('fir', '', $pdf->get_font_size_lyrics());
-            $pdf->Cell($pdf->block_width, $pdf->font_height, substr($_marker, 2, strlen($_marker)-3), align: 'C');
+            $pdf->setXY($x, $yMarker);
+            $pdf->setFont('fir', '', $pdf->getFontSizeLyrics());
+            $pdf->cell($pdf->block_width, $pdf->font_height, substr($_marker, 2, strlen($_marker)-3), align: 'C');
 	    $yMarker -= $pdf->font_height;
 	  }
         }
       }
-      $pdf->SetXY($x, $y);
-      $pdf->SetFont('yan', '', $pdf->get_font_size_note());
-      $pdf->MultiCell($pdf->block_width, 0, $_block->note_string, align: 'C');
+      $pdf->setXY($x, $y);
+      $pdf->setFont('yan', '', $pdf->getFontSizeNote());
+      $pdf->multiCell($pdf->block_width, 0, $_block->note_string, align: 'C');
       foreach (range(1, sizeof($this->note)) as $ln) {
         $nextx = $x + $pdf->block_width;
         $ln_y = $pdf->getY() + $pdf->font_height * $ln - $pdf->font_height * 4 - $pdf->font_height / 16;
-        $_mark = $_block->get_mark($ln);
+        $_mark = $_block->getMark($ln);
         if (in_array('(', $_mark)) {
           $mark[$ln] = array('x' => $x + ($pdf->block_width - $_block->note_width) / 2, 'y' => $ln_y);
         }
         if (in_array(')', $_mark)) {
           $nextx = $nextx - ($pdf->block_width - $_block->note_width) / 2;
           if ($ln_y != $mark[$ln]['y']) {
-            $pdf->Line($mark[$ln]['x'], $mark[$ln]['y'], $pdf->canvas_left + $pdf->canvas_width, $mark[$ln]['y']);
-            $pdf->Line($pdf->canvas_left, $ln_y, $nextx, $ln_y);
+            $pdf->line($mark[$ln]['x'], $mark[$ln]['y'], $pdf->canvas_left + $pdf->canvas_width, $mark[$ln]['y']);
+            $pdf->line($pdf->canvas_left, $ln_y, $nextx, $ln_y);
           } else {
-            $pdf->Line($mark[$ln]['x'], $ln_y, $nextx, $ln_y);
+            $pdf->line($mark[$ln]['x'], $ln_y, $nextx, $ln_y);
           }
         }
       }
-      $delta_y = 0.4 + $pdf->font_height * $_block->get_note_height();
-      $pdf->SetXY($x, $y + $delta_y);
-      $pdf->SetFont('yan', '', $pdf->get_font_size_lyrics());
-      $pdf->MultiCell($pdf->block_width, 0, $_block->lyrics_string, align: 'C');
+      $delta_y = 0.4 + $pdf->font_height * $_block->getNoteHeight();
+      $pdf->setXY($x, $y + $delta_y);
+      $pdf->setFont('yan', '', $pdf->getFontSizeLyrics());
+      $pdf->multiCell($pdf->block_width, 0, $_block->lyrics_string, align: 'C');
       if ($x === $pdf->canvas_left) {
         //accolade
-	$pdf->Image("assets/accolade.png", $x - 2, $y + 1, 0, $delta_y * 0.92 );
+	$pdf->image("assets/accolade.png", $x - 2, $y + 1, 0, $delta_y * 0.92 );
       }
       $x += $pdf->block_width;
-      $pdf->SetXY($x, $y);
-      $pdf->SetFont('yan', '', $pdf->get_font_size_note());
-      $pdf->print_separator($_block->separator, $_block->get_note_height());
-      $pdf->SetFont('yan', '', $pdf->get_font_size_lyrics());
+      $pdf->setXY($x, $y);
+      $pdf->setFont('yan', '', $pdf->getFontSizeNote());
+      $pdf->printSeparator($_block->separator, $_block->getNoteHeight());
+      $pdf->setFont('yan', '', $pdf->getFontSizeLyrics());
       if ($x >= 0 * $pdf->canvas_left + $pdf->canvas_width) {
         $x = $pdf->canvas_left;
-        $delta_y += $pdf->font_height * ($_block->get_lyrics_height() + 1.4);
+        $delta_y += $pdf->font_height * ($_block->getLyricsHeight() + 1.4);
 	if (isset($this->meta['i'])) {
-	  $delta_y += ($this->meta['i'] - 1) * $_block->get_note_height();
+	  $delta_y += ($this->meta['i'] - 1) * $_block->getNoteHeight();
 	}
         $y += $delta_y;
         if ($y >= $pdf->canvas_top + $pdf->canvas_height - $delta_y) {
           $y = $pdf->canvas_top;
-          $pdf->AddPage();
+          $pdf->addPage();
         }
       }
     }
-    $pdf->Output('F', 'pdfsolfa2.pdf');
+    $pdf->output('F', 'pdfsolfa2.pdf');
   }
 } //class Solfa

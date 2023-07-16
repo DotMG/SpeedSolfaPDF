@@ -4,16 +4,34 @@ namespace DotMG\SpeedSolfaPDF;
 class PDF extends \tFPDF
 {
   private $text;
-  private $font_size_note = 12.5;
-  private $font_size_lyrics = 10;
+  private $fontSizeNote = 12.5;
+  private $fontSizeLyrics = 10;
   public $block_width;
   public $font_height;
-  function set_font_size($size_note = 12.5, $size_lyrics = 10)
+  function __construct($meta = null, $orientation = 'P', $unit = 'mm', $size = 'A4')
   {
-    $this->font_size_note = $size_note;
-    $this->font_size_lyrics = $size_lyrics;
+    parent::__construct($orientation, $unit, $size);
+    $this->addFont('yan', '', 'DotKaffeesatz-Light.ttf', true);
+    $this->addFont('fir', '', 'FiraDot-Regular.ttf', true);
+    $this->addPage($orientation);
+    $this->setAutoPageBreak(false);
+    $this->setCellMargin(0);
+    if (isset($meta['n']) || isset($meta['l'])) {
+      if (!isset($meta['n'])) {
+        $meta['n'] = 12.5;
+      }
+      if (!isset($meta['l'])) {
+        $meta['n'] = 10;
+      }
+      $this->setFontSize($meta['n'], $meta['l']);
+    }
   }
-  function setup_size($size = array())
+  function setFontSize($sizeNote = 12.5, $sizeLyrics = 10)
+  {
+    $this->fontSizeNote = $sizeNote;
+    $this->fontSizeLyrics = $sizeLyrics;
+  }
+  function setupSize($size = array())
   {
     $_default_size = array(
       'page_width' => 210,
@@ -31,80 +49,62 @@ class PDF extends \tFPDF
     $this->canvas_top = $_merged_size['canvas_top'];
     $this->canvas_height = $_merged_size['canvas_height'];
   }
-  function print_separator($separator, $height)
+  function printSeparator($separator, $height)
   {
     $h = $this->font_height * $height;
     if ($separator == '|') {
-      $this->Line($this->GetX(), $this->GetY(), $this->GetX(), $this->GetY() + $h);
+      $this->line($this->getX(), $this->getY(), $this->getX(), $this->getY() + $h);
       return;
     }
     if ($separator == '/') {
-      $this->Line($this->GetX(), $this->GetY(), $this->GetX(), $this->GetY() + $h);
-      $this->Line($this->GetX() + 0.51, $this->GetY(), $this->GetX() + 0.51, $this->GetY() + $h);
+      $this->line($this->getX(), $this->getY(), $this->getX(), $this->getY() + $h);
+      $this->line($this->getX() + 0.51, $this->getY(), $this->getX() + 0.51, $this->getY() + $h);
       return;
     }
     if ('!' == $separator) {
       $separator = '|';
     }
     $sep_repeat = rtrim(str_repeat($separator . "\n", $height));
-    $this->SetFont('yan', '', $this->get_font_size_note());
-    $this->MultiCell(4, 0, $sep_repeat, align: 'L', border: 0);
+    $this->setFont('yan', '', $this->getFontSizeNote());
+    $this->multiCell(4, 0, $sep_repeat, align: 'L', border: 0);
   }
-  function __construct($meta = null, $orientation = 'P', $unit = 'mm', $size = 'A4')
-  {
-    parent::__construct($orientation, $unit, $size);
-    $this->AddFont('yan', '', 'DotKaffeesatz-Light.ttf', true);
-    $this->AddFont('fir', '', 'FiraDot-Regular.ttf', true);
-    $this->AddPage($orientation);
-    $this->SetAutoPageBreak(false);
-    $this->SetCellMargin(0);
-    if (isset($meta['n']) || isset($meta['l'])) {
-      if (!isset($meta['n'])) {
-        $meta['n'] = 12.5;
-      }
-      if (!isset($meta['l'])) {
-        $meta['n'] = 10;
-      }
-      $this->set_font_size($meta['n'], $meta['l']);
-    }
-  }
-  function set_multitext($text)
+  function setMultitext($text)
   {
     $this->text = $text;
   }
-  function set_font_size_note($font_size_note)
+  function setFontSizeNote($fontSizeNote)
   {
-    $this->font_size_note = $font_size_note;
+    $this->fontSizeNote = $fontSizeNote;
   }
-  function get_font_size_note()
+  function getFontSizeNote()
   {
-    return $this->font_size_note;
+    return $this->fontSizeNote;
   }
-  function set_font_size_lyrics($font_size_lyrics)
+  function setFontSizeLyrics($fontSizeLyrics)
   {
-    $this->font_size_lyrics = $font_size_lyrics;
+    $this->fontSizeLyrics = $fontSizeLyrics;
   }
-  function get_font_size_lyrics()
+  function getFontSizeLyrics()
   {
-    return $this->font_size_lyrics;
+    return $this->fontSizeLyrics;
   }
-  function calc_width($note, $lyrics)
+  function calcWidth($note, $lyrics)
   {
-    $this->SetFont('yan', '', $this->font_size_note);
+    $this->setFont('yan', '', $this->fontSizeNote);
     $_width = 0;
     foreach (explode("\n", $note) as $_note) {
-      $_width = max($_width, $this->GetStringWidth($_note));
+      $_width = max($_width, $this->getStringWidth($_note));
     }
     $_note_width = $_width;
     $_width = 0;
-    $this->SetFont('yan', '', $this->font_size_lyrics);
+    $this->setFont('yan', '', $this->fontSizeLyrics);
     foreach (explode("\n", $lyrics) as $_lyrics) {
-      $_width = max($_width, $this->GetStringWidth($_lyrics));
+      $_width = max($_width, $this->getStringWidth($_lyrics));
     }
     $_lyrics_width = $_width;
     return array($_note_width, $_lyrics_width, max($_note_width, $_lyrics_width));
   }
-  function recalc_width()
+  function recalcWidth()
   {
     $_nb_blocks = intval($this->canvas_width / (Block::$max_width + 1.3));
     if ($_nb_blocks > 0) {
