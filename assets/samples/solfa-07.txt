@@ -1,0 +1,9 @@
+M0:|c:Ab|m:3/4|r:8.8|t:FFPM 7 - Misaora an'Andriamanitra|a:Rainitovo (1853-1943)|h:H.S. Oakley (1830-1903)
+S0:/|:!
+T0:{|S:D:T|L:F:L|F$<:T$=:(M.F)|R:-:-}/{R$<:M$=:F|S:-:(D.L)|T$>:R$=:L|S:-:-}/{T$<:D$=:R|F:-:M|R$>:T$=:(D.F)|T:-:F}/{D:R:M|S:T:(F.R)|M:D:R|D:-:-}
+N1:s,dt,l,-l,f-m-r|rmfsd-t,-l,s,|t,drfmr-d-t,-|drms-f-m-rd
+N2:m,f,s,(s,f,)l,(l,t,)d-s,|s,dt,ds,-s,-F,s,|s,s,s,l,s,(l,t,)(m,F,)s,-|s,s,s,(s,T,)l,-(s,d)t,d
+N3:dddd-D(l,r)d-t,|t,drm(s,l,)(t,r)dt,|fmrdmf-d-r-|dt,dd-(dr)(ms)fm
+N4:d,r,m,f,-m,r,-(m,f,)s,|f,m,r,d,m,-r,-r,s,|rdt,dd(f,s,)l,-(s,f,)|m,r,d,m,-f,-s,-s,d
+
+L1:Mi_sao_ra an'_An__dria_ma__ni_tra /I_zay _na_nao _ny _la__ni_tra /Na_mo_ro_na _ny _ta__ny _koa /Sy _'zay _re_he__tra _ma__ha_soa.

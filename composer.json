@@ -1,0 +1,14 @@
+{
+  "require": {
+    "setasign/tfpdf": "dev-dotmg"
+  },
+  "autoload": {
+    "classmap": ["src/DotMG/SpeedSolfaPDF"]
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/dotmg/tFPDF"
+    }
+  ]
+}

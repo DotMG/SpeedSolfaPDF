@@ -6,4 +6,4 @@ N2:d'lsmdrms|mmffm     |ssssssss        |ssFFs     |-16|r--rm-m-s-f-r-f-    |mss
 N3:d'lsmdrms|sslls     |d'td'td'td'd'   |ttld't    |s--sl-t-l-s-m-s-    |-16|sd'ttd'Tld'd'd'ttd'   |sslls     |-6       m'm'f'f'm'     |ttld't    |-6       s's'F'F's'     |d'td'SlTl |---mmrfm
 N4:d'lsmdrms|ddddd     |drmrdrmd        |ssrrs     |s,ss,ss,ss,ss,ss,ss,ss,s|s,ss,ss,ss,ss,ss,ss,ss,s|dmssdmffssssd|ddffd|-6     ddffd |ssrrs     |-6       ssrrs          |d'SlmfDr  |---s,s,s,s,d
 
-L1:Moa_ho _hai_ko _tan_ta_rai_na/ny _ha_soa_va_nao?/Mi_fa_ma_tra _ta_mi_n'ai_na/ny _fi_tia_va_nao/Ny _2va_2hoa_2ka _2se_2se_2he_2na/'zay _2na_2ha_2zo _2fa_2mo_2nje_2na/No _hi_de_ra I_lay _Mpa_mo_njy _soa _dia _soa _to_koa/Je_so _no _de_rao//Je_so _no _de_rao//'Zay _na_tao_ny _am_ba_rao/Je_so _no _Je_so _no _de_rao!
+L1:Moa_ho _hai_ko _tan_ta_rai_na/ny _ha_soa_va_nao?/Mi_fa_ma_tra _ta_mi_n'ai_na _ny _fi_tia_va_nao/Ny _2va_2hoa_2ka _2se_2se_2he_2na/'zay _2na_2ha_2zo _2fa_2mo_2nje_2na/No _hi_de_ra I_lay _Mpa_mo_njy _soa _dia _soa _to_koa/Je_so _no _de_rao//Je_so _no _de_rao//'Zay _na_tao_ny _am_ba_rao/Je_so _no _Je_so _no _de_rao!

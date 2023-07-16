@@ -1,9 +1,9 @@
 M0:|c:F|m:6/4|r:8.8.7.8.7.8.5|t:FFPM 60 - Good Christian friends, rejoice|a:German/Latin, medieval; Latin Hymn, 14th cent. tr: John Mason Neale (1818-1866)|h:(German melody)
 S0:/|:!
-T0:{:D|D:-:D!M:T:F|S:-:L!S$Q:-./S|D:-:D!M:T:F|S:-:L!S:-.}/{:-|S:-:L!S:-:F|M:-:R!D:-./-|R:S:R!M:L:R|D:-:R!M:-.}/{:-|M:-:S!L:-:S|F:-:M!D:-./D|R:-:R!M:-:R|D:-R!M:-:}/{L:-:L!T:M:T|D:-:L!S:-:/M:R:M!R:F:R|D:-:-!-:
+T0:{:(D|D):-:D!M:T:F|S:-:L!S$Q:-./S|D:-:D!M:T:F|S:-:L!S:-.}/{:-|S:-:L!S:-:F|M:-:R!D:-./-|R:S:R!M:L:R|D:-:R!M:-.}/{:-|M:-:S!L:-:S|F:-:M!D:-./D|R:-:R!M:-:R|D:-R!M:-:}/{L:-:L!T:M:T|D:-:L!S:-:/M:R:M!R:F:R|D:-:-!-:
 N1:dddm-f(sls)|sddm-f(sls)|slsfmrd|r-rm-rdrm|slsfmrd|drrmrdrm|l,l,t,-t,(d-s)|m-mr-rd
 N2:ds,s,(dt,)l,(d-d)|t,dd(dt,)l,(d-t,)|ddt,rdt,l,|l,-rd-t,ddd|dddt,dt,l,|l,l,s,s,l,s,s,s,|l,f,s,-s,(s,dt,)|d-dd-t,d,
-N3:flld'-t(ltl)|sfld'-r'(d'ts)|d'tsd'd'tl|t-r'd'-d'ltd'|d'td'd'd'tl|d'r'r'd'd'ltd|tfs-s(flt)|d'-r'r'-d'(ll)
+N3:flld'-t(ltl|s)fld'-r'(d'ts)|d'tsd'd'tl|t-r'd'-d'ltd'|d'td'd'd'tl|d'r'r'd'd'ltd|tfs-s(flt)|d'-r'r'-d'(ll)
 N4:ffff-f(f-f)|drrd-t,(l,t,d)|l,t,dmfdr|s,-t,d-dfff|ltlsfdr|l,t,t,ddfff|t,t,t,-t,(l,-s)|f-rt,-df
 
 L1:Good _Chris_tian _men, _2re_joice/with _heart _and _soul _2and _voice;/give _ye _heed _to _what _we _say:/Je_2sus _Christ _2was _born _to_day./ Man _and _beast _be_fore _him _bow,/and _He _is _in _the _man_ger _now./Christ _is _born _2to_day!/Christ _2is _born _2to_day!
