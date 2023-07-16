@@ -1,12 +1,18 @@
 # Installation
 
-SpeedSolfaPDF utilise le moteur de rendu [tFPDF](http://www.fpdf.org/en/script/script92.php). Pour l'utiliser, il faut installer tFPDF dans un dossier qui s'appelle tfpdf.
-Une fois tFPDF installé, les étapes à faire sont : 
+SpeedSolfaPDF utilise le moteur de rendu tFPDF. Il y a juste une petite modification nécessaire à cet outil. 
+Pour cela, il existe une version corrigée sur https://github.com/DotMG/tFPDF. 
+L'utilisation de cette version est assurée par composer.
 
-* Modifier le fichier `tfpdf/tfpdf.php` en ajoutant la méthode `SetCMargin()`. Voir la différence entre `tfpdf/tfpdf.php` et `tfpdf/tfpdf-original.php` pour voir les modifications nécessaires.
-* copier les fichiers de police de caractères dans le dossier font/unifont. Il s'agit de YanoneDot-Light.ttf et FiraDot-Regular.ttf
-* copier le dossier solfa dans le même niveau que le dosser tfpdf
+Toute l'installation des dépendances du projet est assurée par le script install.php. 
+Une fois ce système décompressé ou copié sur votre dossier de travail, 
+assurez-vous d'être connecté à l'internet, d'avoir la commande php CLI disponible; 
+localisez le script install.php et lancez l'installation par la commande :
 
-Pour tester l'installation, aller sur le dossier solfa et lancer la commande
-`php -f solfa.php samples/solfa-60.txt`
-Cela devrait générer un fichier solfa-60.pdf
+php install.php
+
+Pour tester l'installation, lancer la commande
+
+php solfa.php assets/samples/solfa-60.txt
+
+Cela devrait générer un fichier pdfsolfa2.pdf
