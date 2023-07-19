@@ -6,21 +6,21 @@ class Block
   var $separator = '';
   var $width = '';
   var $template = '';
-  private $nb_note = '';
-  private $nb_lyrics = '';
+  private $nbNote = '';
+  private $nbLyrics = '';
   var $marker = null;
   private $note;
   private $lyrics;
-  private $note_mark;
-  public $note_width = 0;
-  public static $max_width;
-  function __construct($template_note, $separator, $marker, $meta)
+  private $noteMark;
+  public $noteWidth = 0;
+  public static $maxWidth;
+  function __construct($templateNote, $separator, $marker, $meta)
   {
-    $this->template = str_replace(array('{', '}'), '', $template_note);
+    $this->template = str_replace(array('{', '}'), '', $templateNote);
     $this->separator = $separator;
-    $this->nb_note = strlen(preg_replace('/[^DRMFSLT]/', '', $template_note));
-    $_template_syllabus = preg_replace('/\([^\)]*\)/', 'D', $template_note);
-    $this->nb_lyrics = strlen(preg_replace('/[^DRMFSLT]/', '', $_template_syllabus));
+    $this->nbNote = strlen(preg_replace('/[^DRMFSLT]/', '', $templateNote));
+    $templateSyllable = preg_replace('/\([^\)]*\)/', 'D', $templateNote);
+    $this->nbLyrics = strlen(preg_replace('/[^DRMFSLT]/', '', $templateSyllable));
     $this->marker = $marker;
     $this->meta = $meta;
   }
@@ -34,11 +34,11 @@ class Block
   }
   function getNbNote()
   {
-    return $this->nb_note;
+    return $this->nbNote;
   }
   function getNbLyrics()
   {
-    return $this->nb_lyrics;
+    return $this->nbLyrics;
   }
   function setNote($sub)
   {
@@ -48,17 +48,17 @@ class Block
     $this->note  = $sub;
     $this->noteAsMultistring();
   }
-  function setMark($note_mark)
+  function setMark($noteMark)
   {
-    if (array() == $note_mark) {
+    if (array() == $noteMark) {
       return;
     }
-    $this->note_mark = $note_mark;
+    $this->noteMark = $noteMark;
   }
   function getMark($i)
   {
-    if (!is_array($this->note_mark) || !isset($this->note_mark[$i]) || !is_array($this->note_mark[$i])) return array();
-    return array_merge(...$this->note_mark[$i]);
+    if (!is_array($this->noteMark) || !isset($this->noteMark[$i]) || !is_array($this->noteMark[$i])) return array();
+    return array_merge(...$this->noteMark[$i]);
   }
   function setLyrics($sub)
   {
@@ -70,50 +70,50 @@ class Block
   }
   function noteAsMultistring()
   {
-    $_format = preg_replace('/[DRMFSLT]/', '%s', $this->template);
-    $_return = '';
-    $_underlined = array();
+    $format = preg_replace('/[DRMFSLT]/', '%s', $this->template);
+    $return = '';
+    $underlined = array();
     foreach ($this->note as $i => $note) {
       for ($i=0; $i<100; $i++) { $note[] = 'T' ; }
-      $_formatted = vsprintf($_format, $note);
-      $_formatted = str_replace('-.-', '-', $_formatted);
-      $_formatted = str_replace(
+      $formatted = vsprintf($format, $note);
+      $formatted = str_replace('-.-', '-', $formatted);
+      $formatted = str_replace(
         array('D', 'R', 'F', 'S', 'T'),
         array('di', 'ri', 'fi', 'si', 'ta'),
-        $_formatted
+        $formatted
       );
-      $_formatted = str_replace('.-)', ')', $_formatted);
-      $_formatted = preg_replace('/\((.i*,*)\)/', '\1', $_formatted);
-      $_formatted = preg_replace('/\.,-$/', '', $_formatted);
-      $_formatted = preg_replace('/\.-$/', '', $_formatted);
-      $_formatted = str_replace(',,', '₂', $_formatted);
-      $_formatted = preg_replace('/(?<=[drmfsltia]),/', '₁', $_formatted);
-      if (preg_match('/^\((.*)\)$/', $_formatted, $_match)) {
-        $_formatted = $_match[1];
-        $_underlined[$i] = array(array('(', ')'));
+      $formatted = str_replace('.-)', ')', $formatted);
+      $formatted = preg_replace('/\((.i*,*)\)/', '\1', $formatted);
+      $formatted = preg_replace('/\.,-$/', '', $formatted);
+      $formatted = preg_replace('/\.-$/', '', $formatted);
+      $formatted = str_replace(',,', '₂', $formatted);
+      $formatted = preg_replace('/(?<=[drmfsltia]),/', '₁', $formatted);
+      if (preg_match('/^\((.*)\)$/', $formatted, $match)) {
+        $formatted = $match[1];
+        $underlined[$i] = array(array('(', ')'));
       }
-      if (preg_match('/[\(\)]/', $_formatted, $match)) {
-	$_underlined[$i] = array($match);
-	$_formatted = preg_replace('/[\(\)]/', '', $_formatted);
-        //print_r($_formatted);
+      if (preg_match('/[\(\)]/', $formatted, $match)) {
+	$underlined[$i] = array($match);
+	$formatted = preg_replace('/[\(\)]/', '', $formatted);
+        //print_r($formatted);
       }
-      $_return .= $_formatted . "\n";
+      $return .= $formatted . "\n";
     }
-    $this->setMark($_underlined);
-    $this->note_string = rtrim($_return);
+    $this->setMark($underlined);
+    $this->noteString = rtrim($return);
   }
   function lyricsAsMultistring()
   {
     if (is_array($this->lyrics))
-      $this->lyrics_string = implode("\n", $this->lyrics);
+      $this->lyricsString = implode("\n", $this->lyrics);
     $this->calcMinWidth();
   }
   function calcMinWidth()
   {
-    $_pdf = new PDF($this->meta);
-    list($this->note_width, $_lyrics_width, $_min_width) = $_pdf->calcWidth($this->note_string, $this->lyrics_string);
-    $this->width = $_min_width;
-    Block::$max_width = max($_min_width, Block::$max_width);
-    return $_min_width;
+    $pdf = new PDF($this->meta);
+    list($this->noteWidth, $lyricsWidth, $minWidth) = $pdf->calcWidth($this->noteString, $this->lyricsString);
+    $this->width = $minWidth;
+    Block::$maxWidth = max($minWidth, Block::$maxWidth);
+    return $minWidth;
   }
 }

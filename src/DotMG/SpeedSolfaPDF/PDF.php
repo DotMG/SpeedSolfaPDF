@@ -6,8 +6,8 @@ class PDF extends \tFPDF
   private $text;
   private $fontSizeNote = 12.5;
   private $fontSizeLyrics = 10;
-  public $block_width;
-  public $font_height;
+  public $blockWidth;
+  public $fontHeight;
   function __construct($meta = null, $orientation = 'P', $unit = 'mm', $size = 'A4')
   {
     parent::__construct($orientation, $unit, $size);
@@ -33,25 +33,25 @@ class PDF extends \tFPDF
   }
   function setupSize($size = array())
   {
-    $_default_size = array(
-      'page_width' => 210,
-      'page_height' => 297,
-      'canvas_left' => 12
+    $defaultSize = array(
+      'pageWidth' => 210,
+      'pageHeight' => 297,
+      'canvasLeft' => 12
     );
-    $_default_size['canvas_top'] = $_default_size['canvas_left'];
-    $_default_size['canvas_width'] = $_default_size['page_width'] - 2 * $_default_size['canvas_left'];
-    $_default_size['canvas_height'] = $_default_size['page_height'] - 2 * $_default_size['canvas_top'];
-    $_merged_size = array_merge($_default_size, $size);
-    $this->page_width = $_merged_size['page_width'];
-    $this->page_height = $_merged_size['page_height'];
-    $this->canvas_left = $_merged_size['canvas_left'];
-    $this->canvas_width = $_merged_size['canvas_width'];
-    $this->canvas_top = $_merged_size['canvas_top'];
-    $this->canvas_height = $_merged_size['canvas_height'];
+    $defaultSize['canvasTop'] = $defaultSize['canvasLeft'];
+    $defaultSize['canvasWidth'] = $defaultSize['pageWidth'] - 2 * $defaultSize['canvasLeft'];
+    $defaultSize['canvasHeight'] = $defaultSize['pageHeight'] - 2 * $defaultSize['canvasTop'];
+    $mergedSize = array_merge($defaultSize, $size);
+    $this->pageWidth = $mergedSize['pageWidth'];
+    $this->pageHeight = $mergedSize['pageHeight'];
+    $this->canvasLeft = $mergedSize['canvasLeft'];
+    $this->canvasWidth = $mergedSize['canvasWidth'];
+    $this->canvasTop = $mergedSize['canvasTop'];
+    $this->canvasHeight = $mergedSize['canvasHeight'];
   }
   function printSeparator($separator, $height)
   {
-    $h = $this->font_height * $height;
+    $h = $this->fontHeight * $height;
     if ($separator == '|') {
       $this->line($this->getX(), $this->getY(), $this->getX(), $this->getY() + $h);
       return;
@@ -64,9 +64,9 @@ class PDF extends \tFPDF
     if ('!' == $separator) {
       $separator = '|';
     }
-    $sep_repeat = rtrim(str_repeat($separator . "\n", $height));
+    $sepRepeat = rtrim(str_repeat($separator . "\n", $height));
     $this->setFont('yan', '', $this->getFontSizeNote());
-    $this->multiCell(4, 0, $sep_repeat, align: 'L', border: 0);
+    $this->multiCell(4, 0, $sepRepeat, align: 'L', border: 0);
   }
   function setMultitext($text)
   {
@@ -91,36 +91,36 @@ class PDF extends \tFPDF
   function calcWidth($note, $lyrics)
   {
     $this->setFont('yan', '', $this->fontSizeNote);
-    $_width = 0;
-    foreach (explode("\n", $note) as $_note) {
-      $_width = max($_width, $this->getStringWidth($_note));
+    $width = 0;
+    foreach (explode("\n", $note) as $oneNote) {
+      $width = max($width, $this->getStringWidth($oneNote));
     }
-    $_note_width = $_width;
-    $_width = 0;
+    $oneNoteWidth = $width;
+    $width = 0;
     $this->setFont('yan', '', $this->fontSizeLyrics);
-    foreach (explode("\n", $lyrics) as $_lyrics) {
-      $_width = max($_width, $this->getStringWidth($_lyrics));
+    foreach (explode("\n", $lyrics) as $oneLyrics) {
+      $width = max($width, $this->getStringWidth($oneLyrics));
     }
-    $_lyrics_width = $_width;
-    return array($_note_width, $_lyrics_width, max($_note_width, $_lyrics_width));
+    $oneLyricsWidth = $width;
+    return array($oneNoteWidth, $oneLyricsWidth, max($oneNoteWidth, $oneLyricsWidth));
   }
   function recalcWidth()
   {
-    $_nb_blocks = intval($this->canvas_width / (Block::$max_width + 1.3));
-    if ($_nb_blocks > 0) {
-      $this->block_width = $this->canvas_width / $_nb_blocks;
+    $nbBlocks = intval($this->canvasWidth / (Block::$maxWidth + 1.3));
+    if ($nbBlocks > 0) {
+      $this->blockWidth = $this->canvasWidth / $nbBlocks;
     } else {
-      $this->block_width = $this->canvas_width;
+      $this->blockWidth = $this->canvasWidth;
     }
   }
   // OverLoad
   function SetFont($family, $style = '', $size = 0)
   {
     parent::SetFont($family, $style, $size);
-    $this->font_height = $size * 0.315;
+    $this->fontHeight = $size * 0.315;
   }
   function MultiCell($w, $h, $txt, $border = 0, $align = 'J', $fill = false)
   {
-    parent::MultiCell($w, $this->font_height, $txt, $border, $align);
+    parent::MultiCell($w, $this->fontHeight, $txt, $border, $align);
   }
 }
