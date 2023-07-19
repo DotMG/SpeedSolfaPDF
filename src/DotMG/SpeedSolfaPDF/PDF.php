@@ -106,7 +106,7 @@ class PDF extends \tFPDF
   }
   function recalcWidth()
   {
-    $nbBlocks = intval($this->canvasWidth / (Block::$maxWidth + 1.3));
+    $nbBlocks = intval($this->canvasWidth / Block::$maxWidth);
     if ($nbBlocks > 0) {
       $this->blockWidth = $this->canvasWidth / $nbBlocks;
     } else {
