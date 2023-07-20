@@ -86,15 +86,15 @@ class Solfa
     $this->marker = array();
     foreach (str_split($noteTemplate) as $noteSymbol) {
       if ($noteMarker != '') {
-	if ($noteSymbol != '}' && substr($noteMarker, 0, 2) == '${') {
-	  $noteMarker .= $noteSymbol;
-	  continue;
-	}
+        if ($noteSymbol != '}' && substr($noteMarker, 0, 2) == '${') {
+          $noteMarker .= $noteSymbol;
+          continue;
+        }
         $noteMarker .= $noteSymbol;
-	if ($noteSymbol != '{') {
+        if ($noteSymbol != '{') {
           $this->marker[] = $noteMarker;
           $noteMarker = '';
-	}
+        }
         continue;
       }
       if (in_array($noteSymbol, $this->separators)) {
@@ -252,7 +252,7 @@ class Solfa
     $subLyrics = array();
     foreach ($this->lyrics as $kLyrics => $vLyrics) {
       if (!isset($vLyrics[$this->lyricsLine]) || !is_array($vLyrics[$this->lyricsLine])) {
-	$vLyrics[$this->lyricsLine] = array();
+        $vLyrics[$this->lyricsLine] = array();
       }
       $subLyrics[$kLyrics] = join('', array_slice($vLyrics[$this->lyricsLine], $this->i_lyrics, $nbLyrics));
     }
@@ -308,36 +308,36 @@ class Solfa
     $mark = array();
     foreach ($this->template as $oneBlock) {
       if (is_array($oneBlock->marker) && sizeof($oneBlock->marker) > 0) {
-	$yMarker = $y - $pdf->fontHeight;
+        $yMarker = $y - $pdf->fontHeight;
         foreach ($oneBlock->marker as $oneMarker) {
-	  if ($oneMarker == '$<' || $oneMarker == '$>') {
-	    $this->setHairpin($x, $oneMarker);
-	  }
-	  if ($oneMarker == '$=') {
-	    list($x0, $crescendoOrDiminuendo) = $this->getHairpin();
-	    $upp = $pdf->fontHeight / 4;
-	    $baseY = $yMarker + $pdf->fontHeight / 2;
-	    if ($crescendoOrDiminuendo == '$>') {
-	      $pdf->line($x0, $baseY-$upp, $x, $baseY);
-	      $pdf->line($x0, $baseY+$upp, $x, $baseY);
-	    }
-	    if ($crescendoOrDiminuendo == '$<') {
-	      $pdf->line($x0, $baseY, $x, $baseY-$upp);
-	      $pdf->line($x0, $baseY, $x, $baseY+$upp);
-	    }
-	  }
+          if ($oneMarker == '$<' || $oneMarker == '$>') {
+            $this->setHairpin($x, $oneMarker);
+          }
+          if ($oneMarker == '$=') {
+            list($x0, $crescendoOrDiminuendo) = $this->getHairpin();
+            $upp = $pdf->fontHeight / 4;
+            $baseY = $yMarker + $pdf->fontHeight / 2;
+            if ($crescendoOrDiminuendo == '$>') {
+              $pdf->line($x0, $baseY-$upp, $x, $baseY);
+              $pdf->line($x0, $baseY+$upp, $x, $baseY);
+            }
+            if ($crescendoOrDiminuendo == '$<') {
+              $pdf->line($x0, $baseY, $x, $baseY-$upp);
+              $pdf->line($x0, $baseY, $x, $baseY+$upp);
+            }
+          }
           if ($oneMarker == '$Q') {
             $pdf->setXY($x, $yMarker);
             $pdf->setFont('fir', '', $pdf->getFontSizeLyrics());
             $pdf->cell($pdf->blockWidth, $pdf->fontHeight, "Ͼ", align: 'C');
-	    $yMarker -= $pdf->fontHeight;
+            $yMarker -= $pdf->fontHeight;
           }
-	  if ('${' == substr($oneMarker, 0, 2)) {
+          if ('${' == substr($oneMarker, 0, 2)) {
             $pdf->setXY($x, $yMarker);
             $pdf->setFont('fir', '', $pdf->getFontSizeLyrics());
             $pdf->cell($pdf->blockWidth, $pdf->fontHeight, substr($oneMarker, 2, strlen($oneMarker)-3), align: 'C');
-	    $yMarker -= $pdf->fontHeight;
-	  }
+            $yMarker -= $pdf->fontHeight;
+          }
         }
       }
       $pdf->setXY($x, $y);
@@ -366,7 +366,7 @@ class Solfa
       $pdf->multiCell($pdf->blockWidth, 0, $oneBlock->lyricsString, align: 'C');
       if ($x === $pdf->canvasLeft) {
         //accolade
-	$pdf->image("assets/accolade.png", $x - 2, $y + 1, 0, $deltaY * 0.92 );
+        $pdf->image("assets/accolade.png", $x - 2, $y + 1, 0, $deltaY * 0.92 );
       }
       $x += $pdf->blockWidth;
       $pdf->setXY($x, $y);
@@ -376,9 +376,9 @@ class Solfa
       if ($x >= 0 * $pdf->canvasLeft + $pdf->canvasWidth) {
         $x = $pdf->canvasLeft;
         $deltaY += $pdf->fontHeight * ($oneBlock->getLyricsHeight() + 1.4);
-	if (isset($this->meta['i'])) {
-	  $deltaY += ($this->meta['i'] - 1) * $oneBlock->getNoteHeight();
-	}
+        if (isset($this->meta['i'])) {
+          $deltaY += ($this->meta['i'] - 1) * $oneBlock->getNoteHeight();
+        }
         $y += $deltaY;
         if ($y >= $pdf->canvasTop + $pdf->canvasHeight - $deltaY) {
           $y = $pdf->canvasTop;

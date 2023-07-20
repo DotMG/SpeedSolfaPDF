@@ -93,8 +93,8 @@ class Block
         $underlined[$i] = array(array('(', ')'));
       }
       if (preg_match('/[\(\)]/', $formatted, $match)) {
-	$underlined[$i] = array($match);
-	$formatted = preg_replace('/[\(\)]/', '', $formatted);
+        $underlined[$i] = array($match);
+        $formatted = preg_replace('/[\(\)]/', '', $formatted);
         //print_r($formatted);
       }
       $return .= $formatted . "\n";
