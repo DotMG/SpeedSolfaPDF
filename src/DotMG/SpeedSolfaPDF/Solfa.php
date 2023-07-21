@@ -116,10 +116,10 @@ class Solfa
   {
     $newBlock = new Block($templateNote, $separator, $this->marker, $this->meta);
     list($subNote, $subMark) = $this->getSubNotes($newBlock->getNbNote());
-    $newBlock->setNote($subNote);
     if ($subMark) {
       $newBlock->setMark($subMark);
     }
+    $newBlock->setNote($subNote);
     $subLyrics = $this->getSubLyrics($newBlock->getNbLyrics());
     $newBlock->setLyrics($subLyrics);
     $this->template[$this->i_block] = $newBlock;
@@ -189,7 +189,6 @@ class Solfa
         case '(':
           $parenOpen[$index] = true;
           break;
-        case '(':
         case ')':
           $this->noteMarq[$index][$noBlock][] = $oneNote;
           break;
@@ -332,7 +331,7 @@ class Solfa
             $pdf->cell($pdf->blockWidth, $pdf->fontHeight, "Ͼ", align: 'C');
             $yMarker -= $pdf->fontHeight;
           }
-          if ('${' == substr($oneMarker, 0, 2)) {
+          if ('${' == substr($oneMarker, 0, 2)) {   // this is for VIM }
             $pdf->setXY($x, $yMarker);
             $pdf->setFont('fir', '', $pdf->getFontSizeLyrics());
             $pdf->cell($pdf->blockWidth, $pdf->fontHeight, substr($oneMarker, 2, strlen($oneMarker)-3), align: 'C');
@@ -368,7 +367,11 @@ class Solfa
         //accolade
         $pdf->image("assets/accolade.png", $x - 2, $y + 1, 0, $deltaY * 0.92 );
       }
-      $x += $pdf->blockWidth;
+      if ($oneBlock->template != '') {
+        $x += $pdf->blockWidth;
+      } else {
+        $x += $pdf->blockWidth / 4;
+      }
       $pdf->setXY($x, $y);
       $pdf->setFont('yan', '', $pdf->getFontSizeNote());
       $pdf->printSeparator($oneBlock->separator, $oneBlock->getNoteHeight());

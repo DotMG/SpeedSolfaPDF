@@ -1,6 +1,6 @@
 M0:|c:Eb|m:4/4|r:7.8.7.8.7.6.7.6.7.6.7.6|t:FFPM 13 - Misaora ny Mpahary|a:J. Gramann, 1487-1541, Nad. C. Borhgrevink 1841-1919, M.J. Meeg, 1851-1924, J. Johnson, 1864-1916|h:L.M. Linderman, 1812-1887|i:2
 S0:/|:!
-T0:{:M|S:-.F!M:D|L:S!-./S|F:F!M:S|D:M!R$Q${D.C.}/:S|S:F!L:D|T:L!-./T|M:L!S:L|T:-!/:S|S:F!L:D|T:L!-./T|M:L!S:F|S:-!/:M|S:-.F!M:D|L:-!T/D|S:F!M:M|R:-!/:M|F:S!L:T|D:-!L/F|M:M.S!R:R|D:-!}
+T0:{:M|S:-.F!M:D|L:S!-./S|F:F!M:S|D:M!R$Q${D.C.}/:S|S:F!L:D|T:L!-./T|M:L!S:L|T:-!/:S|S:F!L:D|T:L!-./T|M:L!S:F|S:-!/:M|S:-.F!M:D|L:-!T/D|S:F!M:M|R:-!/:M|F:S!L:T|D:-!L/F|M:(M.S)!R:R|D:-!}
 N1:msfmdls|sffmsdmr|ssFld'tl|tmlslt|ssFld'tl|tmlsFs|msfmd'lt|d'sfmmr|mfsltd'l|fmm-rrd
 N2:ddt,dddd|s,ds,s,dddt,|rddmrrr|rrdt,rr|rrrrrrr|rrdt,dt,|drrmmFs|drrrdd|Drt,drdd|rdd-dt,d
 N3:sssssfm|rdrmmmss|td'lmFsF|ssmrFs|slld'lsF|ssmrls|ssssd'd't|mrrssl|sffmfmf|lsl-lfm

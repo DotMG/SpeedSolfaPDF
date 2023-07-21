@@ -68,14 +68,39 @@ class Block
     $this->lyrics  = $sub;
     $this->lyricsAsMultistring();
   }
+  function unMark($i, $mark) {
+    foreach ($this->noteMark[$i] as $index => $arrayMark) {
+      if (is_array($arrayMark)) {
+        foreach ($arrayMark as $numMark => $valMark) {
+          if ($mark == $valMark) {
+            unset ($this->noteMark[$i][$index][$numMark]);
+          }
+        }
+      }
+    }
+  }
   function noteAsMultistring()
   {
     $format = preg_replace('/[DRMFSLT]/', '%s', $this->template);
     $return = '';
     $underlined = array();
     foreach ($this->note as $i => $note) {
-      for ($i=0; $i<100; $i++) { $note[] = 'T' ; }
+      $closingParen = '';
+      for ($k=0; $k<100; $k++) { $note[] = 'T' ; }
       $formatted = vsprintf($format, $note);
+      $markVoix  = $this->getMark($i);
+      if (in_array('(', $markVoix)) {
+        if (substr($formatted, 0, 1) != '(') {
+          $formatted = "($formatted";
+        }
+        $this->unMark($i, '(');
+      }
+      if (in_array(')', $markVoix)) {
+        if (!preg_match("/\\)$/", $formatted)) {
+          $formatted = "$formatted)";
+        }
+        $this->unMark($i, ')');
+      }
       $formatted = str_replace('-.-', '-', $formatted);
       $formatted = str_replace(
         array('D', 'R', 'F', 'S', 'T'),
@@ -83,9 +108,8 @@ class Block
         $formatted
       );
       $formatted = str_replace('.-)', ')', $formatted);
-      $formatted = preg_replace('/\((.i*,*)\)/', '\1', $formatted);
+      $formatted = preg_replace('/\((.i*\'*,*)\)/', '\1', $formatted);
       $formatted = preg_replace('/\.,-$/', '', $formatted);
-      $formatted = preg_replace('/\.-$/', '', $formatted);
       $formatted = str_replace(',,', '₂', $formatted);
       $formatted = preg_replace('/(?<=[drmfsltia]),/', '₁', $formatted);
       if (preg_match('/^\((.*)\)$/', $formatted, $match)) {
@@ -99,8 +123,8 @@ class Block
       }
       $return .= $formatted . "\n";
     }
-    $this->setMark($underlined);
     $this->noteString = rtrim($return);
+    $this->setMark($underlined);
   }
   function lyricsAsMultistring()
   {

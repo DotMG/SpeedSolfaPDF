@@ -1,6 +1,6 @@
 M0:|c:F|m:3/4|r:8.8.8.8|t:FFPM-20 - Behold a Stranger at the Door|r:L.M|a:Joseph Grigg, 1720-1768|h:Robert Henry Earnshaw (1856-1923)|n:19|l:15
 S0:/|:!
-T0:{M:M:M|M:-:M|S:S:F|M:-:-/D:D:T|D:-.R:M|R:-:D|R:-:-/M:M:M|M:D:M|L:-:S|F:-:-/R:S:F|M:-:F.D|D:-.M:T|D:-:-}
+T0:{M:M:M|M:-:M|S:S:F|M:-:-/D:D:T|D:-.R:M|R:-:D|R:-:-/M:M:M|M:D:M|L:-:S|F:-:-/R:S:F|M:-:(F.D)|D:-.M:T|D:-:-}
 N1:mmmmms-fm|ddt,(dr)m|rdr|mmmm-mlsf|rsfmd-d-t,d
 N2:dddddr-t,d|ds,s,s,-d|l,l,t,|ddrd-ddDr|t,drdl,-s,-s,s,
 N3:ssslm(rs)ss|lsf(mf)s|fms|ssSl-Tlll|ssss(fm)(rm)fm
