@@ -1,0 +1,11 @@
+M0:|c:E|m:4/4|r:55.65.65.65|t:FFPM-146 - Thine be the Glory|n:19|l:15|a:Edmond L. Budry ,1884|h:George Frideric Handel ,1685-1759
+S0:/|:! 
+T0:{S:-!M:-.F|S:-!D:-/(R.M):(F.S)!F:M|R:-!-:-/(M.F):(S.L)!S:S|D:-!S:-/F:(M.F)!R:T.D|D:-!-:-/(M.R):(M.F)!M:M|R:-!D:-/F:M!R:D|T:-!-:-/(D.T):(D.R)!D:D|L:-!F:-/S:(L.S)!F:T.S|S:-!-:-/S:-!M:-.F|S:-!D:-/(R.M):(F.S)!F:M|R:-!-:-/(M.F):(S.L)!S:S|D:-!S:-/F:(M.M)!R:T.D|D:-!-:-/}
+N1:smfsd  |rmfsfmr  |(mf)slssd's|fm-r-dd     |(mr)mfmmrd     |fmrdt,  |dt,drddlF      |slsF-ss     |smfsd  |(rm)fsfmr   |(mf)slssd's |fm-r-dd
+N2:ddt,ds,|t,drmrdt,|d-dddddd   |t,d-d(t,-)d |(dt,)drddt,l,  |rdt,l,S,|l,S,l,t,l,l,dd |t,dt,l,(r-)r|ddt,ds,|(t,d)rmrdt, |d-dddddd    |t,d-d(t,-)d
+N3:msfm s |s-sssss  |s-sssssm   |fs-s(f-)m   |s-ssssfm       |slfmm   |mmmmmmrl       |smml(l-)t   |msfms  |s-sssss     |s-sssssm    |fs-s(f-)m
+N4:dmrdm  |r-ddt,ds,|(dr)mfmmmd |r(mf)s(s,-)d|d-ddddS,l,     |t,drl,m |l,l,l,l,l,s,F,r|mddr(r-)s,  |dmrdm  |r-ddt,ds,   |(dr)mfmmmd  |r(mf)s(s,-)d
+
+L1:Thine _is _the _glo_ry, /re_sur_rec_ted _One; /End_less _is _the _vic_t'ry, /Now _for _us _be _2gun; /An_gels _clothed _in _glo_ry /rolled _the _stone _a_way, /Lea_ving _on_ly _grave _clothes /where _his _bo_dy _2lay. /Thine _is _the _glo_ry, /Re_sur_rec_ted _One; /End_less _is _the _vic_t'ry, /Now _for _us _be_2gun; 
+L2:Lo! _Jes_us _meets _us, /ri_sen _from _the _tomb; /Lov_ing_ly _He _greets _us, /scat_ters _fear _and _2gloom; /Let _our _doubt_ing _spir_its, /find _a _voice _to _sing; /Christ _who _died _is _li_ving, /death _has _lost _its _2sting.
+L3:Thine _was _the _suff’_ring, /mine _the _end_less _life. _/Sin _holds _no _do_mi_nion; /love _wins _o_ver _2strife. /What _then _shall _I _of_fer? /Songs _that _ne_ver _cease! _/Thou _hast _won _the _vic_t’ry, /glo_rious _Prince _of _2Peace!
