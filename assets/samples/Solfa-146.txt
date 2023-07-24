@@ -1,0 +1,12 @@
+M0:|c:E|m:4/4|r:55.65.65.65|t:FFPM-146 - Thine be the Glory|n:19|l:15|a:Edmond L. Budry ,1884|h:George Frideric Handel ,1685-1759
+S0:/|:! 
+T0:{S:-!M:-.F|S:-!D:-/R.M:F.S!F:M|R:-!-:-/M.F:S.L!S:S|D:-!S:-/F:M.F!R:T.D|D:-!-:-/M.R:M.F!M:M|R:-!D:-/F:M!R:D|T:-!-:-/D.T:D.R!D:D|L:-!F:-/S:L.S!F:T.S|S:-!-:-/S:-!M:-.F|S:-!D:-/R.M:F.S!F:M|R:-!-:-/M.F:S.L!S:S|D:-!S:-/F:M.M!R:T.D|D:-!-:-/}
+N1:smfsd  |(rm)fsfmr  |(mf)slssd's|fm-r-dd   |(mr)mfmmrd     |fmrdt,  |dt,drddlF      |slsF-ss   |smfsd  |(rm)fsfmr   |(mf)slssd's |fm-r-dd
+N2:ddt,ds,|(t,d)rmrdt,|d-dddddd   |t,d-dt,-d |(dt,)drddt,l,  |rdt,l,S,|l,S,l,t,l,l,dd |t,dt,l,r-r|ddt,ds,|(t,d)rmrdt, |d-dddddd    |t,d-dt,-d
+N3:msfm s |s-sssss    |s-sssssm   |fs-sf-m   |s-ssssfm       |slfmm   |mmmmmmrl       |smmll-t   |msfms  |s-sssss     |s-sssssm    |fs-sf-m
+N4:dmrdm  |r-ddt,ds,  |(dr)mfmmmd |r(mf)ss,-d|d-ddddS,l,     |t,drl,m |l,l,l,l,l,s,F,r|mddrr-s,  |dmrdm  |r-ddt,ds,   |(dr)mfmmmd  |r(mf)ss,-d
+
+L1:Thine _be _the _glo_ry, /ri_2sen, _2con_qu’ring _Son; /End_2less _is _the _vic_to_ry, /Thou _o’er _2death _hast _2won; /An_2gels _2in _bright _rai_ment /rolled _the _stone _a_way, /Kept _2the _2fol_ded _grave _clothes /where _Thy _2bo_dy _2lay. /Thine _be _the _glo_ry, /ri_2sen, _2con_qu’ring _Son; /End_2less _is _the _vic_to_ry, /Thou _o’er _2death _hast _2won; 
+L2:Lo! _Jes_us _meets _us, /ri_2sen _2from _the _tomb; /Lov_2ingly _2He _gre_ets _us, /scat_ters _2fear _and _2gloom; /Let _2the _2church _with _glad_ness, /hymns _of _tri_umph _sing; /For _2her _2Lord _now _li_veth, /death _hath _2lost _its _2sting. 
+L3:No _more _we _doubt _Thee, /glo_2rious _2Prince _of _life; /Life _2is _2naught _with_out _Thee; /aid _us _2in _our _2strife; /Make _2us _2more _than _conqu_’rors, /through _Thy _death_less _love: /Bring _2us _2safe _through _Jo_rdan /to _Thy _2home _a_2bove.
+
