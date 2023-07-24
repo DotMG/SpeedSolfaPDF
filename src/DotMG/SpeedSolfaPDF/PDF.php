@@ -93,13 +93,13 @@ class PDF extends \tFPDF
     $this->setFont('yan', '', $this->fontSizeNote);
     $width = 0;
     foreach (explode("\n", $note) as $oneNote) {
-      $width = max($width, $this->getStringWidth($oneNote));
+      $width = max($width, $this->getStringWidth($oneNote) + 1.2);
     }
     $oneNoteWidth = $width;
     $width = 0;
     $this->setFont('yan', '', $this->fontSizeLyrics);
     foreach (explode("\n", $lyrics) as $oneLyrics) {
-      $width = max($width, $this->getStringWidth($oneLyrics));
+      $width = max($width, $this->getStringWidth($oneLyrics) + 0.9);
     }
     $oneLyricsWidth = $width;
     return array($oneNoteWidth, $oneLyricsWidth, max($oneNoteWidth, $oneLyricsWidth));

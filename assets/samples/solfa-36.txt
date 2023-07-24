@@ -1,9 +1,9 @@
 M0:|c:C|m:4/4|r:P.M.|t:FFPM 36 - Moa ho haiko tantaraina|a:G. Ravelo, 1886-1961|h:(Festival Hymns and Anthems)|n:17|l:11
 S0:/|:!
-T0:{|D:-.L!S:M|D:R!M:S/D:-.D!D:D|D:-!-:/|M:-.R!D:R|M:R!D:M|R:-R!R:R|R:-|-:/S.S:S.S!S.L:S.T|S.S:S.S!S.S!S.S/S.S:S.S!S.S:S.S|S.S:S.S!S.S:S.S/D:-.D!R:R|M:D!D:L|S:M!R:F|D:-!-:/D:-.D!D:D|D/D.M!S.D:M.S|D:-.D!D:D|D:-!-:/R:.R!R:R|R/R.S!T.R:S.T|R:-.R!R:R|R:-!-:/R:-!R:-|R:-!T:-|L:-!S:-|F:-/M:R|S:-!M:D|T:-!S:-|S:-!-:/}
-N1:d'lsmdrms|d'd'd'd'd'|m'r'd'r'm'r'd'm'|r'r'r'r'r'|-16|t--td'-d'-m'-r'-t'-s-|d'd'r'r'm'd'd'ls-r'-d'|d'd'd'd'd'|dmsd'm's'd''d''d''d''d''|r'r'r'r'r'|rstr's't'r''r''r''r''r''|m'r'd'tlsf|mrs---ss
+T0:{|D:-.L!S:M|D:R!M:S/D:-.D!D:D|D:-!-:/|M:-.R!D:R|M:R!D:M|R:-.R!R:R|R:-|-:/S.S:S.S!S.L:S.T|S.S:S.S!S.S!S.S/S.S:S.S!S.S:S.S|S.S:S.S!S.S:S.S/D:-.D!R:R|M:D!D:L|S:M!R:F|D:-!-:/D:-.D!D:D|D/D.M!S.D:M.S|D:-.D!D:D|D:-!-:/R:.R!R:R|R/R.S!T.R:S.T|R:-.R!R:R|R:-!-:/R:-!R:-|R:-!T:-|L:-!S:-|F:-/M:R|S:-!M:D|T:-!S:-|S:-!-:/}
+N1:d'lsmdrms|d'd'd'd'd'|m'r'd'r'm'r'd'm'|r'r'r'r'r'|-16|t--td'-d'-m'-r'-t-s-|d'd'r'r'm'd'd'ls-r'-d'|d'd'd'd'd'|dmsd'm's'd''d''d''d''d''|r'r'r'r'r'|rstr's't'r''r''r''r''r''|m'r'd'tlsf|mrs---ss
 N2:d'lsmdrms|mmffm     |ssssssss        |ssFFs     |-16|r--rm-m-s-f-r-f-    |msssssffmmffm         |mmffm     |-6       s's'l'l's'     |ssFFs     |-6       t't'l'l't'     |sfmrdmr   |---ddt,rd 
-N3:d'lsmdrms|sslls     |d'td'td'td'd'   |ttld't    |s--sl-t-l-s-m-s-    |-16|sd'ttd'Tld'd'd'ttd'   |sslls     |-6       m'm'f'f'm'     |ttld't    |-6       s's'F'F's'     |d'td'SlTl |---mmrfm
+N3:d'lsmdrms|sslls     |d'td'td'td'd'   |ttld't    |(s-)-s(l-)(t-)(l-)(s-)(m-)(s-)    |-16|sd'ttd'Tld'd'd'ttd'   |sslls     |-6       m'm'f'f'm'     |ttld't    |-6       s's'F'F's'     |d'td'SlTl |---mmrfm
 N4:d'lsmdrms|ddddd     |drmrdrmd        |ssrrs     |s,ss,ss,ss,ss,ss,ss,ss,s|s,ss,ss,ss,ss,ss,ss,ss,s|dmssdmffssssd|ddffd|-6     ddffd |ssrrs     |-6       ssrrs          |d'SlmfDr  |---s,s,s,s,d
 
 L1:Moa_ho _hai_ko _tan_ta_rai_na/ny _ha_soa_va_nao?/Mi_fa_ma_tra _ta_mi_n'ai_na _ny _fi_tia_va_nao/Ny _2va_2hoa_2ka _2se_2se_2he_2na/'zay _2na_2ha_2zo _2fa_2mo_2nje_2na/No _hi_de_ra I_lay _Mpa_mo_njy _soa _dia _soa _to_koa/Je_so _no _de_rao//Je_so _no _de_rao//'Zay _na_tao_ny _am_ba_rao/Je_so _no _Je_so _no _de_rao!
