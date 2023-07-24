@@ -4,17 +4,20 @@ namespace DotMG\SpeedSolfaPDF;
 
 class Solfa
 {
-  var $fileData = array();
-  var $meta = array();
-  var $note = array();
-  var $template = array();
-  var $lyrics = array();
-  var $i_block = 0;
-  var $i_note = 0;
-  var $i_lyrics = 0;
-  var $marker;
-  var $lyricsLine = 0;
-  var $hairpin = null;
+  private $fileData = array();
+  private $meta = array();
+  private $note = array();
+  private $template = array();
+  private $lyrics = array();
+  private $i_block = 0;
+  private $i_note = 0;
+  private $i_lyrics = 0;
+  private $marker;
+  private $lyricsLine = 0;
+  private $hairpin = null;
+  private $x;
+  private $y;
+  private $pdf;
   function __construct($sourceFile = 'assets/samples/solfa-60.txt')
   {
     $sourceAsArray = file($sourceFile); //@todo error handling
@@ -262,8 +265,8 @@ class Solfa
   /**
    * Set Hairpin : mark the start of a crescendo or a diminuendo
    */
-  function setHairpin($x, $marker) {
-    $this->hairpin = array($x, $marker);
+  function setHairpin($marker) {
+    $this->hairpin = array($this->x, $marker);
   }
   function getHairpin() {
     return $this->hairpin;
@@ -271,141 +274,141 @@ class Solfa
   function unsetHairpin() {
     $this->hairpin = null;
   }
-  function drawHairpin($pdf, $x, $y) {
+  function drawHairpin() {
     list($x0, $crescendoOrDiminuendo) = $this->getHairpin();
-    $yMarker = $y - $pdf->fontHeight;
+    $yMarker = $this->y - $this->pdf->fontHeight;
     $this->unsetHairpin();
-    $upp = $pdf->fontHeight / 4;
-    $baseY = $yMarker + $pdf->fontHeight / 2;
+    $upp = $this->pdf->fontHeight / 4;
+    $baseY = $yMarker + $this->pdf->fontHeight / 2;
     if ($crescendoOrDiminuendo == '$>') {
-      $pdf->line($x0, $baseY-$upp, $x, $baseY);
-      $pdf->line($x0, $baseY+$upp, $x, $baseY);
+      $this->pdf->line($x0, $baseY-$upp, $this->x, $baseY);
+      $this->pdf->line($x0, $baseY+$upp, $this->x, $baseY);
     }
     if ($crescendoOrDiminuendo == '$<') {
-      $pdf->line($x0, $baseY, $x, $baseY-$upp);
-      $pdf->line($x0, $baseY, $x, $baseY+$upp);
+      $this->pdf->line($x0, $baseY, $this->x, $baseY-$upp);
+      $this->pdf->line($x0, $baseY, $this->x, $baseY+$upp);
     }
   }
   function renderPDF()
   {
     //@todo : 
-    $pdf = new PDF($this->meta);
-    $pdf->setupSize();
-    $pdf->recalcWidth();
-    $x = $pdf->canvasLeft;
-    $y = $pdf->canvasTop;
+    $this->pdf = new PDF($this->meta);
+    $this->pdf->setupSize();
+    $this->pdf->recalcWidth();
+    $this->x = $this->pdf->canvasLeft;
+    $this->y = $this->pdf->canvasTop;
     // ecriture entete
     //title 
-    $pdf->setXY($x, $y);
-    $pdf->setFont('yan', '', $pdf->getFontSizeNote()+6);
-    $pdf->cell($pdf->canvasWidth, $pdf->fontHeight, $this->meta['t'], align: 'C');
-    $y = $pdf->getY() + $pdf->fontHeight * 1.5;
+    $this->pdf->setXY($this->x, $this->y);
+    $this->pdf->setFont('yan', '', $this->pdf->getFontSizeNote()+6);
+    $this->pdf->cell($this->pdf->canvasWidth, $this->pdf->fontHeight, $this->meta['t'], align: 'C');
+    $this->y = $this->pdf->getY() + $this->pdf->fontHeight * 1.5;
     // author
-    $pdf->setXY($x, $y);
-    $pdf->setFont('yan', '', $pdf->getFontSizeLyrics()+2);
-    $pdf->cell($pdf->canvasWidth, $pdf->fontHeight, $this->meta['h'], align: 'R');
-    $pdf->setXY($x, $y);
-    $pdf->multiCell($pdf->canvasWidth / 2, $pdf->fontHeight, $this->meta['a'], align: 'L');
+    $this->pdf->setXY($this->x, $this->y);
+    $this->pdf->setFont('yan', '', $this->pdf->getFontSizeLyrics()+2);
+    $this->pdf->cell($this->pdf->canvasWidth, $this->pdf->fontHeight, $this->meta['h'], align: 'R');
+    $this->pdf->setXY($this->x, $this->y);
+    $this->pdf->multiCell($this->pdf->canvasWidth / 2, $this->pdf->fontHeight, $this->meta['a'], align: 'L');
     //
-    $y = $pdf->getY() + $pdf->fontHeight;
+    $this->y = $this->pdf->getY() + $this->pdf->fontHeight;
     //tonalite + rythme
-    $pdf->setFont('fir', '', $pdf->getFontSizeLyrics());
+    $this->pdf->setFont('fir', '', $this->pdf->getFontSizeLyrics());
     $tonaliteRythme = 'Do dia ' . $this->meta["c"] . '       ' . $this->meta['m'];
-    $pdf->setXY($x, $y);
-    $pdf->cell($pdf->getStringWidth($tonaliteRythme), $pdf->fontHeight, $tonaliteRythme, align: 'L');
+    $this->pdf->setXY($this->x, $this->y);
+    $this->pdf->cell($this->pdf->getStringWidth($tonaliteRythme), $this->pdf->fontHeight, $tonaliteRythme, align: 'L');
     // speed 
-    $pdf->setXY($x, $y);
-    $pdf->cell($pdf->canvasWidth, $pdf->fontHeight, $this->meta['r'], ln: 0, align: 'C');
+    $this->pdf->setXY($this->x, $this->y);
+    $this->pdf->cell($this->pdf->canvasWidth, $this->pdf->fontHeight, $this->meta['r'], ln: 0, align: 'C');
 
-    $y = $pdf->getY() + $pdf->fontHeight * 2;
+    $this->y = $this->pdf->getY() + $this->pdf->fontHeight * 2;
     if (isset($this->meta['i'])) {
-      $y += ($pdf->fontHeight) * ($this->meta['i'] - 1);
+      $this->y += ($this->pdf->fontHeight) * ($this->meta['i'] - 1);
     }
 
-    $pdf->setXY($x, $y);
+    $this->pdf->setXY($this->x, $this->y);
     $mark = array();
     foreach ($this->template as $oneBlock) {
       if (is_array($oneBlock->marker) && sizeof($oneBlock->marker) > 0) {
-        $yMarker = $y - $pdf->fontHeight;
+        $yMarker = $this->y - $this->pdf->fontHeight;
         foreach ($oneBlock->marker as $oneMarker) {
           if ($oneMarker == '$<' || $oneMarker == '$>') {
-            $this->setHairpin($x, $oneMarker);
+            $this->setHairpin($oneMarker);
           }
           if ($oneMarker == '$=') {
-	    $this->drawHairpin($pdf, $x, $y);
+	    $this->drawHairpin();
           }
           if ($oneMarker == '$Q') {
-            $pdf->setXY($x, $yMarker);
-            $pdf->setFont('fir', '', $pdf->getFontSizeLyrics());
-            $pdf->cell($pdf->blockWidth, $pdf->fontHeight, "Ͼ", align: 'C');
-            $yMarker -= $pdf->fontHeight;
+            $this->pdf->setXY($this->x, $yMarker);
+            $this->pdf->setFont('fir', '', $this->pdf->getFontSizeLyrics());
+            $this->pdf->cell($this->pdf->blockWidth, $this->pdf->fontHeight, "Ͼ", align: 'C');
+            $yMarker -= $this->pdf->fontHeight;
           }
           if ('${' == substr($oneMarker, 0, 2)) {   // this is for VIM }
-            $pdf->setXY($x, $yMarker);
-            $pdf->setFont('fir', '', $pdf->getFontSizeLyrics());
-            $pdf->cell($pdf->blockWidth, $pdf->fontHeight, substr($oneMarker, 2, strlen($oneMarker)-3), align: 'C');
-            $yMarker -= $pdf->fontHeight;
+            $this->pdf->setXY($this->x, $yMarker);
+            $this->pdf->setFont('fir', '', $this->pdf->getFontSizeLyrics());
+            $this->pdf->cell($this->pdf->blockWidth, $this->pdf->fontHeight, substr($oneMarker, 2, strlen($oneMarker)-3), align: 'C');
+            $yMarker -= $this->pdf->fontHeight;
           }
         }
       }
-      $pdf->setXY($x, $y);
-      $pdf->setFont('yan', '', $pdf->getFontSizeNote());
-      $pdf->multiCell($pdf->blockWidth, 0, $oneBlock->noteString, align: 'C');
+      $this->pdf->setXY($this->x, $this->y);
+      $this->pdf->setFont('yan', '', $this->pdf->getFontSizeNote());
+      $this->pdf->multiCell($this->pdf->blockWidth, 0, $oneBlock->noteString, align: 'C');
       foreach (range(1, sizeof($this->note)) as $ln) {
-        $nextX = $x + $pdf->blockWidth;
-        $yLine = $pdf->getY() + $pdf->fontHeight * $ln - $pdf->fontHeight * 4 - $pdf->fontHeight / 16;
+        $nextX = $this->x + $this->pdf->blockWidth;
+        $yLine = $this->pdf->getY() + $this->pdf->fontHeight * $ln - $this->pdf->fontHeight * 4 - $this->pdf->fontHeight / 16;
         $oneBlockMark = $oneBlock->getMark($ln);
         if (in_array('(', $oneBlockMark)) {
-          $mark[$ln] = array('x' => $x + ($pdf->blockWidth - $oneBlock->noteWidth) / 2, 'y' => $yLine);
+          $mark[$ln] = array('x' => $this->x + ($this->pdf->blockWidth - $oneBlock->noteWidth) / 2, 'y' => $yLine);
         }
         if (in_array(')', $oneBlockMark)) {
-          $nextX = $nextX - ($pdf->blockWidth - $oneBlock->noteWidth) / 2;
+          $nextX = $nextX - ($this->pdf->blockWidth - $oneBlock->noteWidth) / 2;
           if ($yLine != $mark[$ln]['y']) {
-            $pdf->line($mark[$ln]['x'], $mark[$ln]['y'], $pdf->canvasLeft + $pdf->canvasWidth, $mark[$ln]['y']);
-            $pdf->line($pdf->canvasLeft, $yLine, $nextX, $yLine);
+            $this->pdf->line($mark[$ln]['x'], $mark[$ln]['y'], $this->pdf->canvasLeft + $this->pdf->canvasWidth, $mark[$ln]['y']);
+            $this->pdf->line($this->pdf->canvasLeft, $yLine, $nextX, $yLine);
           } else {
-            $pdf->line($mark[$ln]['x'], $yLine, $nextX, $yLine);
+            $this->pdf->line($mark[$ln]['x'], $yLine, $nextX, $yLine);
           }
         }
       }
-      $deltaY = 0.4 + $pdf->fontHeight * $oneBlock->getNoteHeight();
-      $pdf->setXY($x, $y + $deltaY);
-      $pdf->setFont('yan', '', $pdf->getFontSizeLyrics());
-      $pdf->multiCell($pdf->blockWidth, 0, $oneBlock->lyricsString, align: 'C');
-      if ($x === $pdf->canvasLeft) {
+      $deltaY = 0.4 + $this->pdf->fontHeight * $oneBlock->getNoteHeight();
+      $this->pdf->setXY($this->x, $this->y + $deltaY);
+      $this->pdf->setFont('yan', '', $this->pdf->getFontSizeLyrics());
+      $this->pdf->multiCell($this->pdf->blockWidth, 0, $oneBlock->lyricsString, align: 'C');
+      if ($this->x === $this->pdf->canvasLeft) {
         //accolade
-        $pdf->image("assets/accolade.png", $x - 2, $y + 1, 0, $deltaY * 0.92 );
+        $this->pdf->image("assets/accolade.png", $this->x - 2, $this->y + 1, 0, $deltaY * 0.92 );
       }
       if ($oneBlock->template != '') {
-        $x += $pdf->blockWidth;
+        $this->x += $this->pdf->blockWidth;
       } else {
-        $x += $pdf->blockWidth / 4;
+        $this->x += $this->pdf->blockWidth / 4;
       }
-      $pdf->setXY($x, $y);
-      $pdf->setFont('yan', '', $pdf->getFontSizeNote());
-      $pdf->printSeparator($oneBlock->separator, $oneBlock->getNoteHeight());
-      $pdf->setFont('yan', '', $pdf->getFontSizeLyrics());
-      if ($x >= 0 * $pdf->canvasLeft + $pdf->canvasWidth) {
+      $this->pdf->setXY($this->x, $this->y);
+      $this->pdf->setFont('yan', '', $this->pdf->getFontSizeNote());
+      $this->pdf->printSeparator($oneBlock->separator, $oneBlock->getNoteHeight());
+      $this->pdf->setFont('yan', '', $this->pdf->getFontSizeLyrics());
+      if ($this->x >= 0 * $this->pdf->canvasLeft + $this->pdf->canvasWidth) {
 	$hairPin = $this->getHairpin();
 	if ($hairPin != null) {
-	  $this->drawHairpin($pdf, $x, $y);
+	  $this->drawHairpin();
 	}
-        $x = $pdf->canvasLeft;
+        $this->x = $this->pdf->canvasLeft;
 	if ($hairPin) {
 	  list($_, $hairpinSign) = $hairPin;
-	  $this->setHairpin($x, $hairpinSign);
+	  $this->setHairpin($hairpinSign);
 	}
-        $deltaY += $pdf->fontHeight * ($oneBlock->getLyricsHeight() + 1.4);
+        $deltaY += $this->pdf->fontHeight * ($oneBlock->getLyricsHeight() + 1.4);
         if (isset($this->meta['i'])) {
           $deltaY += ($this->meta['i'] - 1) * $oneBlock->getNoteHeight();
         }
-        $y += $deltaY;
-        if ($y >= $pdf->canvasTop + $pdf->canvasHeight - $deltaY) {
-          $y = $pdf->canvasTop;
-          $pdf->addPage();
+        $this->y += $deltaY;
+        if ($this->y >= $this->pdf->canvasTop + $this->pdf->canvasHeight - $deltaY) {
+          $this->y = $this->pdf->canvasTop;
+          $this->pdf->addPage();
         }
       }
     }
-    $pdf->output('F', 'pdfsolfa2.pdf');
+    $this->pdf->output('F', 'pdfsolfa2.pdf');
   }
 } //class Solfa
