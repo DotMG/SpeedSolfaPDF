@@ -14,6 +14,7 @@ class Solfa
   var $i_lyrics = 0;
   var $marker;
   var $lyricsLine = 0;
+  var $hairpin = null;
   function __construct($sourceFile = 'assets/samples/solfa-60.txt')
   {
     $sourceAsArray = file($sourceFile); //@todo error handling
@@ -261,11 +262,29 @@ class Solfa
   /**
    * Set Hairpin : mark the start of a crescendo or a diminuendo
    */
-  function SetHairpin($x, $marker) {
+  function setHairpin($x, $marker) {
     $this->hairpin = array($x, $marker);
   }
-  function GetHairpin() {
+  function getHairpin() {
     return $this->hairpin;
+  }
+  function unsetHairpin() {
+    $this->hairpin = null;
+  }
+  function drawHairpin($pdf, $x, $y) {
+    list($x0, $crescendoOrDiminuendo) = $this->getHairpin();
+    $yMarker = $y - $pdf->fontHeight;
+    $this->unsetHairpin();
+    $upp = $pdf->fontHeight / 4;
+    $baseY = $yMarker + $pdf->fontHeight / 2;
+    if ($crescendoOrDiminuendo == '$>') {
+      $pdf->line($x0, $baseY-$upp, $x, $baseY);
+      $pdf->line($x0, $baseY+$upp, $x, $baseY);
+    }
+    if ($crescendoOrDiminuendo == '$<') {
+      $pdf->line($x0, $baseY, $x, $baseY-$upp);
+      $pdf->line($x0, $baseY, $x, $baseY+$upp);
+    }
   }
   function renderPDF()
   {
@@ -313,17 +332,7 @@ class Solfa
             $this->setHairpin($x, $oneMarker);
           }
           if ($oneMarker == '$=') {
-            list($x0, $crescendoOrDiminuendo) = $this->getHairpin();
-            $upp = $pdf->fontHeight / 4;
-            $baseY = $yMarker + $pdf->fontHeight / 2;
-            if ($crescendoOrDiminuendo == '$>') {
-              $pdf->line($x0, $baseY-$upp, $x, $baseY);
-              $pdf->line($x0, $baseY+$upp, $x, $baseY);
-            }
-            if ($crescendoOrDiminuendo == '$<') {
-              $pdf->line($x0, $baseY, $x, $baseY-$upp);
-              $pdf->line($x0, $baseY, $x, $baseY+$upp);
-            }
+	    $this->drawHairpin($pdf, $x, $y);
           }
           if ($oneMarker == '$Q') {
             $pdf->setXY($x, $yMarker);
@@ -377,7 +386,15 @@ class Solfa
       $pdf->printSeparator($oneBlock->separator, $oneBlock->getNoteHeight());
       $pdf->setFont('yan', '', $pdf->getFontSizeLyrics());
       if ($x >= 0 * $pdf->canvasLeft + $pdf->canvasWidth) {
+	$hairPin = $this->getHairpin();
+	if ($hairPin != null) {
+	  $this->drawHairpin($pdf, $x, $y);
+	}
         $x = $pdf->canvasLeft;
+	if ($hairPin) {
+	  list($_, $hairpinSign) = $hairPin;
+	  $this->setHairpin($x, $hairpinSign);
+	}
         $deltaY += $pdf->fontHeight * ($oneBlock->getLyricsHeight() + 1.4);
         if (isset($this->meta['i'])) {
           $deltaY += ($this->meta['i'] - 1) * $oneBlock->getNoteHeight();
