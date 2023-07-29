@@ -112,6 +112,7 @@ class PDF extends \tFPDF
     } else {
       $this->blockWidth = $this->canvasWidth;
     }
+    return $nbBlocks;
   }
   // OverLoad
   function SetFont($family, $style = '', $size = 0)

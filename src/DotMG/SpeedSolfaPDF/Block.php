@@ -13,7 +13,9 @@ class Block
   private $lyrics;
   private $noteMark;
   public $noteWidth = 0;
+  private $numBlock;
   public static $maxWidth;
+  public static $nbBlock = 0;
   function __construct($templateNote, $separator, $marker, $meta)
   {
     $this->template = str_replace(array('{', '}'), '', $templateNote);
@@ -23,6 +25,11 @@ class Block
     $this->nbLyrics = strlen(preg_replace('/[^DRMFSLT]/', '', $templateSyllable));
     $this->marker = $marker;
     $this->meta = $meta;
+    $this->numBlock = Block::$nbBlock;
+    Block::$nbBlock++;
+  }
+  function getNum() {
+    return $this->numBlock;
   }
   function getLyricsHeight()
   {

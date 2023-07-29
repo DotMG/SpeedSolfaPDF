@@ -289,12 +289,50 @@ class Solfa
       $this->pdf->line($x0, $baseY, $this->x, $baseY+$upp);
     }
   }
+  function separatorAt($x) {
+    if (isset($this->template[$x]) && isset($this->template[$x]->separator)) {
+      return $this->template[$x]->separator;
+    }
+    return '';
+  }
+  /* When smartWidth is activated, SpeedSolfaPDF does its best to right-align
+   * the solfa line on either double-bar or single vertical bar
+   */
+  function smartWidth($leftMost = 0) {
+   $nbBlocks = intval($this->pdf->canvasWidth / Block::$maxWidth);
+   $xRight = $leftMost + $nbBlocks;
+    if ($xRight > 10 + $leftMost) {
+      while (($xRight > 5 + $leftMost) && ($this->separatorAt($xRight) != '/') 
+	&& ($this->separatorAt($xRight) != '|')) {
+        $xRight--;
+      }
+      if ($this->separatorAt($xRight) == '/') {
+        return $xRight-$leftMost; 
+      }
+      if ($this->separatorAt($xRight) == '|') {
+	for ($xDoubleBar = $xRight; $xDoubleBar > $xRight - 4; $xDoubleBar--) {
+	  if ($this->separatorAt($xDoubleBar) == '/') {
+	    return $xDoubleBar-$leftMost;
+	  }
+	}
+	return $xRight-$leftMost;
+      }
+      if ($xRight == 5 + $leftMost) {
+        return $nbBlocks;
+      }
+    }
+    return $nbBlocks;
+  }
   function renderPDF()
   {
     //@todo : 
     $this->pdf = new PDF($this->meta);
     $this->pdf->setupSize();
-    $this->pdf->recalcWidth();
+    $nbBlocks = $this->pdf->recalcWidth();
+    $newNbBlocks = $this->smartWidth()+1;
+    if ($newNbBlocks != $nbBlocks) {
+     $this->pdf->blockWidth = $this->pdf->canvasWidth / $newNbBlocks;
+    }
     $this->x = $this->pdf->canvasLeft;
     $this->y = $this->pdf->canvasTop;
     // ecriture entete
@@ -394,6 +432,10 @@ class Solfa
 	  $this->drawHairpin();
 	}
         $this->x = $this->pdf->canvasLeft;
+        $newNbBlocks = $this->smartWidth($oneBlock->getNum());
+        if ($newNbBlocks != $nbBlocks) {
+         $this->pdf->blockWidth = $this->pdf->canvasWidth / $newNbBlocks;
+        }
 	if ($hairPin) {
 	  list($_, $hairpinSign) = $hairPin;
 	  $this->setHairpin($hairpinSign);
