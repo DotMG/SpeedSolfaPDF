@@ -18,8 +18,10 @@ class Solfa
   private $x;
   private $y;
   private $pdf;
-  function __construct($sourceFile = 'assets/samples/solfa-60.txt')
+  private $options;
+  function __construct($sourceFile = 'assets/samples/solfa-60.txt', $options = array())
   {
+    $this->options = $options;
     $sourceAsArray = file($sourceFile); //@todo error handling
     array_walk($sourceAsArray, array($this, 'parseAllLines'));
     $this->loadMeta();
@@ -300,22 +302,25 @@ class Solfa
    */
   function smartWidth($leftMost = 0) {
    $nbBlocks = intval($this->pdf->canvasWidth / Block::$maxWidth);
+   if (!isset($this->options['s']) && !isset($this->options['smart-width'])) {
+     return $nbBlocks;
+   }
    $xRight = $leftMost + $nbBlocks;
     if ($xRight > 10 + $leftMost) {
       while (($xRight > 5 + $leftMost) && ($this->separatorAt($xRight) != '/') 
-	&& ($this->separatorAt($xRight) != '|')) {
+        && ($this->separatorAt($xRight) != '|')) {
         $xRight--;
       }
       if ($this->separatorAt($xRight) == '/') {
         return $xRight-$leftMost; 
       }
       if ($this->separatorAt($xRight) == '|') {
-	for ($xDoubleBar = $xRight; $xDoubleBar > $xRight - 4; $xDoubleBar--) {
-	  if ($this->separatorAt($xDoubleBar) == '/') {
-	    return $xDoubleBar-$leftMost;
-	  }
-	}
-	return $xRight-$leftMost;
+        for ($xDoubleBar = $xRight; $xDoubleBar > $xRight - 4; $xDoubleBar--) {
+          if ($this->separatorAt($xDoubleBar) == '/') {
+            return $xDoubleBar-$leftMost;
+          }
+        }
+        return $xRight-$leftMost;
       }
       if ($xRight == 5 + $leftMost) {
         return $nbBlocks;
@@ -373,7 +378,7 @@ class Solfa
             $this->setHairpin($oneMarker);
           }
           if ($oneMarker == '$=') {
-	    $this->drawHairpin();
+            $this->drawHairpin();
           }
           if ($oneMarker == '$Q') {
             $this->pdf->setXY($this->x, $yMarker);
@@ -427,19 +432,19 @@ class Solfa
       $this->pdf->printSeparator($oneBlock->separator, $oneBlock->getNoteHeight());
       $this->pdf->setFont('yan', '', $this->pdf->getFontSizeLyrics());
       if ($this->x >= 0 * $this->pdf->canvasLeft + $this->pdf->canvasWidth) {
-	$hairPin = $this->getHairpin();
-	if ($hairPin != null) {
-	  $this->drawHairpin();
-	}
+        $hairPin = $this->getHairpin();
+        if ($hairPin != null) {
+          $this->drawHairpin();
+        }
         $this->x = $this->pdf->canvasLeft;
         $newNbBlocks = $this->smartWidth($oneBlock->getNum());
         if ($newNbBlocks != $nbBlocks) {
          $this->pdf->blockWidth = $this->pdf->canvasWidth / $newNbBlocks;
         }
-	if ($hairPin) {
-	  list($_, $hairpinSign) = $hairPin;
-	  $this->setHairpin($hairpinSign);
-	}
+        if ($hairPin) {
+          list($_, $hairpinSign) = $hairPin;
+          $this->setHairpin($hairpinSign);
+        }
         $deltaY += $this->pdf->fontHeight * ($oneBlock->getLyricsHeight() + 1.4);
         if (isset($this->meta['i'])) {
           $deltaY += ($this->meta['i'] - 1) * $oneBlock->getNoteHeight();
