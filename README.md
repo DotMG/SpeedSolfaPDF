@@ -9,3 +9,13 @@ Just decompress the archive or git clone the repository into a folder of your ch
 
 ## Format
 SpeedSolfaPDF invents a new format to speed up the creation of a Solfa PDF. The [specification of this format](https://github.com/DotMG/SpeedSolfaPDF/wiki/Le-format) is available in French in the wiki.
+
+## Running
+    php run.php [options] source-file.txt
+
+available options are actually:
+
+    -s : activate smartWidth. With smartWidth activated, SpeedSolfaPDF tries
+       its best to align a line on double vertical lines or single long
+       vertical lines (separator code / or | )
+    --smart-width : the same as -s
