@@ -1,0 +1,17 @@
+M0:|c:Eb|m:4/4|r:C.M.|t:FFPM 107 - Beneath The Cross Of Jesus|n:19|l:16|a:Elizabeth Cecilia Clephane (1868: 1830-1869) |h:Frederick Charles Maker (1881:1844-1927)
+S0:/|:! 
+T0:{:S|S:-.S!F:L|S:-!M:D|R:-.M!F:F|M:-!-/:M|D:-.D!D:T|L:S!F:M|R:-.R!R:R|M:-!-/:M|M:-.R!D:R|M:F!S:S|L:-.L!L:M|F:-!-/:F|T:-.L!S:F|M:M!S:F|M:-.D!M:R|D:-!-/}
+N1:sssFlsmdrmffm  |md'd'd'tlsfmrrRRm  |mmrdrmfsslllmf  |ftlsfmmsfmdmrd
+N2:mmmRRmddt,ddt,d|rdddrmmrdddddt,    |ddt,dt,ddddddDDr|rffft,ddddddt,t,d
+N3:ssslFssssslss  |SlllSllllllllS     |ssfmfslTTlllll  |lr'd'tsssTlsmsfm
+N4:dddddddmfmrs,d |t,l,l,l,t,dDrmffffm|ddddddddmffml,r |rs,s,s,s,ddm,f,s,s,s,s,d
+
+L1:Be_neath _the _cross _of _Je_sus _I _fain _would _take _my _stand,/the _sha_dow _of _a _migh_ty _Rock _with_in _a _wea_ry _land;               /a _ho_me _with_in _the _wi_lder_ness, _a _rest _upon _the _way,                 /from _the _burn_ing _of _the _noontide _heat _and _the _burden _of _the _day.
+L2:O _safe _and _ha_ppy _she_lter, _O _re_fuge _tried _and _sweet    /O _try_sting _place _where _Hea_ven's _love _and _Hea_ven's _ju_stice _meet!/As _to _the _ho_ly _pa_tri_arch _that _won_drous _dream _was _given,            /So _seems _my _Sa_vior's _cross _to _me, _a _la_dder _up _to _heaven.
+L3:There _lies _be_neath _its _sha_dow _but _on _the _fur_ther _side /The _da_rkness _of _an _aw_ful _grave _that _gapes _both _deep _and _wide   /And _there _be_tween _us _stands _the _cross _two _arms _out_stretched _to _save/A _watch_man _set _to _guard _the _way _from _that _e_ter_nal _grave.
+L4:U_pon _the _cross _of _Je_sus _mine _eye _at _times _can _see     /the _ve_ry _dy_ing _form _of _One _who _su_ffered _there _for _me:          /and _from _my _stri_cken _heart _with _tears _two _won_ders _I _con_fess        /the _won_ders _of _re_deem_ing _love _and _my _un_worth_i_ness.
+L5:I _take, _O _cross, _thy _sha_dow _for _my _a_bi_ding _place:     /I _ask _no _o_ther _sun_shine _than _the _sun_shine _of _his _face;         /con_tent _to _let _the _world _go _by, _to _know _no _gain _nor _loss;          /my _sin_ful _self _my _on_ly _shame, _my _glo_ry _all _the _cross.
+L6:Dim _eyes _for _e_ver _clo_sed _For _house_hold _tears _or _mirth;/A _pale _face _look_ing _up _to _God— _And _so, _fare_well _to _earth!      /O_ut _to _the _li_ght _be_yond, _Out _of _the _pain _and _fear;                 /Out _to _the _up_per _glo_ry _there, _Out _of _the _dark_ness _here!
+L7:Out _of _the _land _of _dea_th, _Out _of _the _land _of _doubt    /To _en_ter _in _the _inner _court, _And _ne_ver _more _go _out!             /The _hea_l_ing _and _the _ba_lm, _The _crown _u_pon _the _brow                  /The _trial _o’_er, _the _tri_umph _won— _O _God! _to _have _this _now!
+L8:Not _so, _O _Lord, _not _th_is _The _boon _I _ask _from _Thee;    /But _for _Thy _strength _to _do _the _work _My _God _hath _set _for _me.    /No _fai_th_ful _ser_vant _he _Who _se_eks _for _rest _be_fore,                  /Who _faints _ere _yet _the _day _is _done, _And _the _evening _work _is _o’er.
+

@@ -1,0 +1,9 @@
+M0:|c:G|m:4/4|r:LM.|t:FFPM 2 - How lovely, how divinely sweet|a:Anne Steele (1717-1778)|h: Thomas Thorley|i:2|n:21|l:16
+S0:/|:!
+T0:{:S|D:R!(M.D):(M.S)|(F.M):(R.F)!D{$Q$}:M|R:D!(R.D.R):(S.T.R)|D.T:L!S{$Q$}:S|S.M:S.L!F.R:M.S|(M.D):S.M!{$Q$}M.R:(S.S)|D:R!(M.D):(M.S)|(F.M):(R.R)!D: |}
+N1:s, |dr(md)(ms)     |(fm)r-dm         |rd(rdr)(s,t,r) |(dt,)l,s,s |(sm)(sl)fr(ms)   |(md)(sm)(mr)s,-|dr(md)(ms)|(fm)r-d
+N2:s, |s,s,s,-(dT,)   |(l,s,)(s,f,)m,s, |s,F,s,--s,--   |(l,s,)F,s,m|(md)(mf)(rt,)(dm)|d-(md)(dt,)s, -|dt,d-d-   |(l,d)t,-d
+N3:s, |dt,(dm)d-      |d-t,-dd          |rrt,--r--      |(mr)dt,-   |--------         |------s,-      |sss-(sm)|(dl)(sf)m
+N4:s, |m,s,d-d-       |(f,d)s,-d,d      |t,l,s,--t,--   |(dr)r,s-   |--------         |------(s,f,)   |m,s,d-d,-|f,-s,-d
+
+L1:Mi_sao_ra _ny _Mpa_ha_ry, _/De_rao _ny _so_a _vi_ta_ny!/
