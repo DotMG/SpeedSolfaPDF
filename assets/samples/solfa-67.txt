@@ -1,0 +1,15 @@
+M0:|c:Ab|m:4/4|r:P.M.|t:FFPM 67 - O Come, All Ye Faithful|n:19|l:16|a:John Francis Wade (1711-1786) Frederick Oakeley (1841; alt)|h:John Francis Wade(1711-1786)
+S0:/|:! 
+T0:{:D|D:-!S:D|R:-!S:M|M:R!M:F|M:-!R/:D|D:F!T:L|T:D!R:M|T:-!(L:-.S)|S:-!-/: |S:-!(L.T):M|F:T!M:-|R:M!D:R|T:-.L!S/:${Ref}D|D:T!D:R|D:-!S/M|M:R!M:F|M:-!R/:M|F:M!R:(S.F)|T:F!D/F|M:-!R:-.D|D:-!-/}
+N1:dds,drs,mmrmfmr                  |dd-t,l,t,drmt,l,s,s,                | sf-mf-mrmdr(t,l,)s,                  |ddt,drds,       |mmrmfmr        |mfmrd-t,-d        |f(mr)dd
+N2:s,s,s,s,s,s,s,s,s,s,l,s,s,       |m,(m,F),s,F,s,s,s,s,s,F,s,s,        | s,(l,t,)d(dt,)ds,s,l,l,s,-s,         |s,s,-----       |s,s,s,s,s,s,s, |dt,ds,(s,F,)s,-s, |l,s,-m,m,
+N3:mmmmt,rddrdddt,                  |dd-rrrdt,drdt,t,                    | mf-sf-ssdmf(rd)t,                    |mmrmfmm         |ddt,drdt,      |sssrr-r-d         |d(dt,)dd
+N4:dddds,t,ddt,df,s,s,              |s,l,-s,r,s,m,t,,d,r,r,s,s,          | mr-dr-dt,dl,f,s,-s,                  |-------         |-------        |drdt,l,-s,f,m,    |f,s,-dd
+
+L1:O _come, _all _ye _faith_ful, _jo_y_ful _and _tri_um_phant!    /O _co_2me _ye, _O _come _ye _to _Be_thle_2hem!       /Come _and _be_hold _2him, _born _the _King _of _an_2gels      /O _come, _let _us _a_dore _him, /O _come, _let _us _a_dore _him, /O _come, _let _us _a_dore _2him, /Chr_ist _2the _Lord!
+L2:Go_d _from _true _Go_d, _and _Light _from _Light _e_ter_nal,   /bo_rn _2of _a _vir_gin, _to _earth _he _co_2mes!     /On_ly-_be_go_2tten _Son _of _God _the _Fa_2ther:              
+L3:Si_ng, _choirs _of _an_gels, _si_ng _in _e_xul_ta_tion         /si_ng, _2all _ye _cit_izens _of _hea_v’n _a_2bove!   /Glo_ry _to _God, _2all _glo_ry _in _the _high_2est:           
+L4:See _how _the _she_pher_ds, _Sum_mon_ed _to _His _cra_dle      /Leav_ing _2their _flo_cks, _Dra_w _nigh _to _ga_2ze; /We _too _will _thi_2ther _Bend _our _joy_ful _foot_2steps;    
+L5:Lo! _star _led _chief_ta_ins, _M_a_gi, _Christ _a_dor_ing,     /O_ff_2er _Him _in_cense, _Go_ld, _and _my_2rrh;      /We _to _the _Christ _2Child _Bring _our _hearts’ _o_bla_2tions
+L6:Chi_ld, _for _us _sin_ners _Po_o_r _and _in _the _manger       /We _wou_2ld _em_brace _Thee, _With _love _and _a_2we;/Who _would _not _love _2Thee, _Lo_ving _us _so _dea_2rly?     
+L7:Yea, _Lo_rd, _we _greet _thee, _bo_rn _this _ha_ppy _morn_ing; /Je_su_2s, _to _thee _be _all _glo_ry _gi_2v’n!       /Word _of _the _Fa_2ther, _now _in _flesh _a_ppear_2ing:       
