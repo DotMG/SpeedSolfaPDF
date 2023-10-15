@@ -58,7 +58,7 @@ class Solfa
   }
   function getMeta($metaItem)
   {
-    /* $_a_key_abbrev = array(
+    /* $_a_keyAbbrev = array(
       'a' => 'author',
       'c' => 'tonality', 
       'h' => 'composer',
@@ -72,12 +72,70 @@ class Solfa
     $key = substr($metaItem, 0, 1);
     if ('' != trim($key) && ('M' != $key)) {
       $this->meta[$key] = substr($metaItem, 2);
+      if ('c' == $key) {
+        $this->meta['C'] = ucfirst($this->meta[$key]);
+        $keyOrigin = $this->tonalityToNumber($this->meta[$key]);
+        $keyDest = $keyOrigin;
+        $keyAsIf = $keyOrigin;
+        if ($transposeTo = $this->getOpt('transposeto')) {
+          $keyDest = $this->tonalityToNumber($transposeTo);
+        }
+        if ($transposeAsIf = $this->getOpt('transposeasif')) {
+          if (is_int($transposeAsIf)) {
+            $keyAsIf = $transposeAsIf + $keyOrigin;
+          } else {
+            $keyAsIf = $this->tonalityToNumber($transposeAsIf);
+          }
+        }
+        if (!isset($this->meta['transposeValue'])) {
+          $this->meta['transposeValue'] = $keyDest - $keyAsIf;
+        }
+        if ($keyAsIf != $keyOrigin) {
+          $this->meta['C'] = $this->numberToTonality($keyAsIf);
+        }
+        if ($keyDest != $keyOrigin) {
+          $this->meta['C'] .= ' (' . $this->numberToTonality($keyDest) . ')';
+        }
+      }
     }
+  }
+  function getOpt($optionName) {
+    if (isset($this->options[$optionName])) {
+      return $this->options[$optionName];
+    }
+    return false;
   }
   function loadSeparators()
   {
     $separatorLine = trim($this->fileData['S'][0]);
     $this->separators = str_split($separatorLine);
+  }
+  function numberToTonality($number)
+  {
+    $numberToTonality = array('', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B');
+    return $numberToTonality[$number];
+  }
+  function tonalityToNumber($tonality)
+  {
+    $tonalityToNumber = array(
+      'C' => 1,
+      'C#' => 2,       "Db" => 2,
+      'D' => 3,
+      'D#' => 4,       "Eb" => 4,
+      'E' => 5,
+      'F' => 6,
+      'F#' => 7,       "Gb" => 7,
+      'G' => 8,
+      'G#' => 9,       "Ab" => 9,
+      'A' => 10,
+      'A#' => 11,      "Bb" => 11,
+      'B' => 12,
+    );
+    if (!isset($tonalityToNumber[$tonality]))
+    {
+      return -1;
+    }
+    return $tonalityToNumber[$tonality];
   }
   function loadNoteTemplate()
   {
@@ -96,7 +154,21 @@ class Solfa
           $noteMarker .= $noteSymbol;
           continue;
         }
+        if ($noteSymbol == '}' && substr($noteMarker, 0, 2) == '${') {
+          if (preg_match('/Do dia ([A-G]b?)/', $noteMarker, $_newTonaliteMatch)) {
+            $newTonalite = $_newTonaliteMatch[1];
+            $keyAsIf = $this->tonalityToNumber($newTonalite);
+            $keyOrigin = $this->tonalityToNumber($this->meta['c']);
+            if ($transposeTo = $this->getOpt('transposeto')) {
+              $keyOrigin = $this->tonalityToNumber($transposeTo);
+              $noteMarker .= ' (' . $this->numberToTonality($keyOrigin) . ')';
+            }
+            $this->meta['transposeValue'] = $keyOrigin - $keyAsIf;
+          }
+        }
+
         $noteMarker .= $noteSymbol;
+
         if ($noteSymbol != '{') {
           $this->marker[] = $noteMarker;
           $noteMarker = '';
@@ -356,7 +428,7 @@ class Solfa
     $this->y = $this->pdf->getY() + $this->pdf->fontHeight;
     //tonalite + rythme
     $this->pdf->setFont('fir', '', $this->pdf->getFontSizeLyrics());
-    $tonaliteRythme = 'Do dia ' . $this->meta["c"] . '       ' . $this->meta['m'];
+    $tonaliteRythme = 'Do dia ' . $this->meta["C"] . '       ' . $this->meta['m'];
     $this->pdf->setXY($this->x, $this->y);
     $this->pdf->cell($this->pdf->getStringWidth($tonaliteRythme), $this->pdf->fontHeight, $tonaliteRythme, align: 'L');
     // speed 

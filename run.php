@@ -8,6 +8,8 @@ $shortOpts = ""
   ;
 $longOpts = array(
   "smart-width",
+  "transposeto::",
+  "transposeasif::"
 );
 $restIndex = null;
 $options = getopt($shortOpts, $longOpts, $restIndex);

@@ -16,6 +16,70 @@ class Block
   private $numBlock;
   public static $maxWidth;
   public static $nbBlock = 0;
+  public static $noteToKey = array(
+'d,,'	=>	0,
+'di,,'	=>	1,
+'r,,'	=>	2,
+'ri,,'	=>	3,
+'m,,'	=>	4,
+'f,,'	=>	5,
+'fi,,'	=>	6,
+'s,,'	=>	7,
+'si,,'	=>	8,
+'l,,'	=>	9,
+'ta,,'	=>	10,
+'t,,'	=>	11,
+'d,'	=>	12,
+'di,'	=>	13,
+'r,'	=>	14,
+'ri,'	=>	15,
+'m,'	=>	16,
+'f,'	=>	17,
+'fi,'	=>	18,
+'s,'	=>	19,
+'si,'	=>	20,
+'l,'	=>	21,
+'ta,'	=>	22,
+'t,'	=>	23,
+'d'	=>	24,
+'di'	=>	25,
+'r'	=>	26,
+'ri'	=>	27,
+'m'	=>	28,
+'f'	=>	29,
+'fi'	=>	30,
+'s'	=>	31,
+'si'	=>	32,
+'l'	=>	33,
+'ta'	=>	34,
+'t'	=>	35,
+"d'"	=>	36,
+"di'"	=>	37,
+"r'"	=>	38,
+"ri'"	=>	39,
+"m'"	=>	40,
+"f'"	=>	41,
+"fi'"	=>	42,
+"s'"	=>	43,
+"si'"	=>	44,
+"l'"	=>	45,
+"ta'"	=>	46,
+"t'"	=>	47,
+"d''"	=>	48,
+"di''"	=>	49,
+"r''"	=>	50,
+"ri''"	=>	51,
+"m''"	=>	52,
+"f''"	=>	53,
+"fi''"	=>	54,
+"s''"	=>	55,
+"si''"	=>	56,
+"l''"	=>	57,
+"ta''"	=>	58,
+"t''"	=>	59
+
+);
+  public static $keyToNote;
   function __construct($templateNote, $separator, $marker, $meta)
   {
     $this->template = str_replace(array('{', '}'), '', $templateNote);
@@ -27,6 +91,7 @@ class Block
     $this->meta = $meta;
     $this->numBlock = Block::$nbBlock;
     Block::$nbBlock++;
+    Block::$keyToNote = array_keys(Block::$noteToKey);
   }
   function getNum() {
     return $this->numBlock;
@@ -93,7 +158,16 @@ class Block
     $underlined = array();
     foreach ($this->note as $i => $note) {
       $closingParen = '';
-      for ($k=0; $k<100; $k++) { $note[] = 'T' ; }
+      for ($k=0; $k<100; $k++) { $note[] = 't' ; }
+      $transpose_decalage = 0;
+      if (isset($this->meta['transposeValue']) && is_int($this->meta['transposeValue']) && $this->meta['transposeValue'] != 0) {
+        foreach($note as $k => $v) {
+          if (isset(Block::$noteToKey[$v])) {
+            $keyIndexOrigin = Block::$noteToKey[$v];
+            $note[$k] = Block::$keyToNote[$keyIndexOrigin - $this->meta['transposeValue']];
+          }
+        }
+      }
       $formatted = vsprintf($format, $note);
       $markVoix  = $this->getMark($i);
       if (in_array('(', $markVoix)) {
