@@ -1,0 +1,13 @@
+M0:|c:G|m:4/4|r:L.M.|t:FFPM 9 - All People That On Earth Do Dwell|n:19|l:16|a:Thomas Ken (1637-1711)|h:Louis Bourgeois (1510-1561)
+S0:/|:! 
+T0:{!D:-|D:T!L:S|D:-!R:-|M:-/M:-|M:M!R:D|F:-!M:-|R:-/D:-|R:M!R:D|L:-!T:-|D:-/S:-|M:(D.R)!R:(L.F)|M:M!R:R|D:-/}
+N1:ddt,l,s,drm     |mmmrdfmr        |drmrdl,t,d      |smd-rf-m-r-d
+N2:s,s,s,m,m,m,s,s,|s,s,s,s,m,l,s,s,|s,s,s,s,m,f,f,m,|s,s,-Fs,f,-s,-(s,f,)m,
+N3:mmrdt,dt,d      |dddt,dddt,      |mrdt,ddrs,      |rdd-t,(l,t,)d-t,-d
+N4:dds,l,m,l,s,d,  |d,m,d,s,l,f,d,s,|dt,ds,l,f,s,d   |t,dl,-s,r,-(m,f,)s,-d,
+
+L1:All _peo_ple _that _on _earth _do _dwell,  /sing _to _the _Lord _with _chee_rful _voice. /Serve _him _with _joy, _his _prai_ses _tell,  /come _now _be_fore _him _and _2re_2joice!
+L2:Know _that _the _Lord _is _God _in_deed;   /he _formed _us _all _with_out _our _aid.     /We _are _the _flock _he _comes _to _feed,     /the _sheep _who _by _his _hand _2were _2made.
+L3:O _en_ter _then _his _gates _with _joy,    /with_in _his _courts _his _praise _pro_claim./Let _thank_ful _songs _your _tongues _em_ploy./O _bless _and _ma_gni_fy _2his _2name.
+L4:Trust _that _the _Lord _our _God _is _good,/his _mer_cy _is _for_e_ver _sure.            /His _faith_ful_ness _at _all _times _stood    /and _shall _from _age _to _age _2en_2dure.
+L5:To _Fa_ther, _Son _and _Ho_ly _Ghost,      /The _God _whom _Hea_ven _and _earth _adore,  /From _men _and _from _the _an_gel _host       /Be _praise _and _glo_ry _e_2ver_2more.

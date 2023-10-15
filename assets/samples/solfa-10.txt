@@ -1,0 +1,21 @@
+M0:|c:G|m:4/4|r:L.M.|t:FFPM 10 - Thee, God, We Praise|n:19|l:16|a:Niceta of Remesiana (1867-1937)|h:Louis Bourgeois (1510-1561)
+S0:/|:! 
+T0:{!D:-|D:T!L:S|D:-!R:-|M:-/M:-|M:M!R:D|F:-!M:-|R:-/D:-|R:M!R:D|L:-!T:-|D:-/S:-|M:(D.R)!R:(L.F)|M:M!R:R|D:-/}
+N1:ddt,l,s,drm     |mmmrdfmr        |drmrdl,t,d      |smd-rf-m-r-d
+N2:s,s,s,m,m,m,s,s,|s,s,s,s,m,l,s,s,|s,s,s,s,m,f,f,m,|s,s,-Fs,f,-s,-(s,f,)m,
+N3:mmrdt,dt,d      |dddt,dddt,      |mrdt,ddrs,      |rdd-t,(l,t,)d-t,-d
+N4:dds,l,m,l,s,d,  |d,m,d,s,l,f,d,s,|dt,ds,l,f,s,d   |t,dl,-s,r,-(m,f,)s,-d,
+
+L1:Thee, _God, _we _praise, _Thy _name _we _bless, /Thee, _Lord, _of _all _we _do _con_fess;      /The _whole _cre_a_tion _wo_rships _Thee,      /The _Fa_ther _of _e_te_2rni_2ty.
+L2:To _Thee _a_loud _all _an_gels _cry,            /The _heav'ns _and _all _the _pow'r_s on _high,/The _che_rubs _and _the _se_raphs _join,      /And _thus _they _hymn _Thy _praise _2di_2vine.
+L3:O _ho_ly, _ho_ly, _ho_ly _Lord,                 /Thou, _God, _of _hosts, _by _al_l a_dored;    /Earth _and _the _heav'ns _are _full _of _Thee,/Thy _light, _thy _pow'r, _Thy _ma_2je_2sty.
+L4:The _apo_stles _join _the _glor_ious _throng,   /The _pro_phets _swell _the _immo_rtal _song,  /The _white-_robed _hosts _of _ma_rtyrs _bright/All _serve _and _praise _Thee _day _2and _2night.
+L5:The _ho_ly _Church _in _e_v'ry _place           /Through_out _the _world _ex_alts _Thy _praise,/And _e_ver _doth _ac_know_ledge _Thee,        /Fa_ther _of _bound_less _ma_2je_2sty.
+L6:O _God _e_ter_nal, _migh_ty _King,              /We _un_to _Thee _our _prai_ses _bring;        /And _to _Thy _true _and _on_ly _Son,          /And _Ho_ly _Spi_rit, _Three _2in _2One.
+L7:O _King _of _glo_ry, _Christ _the _Lord,        /God's _e_ver_la_sting _Son-_-the _Word,       /To _re_scue _man_kind _from _its _doom,       /Thou _didst _our _ve_ry _flesh _2a_2ssume.
+L8:Thou _o_ver_ca_mst _death's _sharp _sting,      /Be_lie_vers _un_to _heav'_n to _bring;        /At _God's _right _hand, _e_xa_lted _there,    /Thou _dost _the _Fa_ther's _glo_2ry _2share.
+L9:And _we _be_lieve _Thou _wilt _de_scend         /To _be _our _judge, _when _come_s the _end;   /Thy _ser_vants _help, _whom _Thou, _O _God,   /Hast _ran_somed _with _Thy _pre_2cious _2blood.
+L10:A_mong _Thy _saints _let _us _be _found        /With _glo_ry _e_ver_la_sting _crowned;        /Thy _peo_ple _save _from _age _to _age,       /And _bless _Thy _cho_sen _he_2ri_2tage.
+L11:O _guide _them, _lift _them _up _for _aye:     /We _ma_gni_fy _Thee _day _by _day,            /Thy _name _we _wor_ship _and _a_dore,         /World _with_out _end, _for _e_2ver_2more.
+L12:Vouch_safe, _O _Lord, _we _hum_bly _pray,      /To _keep _us _safe _from _sin _this _day:     /O _Lord, _have _me_rcy _on _us _all,          /Have _me_rcy _on _us _when _2we _2call.
+L13:Thy _me_rcy, _Lord, _to _us _ex_tend,          /As _on _Thy _me_rcy _we _de_pend:             /Lord, _I _have _put _my _trust _in _Thee,     /Con_found_ed _let _me _ne_2ver _2be.

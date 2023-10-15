@@ -1,0 +1,13 @@
+M0:|c:F|m:2/4|r:12.13.11.11.|t:FFPM 1 - Holy, Holy, Holy|n:19|l:15|a:John B. Dykes, 1823-1876|h:Reginald Heber, 1783-1826
+S0:/|:! 
+T0:{D.D:M.M|R:D|D.D:S.M|L.L!S|S.S:F.M|L.L:S.S|F.M:R.D|T:-|M.M:R.R|(D:D)|D.D:S.M|L.L:S|D.D!R:M|F:M|M.R:D.T|D:-/}
+N1:ddmm  |rd  |d'dsm|l-s    |ssfm|llss |fmrd  |t,|mmrr  |dd  |d'd'sm|l-s   |ddrm    |fm |mrdt,   |d
+N2:s,s,dd|t,s,|mmdd |(dr)m  |mmrd|drmm |rdl,l,|s,|mdt,t,|l,l,|mmdd  |(dr)m |s,s,t,d |rd |dl,s,f, |m,
+N3:mmss  |fm  |ssms |(l.t)d'|mmfs|ltd'm|fsll  |t |ssff  |mm  |mmss  |(lt)d'|ddfm    |rm |sfmr    |d
+N4:dddd  |s,d |ddmd |f-d    |ddrm|ffdd |rmfF  |s |dds,s,|l,l,|ddmd  |f-d   |mmrd    |t,d|m,f,s,s,|d,
+
+L1:Ho_ly, _ho_ly, _ho_ly! _Lo_rd _God _Al_mi_2ghty! _Ear_ly _in _the _mo_rning _our _song _shall _ri_se _to _thee _Ho_ly, _ho_ly, _ho_ly, _mer_ci_ful _and _mi_2ghty! _God _in _three _per_so_ns, _ble_ssed _Tri_ni_ty!
+L2:Ho_ly, _ho_ly, _ho_ly! _All _the _saints _a_dore _2thee, _cast_ing _down _their _gol_den _crowns _a_round _the _gla_ssy _sea; _che_ru_bim _and _se_ra_phi_m _fall_ing _down _2be_fore _thee, _which _wert _and _art _and _ever_more _shalt _be.
+L3:Ho_ly, _ho_ly, _ho_ly! _Though _the _dark_ness _hide _2thee, _though _the _eye _of _sin_ful _man _thy _glo_ry _may_not _see, _on_ly _thou _art _ho_ly; _the_re _is _none _be_2side _thee, _per_fect _in _pow’r, _in _love, _and _pu_ri_ty.
+L4:Ho_ly, _ho_ly, _ho_ly! _Lo_rd _God _Al_mi_2ghty! _All _thy _works _shall _praise _thy _name _in _earth, _and _sky _and _sea. _Ho_ly, _ho_ly, _ho_ly, _mer_ci_ful _and _mi_2ghty! _God _in _three _per_so_ns, _ble_ssed _Tri_ni_ty!
+
