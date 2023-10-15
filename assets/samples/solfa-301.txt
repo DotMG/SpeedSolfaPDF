@@ -1,0 +1,8 @@
+M0:|c:G|m:4/4|t:301 - He, sahanao Mpamonjy ô|h:J.A. Arne 1710-1778|n:18|l:14|a:Hira anglikana|r:CM
+S0:/|:!
+T0:{:D|M:-.M!M:R|D:-.D!D}/{R|M:S!F:M|R:-!-}/{:F|M:-.M!M:L|S:-.S!S}/{D|R:F!M:R|D:-!-}
+N1:dmmmrddd/rmsfmr/fmmmlsss/drfmrd
+N2:s,s,s,s,t,l,l,l,/t,ds,l,s,s,/s,s,s,dddt,d/dl,rdt,d
+N3:msssfmmm/ssdddt,/rmrdfsfm/mflsfm
+N4:dddds,l,l,l,/s,dm,f,ds,/t,dt,l,f,m,r,d,/l,f,r,s,s,d,
+L1:He, _sa_ha_nao, _Mpa _mo_njy _ô, _/I_zao _re_he_tra i    .  _zao, _/Ka _be _i_zao _ny _vo_ka_tra _ao,/Fa _vi_tsy _ny _mpa_nao.

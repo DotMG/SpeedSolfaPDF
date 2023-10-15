@@ -1,0 +1,8 @@
+M0:|c:Bb|m:4/4|t:FFPM 530 Fitiavana rano velona|r:P.M|n:18|l:13|a:JNL Schjörring 1825-1900|h:H.S. Thompson
+S0:/|:!
+T0:{:M.F|S:M!M:R.D|L:D!D}/{T.L|S:D!R:M|R:-!-}/{:M.F|S:M!M:R.D|L:D!D}/{T.L|S:M!F:T|D:-!-}
+N1:m,f,s,mmrdl,dd/t,l,s,drmr/m,f,s,mmrdl,dd/t,l,s,mft,d
+N2:d,d,d,s,s,f,m,f,f,s,f,f,r,s,s,s,s,/d,d,d,s,s,f,m,f,f,s,f,f,r,s,l,f,m,
+N3:s,s,s,ddt,ddl,dddt,dt,dt,/s,s,s,ddt,ddl,dddt,ddrd
+N4:d,r,m,d,ds,l,f,f,m,f,f,f,m,r,d,s,/d,r,m,d,d,'s,l,f,f,m,f,f,f,m,r,s,d,
+L1:Fi_ti_a_va_na _ra_no _ve_lo_na,/Lo_ha_ra_no _la_li_na;/Ka _mi_a_fi_na _ao _a_na_ti_ny _/Ny_fi_ai_nan_da_ni_tra!

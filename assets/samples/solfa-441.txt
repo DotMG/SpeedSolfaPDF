@@ -1,0 +1,8 @@
+M0:|c:Ab|m:4/4|t:441 - Raiso aho, Tompo ô|r:77.77|h:J.B. Dykes, 1823-1876|a:Frances R.Havergal, 1836-1879|n:18|l:13
+S0:/|:!
+T0:{D:D!D:-.T|L:T!D:-}/{R:R!M:S|L:R!T:-}/{R:F!M:-.D|T:R!D:-}/{D:R!D:D.D|D:-.T!D:-}
+N1:dddt,l,t,d/rrms,l,rt,/rfmdt,rd/drd(d-)dt,d
+N2:s,s,f,f,f,f,m,/s,s,s,s,s,f,r,/s,s,s,s,f,f,m,!l,l,s,(s,-)s,s,s,
+N3:mmrrdrm/rfmddl,r/rrmmrt,d/ffm(rd)rrm
+N4:dds,s,s,s,d/t,t,dm,f,f,s,/t,t,dds,s,l,/f,f,s,(s,-)s,s,d,
+L1:Rai_so _a_ho, _To_mpo _ô/Fa _te _ho _mpa_no_mpo_nao/Rai_so _koa _ny _an_dro_ko,/K'a_na_ra_no _2fo _i_zao

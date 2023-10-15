@@ -1,0 +1,9 @@
+M0:|c:Eb|m:4/4 Mavitribitrika|r:7.7.7.6.7.6.7.6 P.M.|t:FFPM 314. Injany misy feo|a:J.D. Hammond. Nad. E. Taylor, 1859-1937|h:J.H. Maunder
+S0:/|:!
+T0:{:S|S:S!L:-.S|S:M!/M|M:R.M!F:F|M:-!/:S|S:S!L:-.S|S:M!-:/R:S.T!T:L|S:-!/:S|S:S!D:-.L|S:M!/S|L:S!M:D|R:-!/:S|S:M!F:S|L:-|T/T|D:-.F!M:R|D:-!-:/${ff}D:-!M:-|S:-!-/D|F:-!L:-|D:-!-/:D|T:-.L!S:F!L:S!M:D|R:-!L:-|S:-!-/:D|D:-.R!M:F|S:M!/D|F:-.S!L:T|D:-!-/:D|R:-D!T:L|D:M!F:S/L:-!R:-|D:-!-}
+N1:ssslssm|mmrmffm|ssslssm|rsttls|sssd'lsm|slsmdr|ssmfslt|td'fmrd|dms|dfld'|d'tlsFlsmdrls|ddrmfsm|dfsltd'|d'r'd'tld'mfs|lr'd'
+N2:mmmffmd|dddddt,d|mmmffmd|t,t,t,ddt,|t,dmffmd|dddddt,|t,dddddr|rdddt,d|ddm|ddfm|mfft,t,ddddt,dt,|ddddddd|ddfffm|dddddmdds|Ffm|
+N3:ssd'ltd's|ssfmrss|ssd'ltd's|sssmFs|fmsltd's|sfssFs|ssssTlS|Sllsfm|msT|Tlls|sssffmmsssFs|mmfslms|TlllSs|sFFFFd'd'd'd'|d'td'|
+N4:ddddddd|ds,s,s,s,s,d|ddddddd|rrrrrs,|s,dddddd|mfml,rs,|fmdrmfm|ml,rss,d|ddd|dddd|drrs,s,dddmrrs|ddddddd|dddddd|mrrrrsslm|rs,d|
+
+L1:I_nja_ny, _mi_sy _fe_o!/Ka _i_za _no _tsy _man_dre?/Ry _Kri_sti_a_na, _rai_so/A_di_dy _le_hi_be./Ma_ne_ra_na _ny _ta_ny/Ny _an_tso _a_vo i_zao,/Ho _an'_i _Je_soa _To_mpo/I_zao _ton_to_lo i_zao./Mi_ho_bia/Sy _mi_to_ria./Ny _te_ny _ma_ha_fa_ly i_zay _voa_rai_na_reo/I_zao _no _te_na _fe_tra;/Ho _an'_i _Je_soa _soa,/Ny _o_lo_na _re_he_tra ho _A_zy/A_vo_koa
