@@ -162,8 +162,8 @@ class Solfa
             if ($transposeTo = $this->getOpt('transposeto')) {
               $keyOrigin = $this->tonalityToNumber($transposeTo);
               $noteMarker .= ' (' . $this->numberToTonality($keyOrigin) . ')';
+              $this->meta['transposeValue'] = $keyOrigin - $keyAsIf;
             }
-            $this->meta['transposeValue'] = $keyOrigin - $keyAsIf;
           }
         }
 

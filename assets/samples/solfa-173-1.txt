@@ -1,0 +1,9 @@
+M0:|c:C|m:6/4|Faingampaingana. Alohan'ny isan'andininy|t:FFPM 173 - Hosana no asandratray|r:P.M|h:PH. Phillips 1834-1895|a:Hira amerikana Nad. J.A. Houlder, 1844-1932
+S0:/|:!
+T0:{:S|S:-:-!M:-:D|D:-:-!S:-/D|M:-:-!-:-:-|D:-:-!-:-/:S|D:-:D!D:T:L|S:-:F!M:-/S|D:-:D!D:T:D|R:-:-!-:-/:S|D:-:D!D:T:L|S:-:F!M:-/S|D:-:M!R:L:T|D:-:-!-:-/${Do dia G}:D|D:-:R!M:-:F|S:-:L!S:-/:S|S:-:S!L:-:S|S:-:-!M:-/:D|D:-:R!M:-:F|S:-:L!S:-/:S|S:-:S!S:-:T|D:-:-!-:-/${Do dia C}:S|D:-:D!D:T:D|M:-:D!D:-:-/R:-:S!S:-:-|M:-:D!D:-/:S|M:-:M!M:R:M|F:-:L!$QL:-/L|S:-:D!T:L:T|D:-:-!-:-}
+N1:ssmd'd's/d'm'd'/sd'd'(d't)lsfm/sd'd'(d't)d'r'/sd'd'(d't)lsfm/sd'm'(r'l)td'/ddrmfsls/sssls(sm)/ddrmfsls/sssst,d/sd'd'(d't)d'm'd'd'/r'ssm'd'd'/sm'm'(m'r')m'f'll/lsd'(tl)td'
+N2:mmdmmm/msm/mmm(ls)fmrd/smmF-Fs/smm(ls)fmrd/mmsf-fm/ddddrmfm/mt,t,t,t,d-/ddddrmfm/mt,drs,s,/smm(mr)msmm/ssssmm/mss(sf)slff/fmm(rd)rm
+N3:d'd'sssd'/sd'd'/d'd'd'd'-d'd'ss/d'd'd'l-lt/td'd'd'-d'd'ss/d'd'd's-ss/mmfsssdd/mrrff(ms)/mmfsssdd/mrrffm/ssss-ssss/tttd'ss/sd'd'd'-d'd'd'd'/d'd'ss-ss
+N4:dddddd/dd'd/dddf-fddd/mllr-rs/sddf-fddd/dsss-sd/dddddddd/ds,s,s,s,d-/dddddddd/ds,s,s,s,d/sddd-dddd/sssd'dd/dd'd'd'-d'fff/fsss-sd
+
+L1:Ho_sa_na! _Ho_sa_na! /Ho_sa_na!/Ho_sa_na _no __a_sa_ndra_tray /ho _an' _i _Je__so_sy,/Fa _I_zy _no __Mpa_nja_ka_nay /Sy _To_mpo _ti__a _koa _;/Ho_sa_na, _no _a_to_lo_tray /A_nao, _ry _To_mpo_nay!/I_ty _no _a_ndro _Jo_bi_ly /Ka _hi_fa_li_a_nay./I_ty _no _a__ndro _Jo_bi_ly, /Jo_bi_ly, _Jo_bi_ly /I_ty _no _a__ndro _Jo_bi_ly /Ka _hi_fa_li__a_nay
