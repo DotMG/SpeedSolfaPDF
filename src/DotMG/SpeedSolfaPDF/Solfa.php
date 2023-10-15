@@ -253,6 +253,10 @@ class Solfa
           $this->note[$index][$noBlock] = $currentNote;
           $currentNote = $oneNote;
           if ('' == $this->note[$index][$noBlock]) {
+            if (isset($parenOpen[$index])) {
+              $this->noteMarq[$index][$noBlock][] = '(';
+              unset($parenOpen[$index]);
+            }
             break;
           }
           if ('|' == $oneNote) {

@@ -1,0 +1,9 @@
+M0:|c:G|m:2/4|t:2 - Misaora an'i Zanahary|r:L.M|n:19|l:15|h:Nar. Ch. Rasoanaivo 1876-1966|a:Maintimolaly
+S0:/|:!
+T0:{|S:F|D:-|R:F|M:D|M:S|F:M|R:F|D:-}/{M:M|R:S|D:M|R:T.D|R:-}/{S:R|D:T|L:D|S:-}/{S:-|S:M|S:L|F:R|M:S|M:D|S:M|M:L|R:-}/{S:D.R|D:-|F.S:L.T|M:D|M:T.D|F:M|T.L:S.F|S:-|-:-}
+N1:s,-d(rf)(md)/(ms)(fm)r-d/m-r-(dm)(rt,dr)/(s,r)(dt,)l,-s,/s(sm)(sl)(fr)(ms)(md)(smm-r)/s,--d(r-f-)(md)(ms-)(fm)(r-)--d
+N2:(s,f,)m,(f,l,)(s,m,)/(s,T,)(l,s,)(s,f,)m,/d-t,-(l,d)(t,s,l,t,)(s,t,)(l,s,)F,-s,/dd-d-t,-d-d-(d-dl,t,)/(s,f,)-m,(f,s,l,t,)(s,m,)(dt,d)(l,d)(t,l,s,f,)s,
+N3:(t,r)dt,-d-/d-d-t,-d/s-f-(mF)(sr-s)r-(mr)(rd)t,/m(ms)(mf)(rs)(sm)(sm)(msF-s)/(t,dr)dt,---d-s--(ls)(s-f-)m
+N4:s,-d,s,-d-(d,m,)(f,s,)s,-d,/(d,m,)(s,S,)(l,r,)s,---s,-(dr)r,-s,/dd-(df,)s,-d-d-(d,m,l,r,s,)/s,--d,s,---d-(d,m,-)(f,s,)(s,-)--d,
+
+L1:Mi__sao_ra __an'i __Za __na __ha __ry/Zao __o__lo__na _5/ton__to__lo _i_zao;/ Di _a __man __ka __la __za __A _4zy,/F'an_3ton' _i _4zao __re _3he__tra i _4zao

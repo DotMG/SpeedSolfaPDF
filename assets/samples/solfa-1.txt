@@ -1,0 +1,8 @@
+M0:|c:E|m:4/4|t:FFPM 1 - Andriananahary Masina indrindra|r:12.13.12.11|n:19|l:15|h:J.B.Dykes 1823-1876|a:R. Heber, 1783-1826. Nad. J.A. Houlder, 1844-1932
+S0:/|:!
+T0:{D:D!M:M|(S:R)!(S:T)}/{|L:L.D!L:L|S:S!M:-}/{|S:S.R!S:S|D:D!T:S|R:S!L:-.S|S:-!-:-}/{|D:D!M:M|S:R!S:R}/{|L:L.R!L:L|S:S!S:-}/{|D:D!S:S|L:-!M:R}/{|F:R!R:-.D|D:-!-:-}
+N1:ddmms-s-/l-llls-m/s-sssd'd'tsrslss/ddmm(s-s-)/l-llls-s/d'd'sslm-/frrdd
+N2:s,s,ddt,rdt,/l,(t,-)drm-d/r(r-)mrdrrmrt,dt,t,/s,s,dd(t,rdt,)/l,(t,-)drm-d/ddddd(dT,)/l,l,t,dd
+N3:mmddrfms/f(s-)lt(d's)s/s(s-)ssmFsstsFss/mmdd(rfms)/f(s-)lt(d's)m/mfsTls-/fffmm
+N4:ddl,l,s,-d-/f,-f,ffd-d/t,-t,dt,l,l,t,drrrs,s,/ddl,l,(s,-d)-/f,-f,ffd-d/l,l,m,m,f,d-/f,f,s,dd
+L1:A_ndria_na_na_ha_2ry /ma_si_2na _i_ndri_2ndra!/Ny _an_2je_li_nao _i_zay _mi_toe_tra eo _a_mi_nao/Mi_fa_ma_ly _hoe:/Ma_si_2na _i_ndri_2ndra_/A_ndria_na_na_ha_ry,/Te_lo I_zay _I_ray!
