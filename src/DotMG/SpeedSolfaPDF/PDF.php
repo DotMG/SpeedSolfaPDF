@@ -26,6 +26,15 @@ class PDF extends \tFPDF
       $this->setFontSize($meta['n'], $meta['l']);
     }
   }
+  function setDash($black=null, $white=null)
+  {
+    $s='[] 0 d';
+    if ($black !== null)
+    {
+      $s=sprintf('[%.3F %.3F] 0 d',$black*$this->k,$white*$this->k);
+    }
+    $this->_out($s);
+  }
   function setFontSize($sizeNote = 12.5, $sizeLyrics = 10)
   {
     $this->fontSizeNote = $sizeNote;

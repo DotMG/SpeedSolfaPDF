@@ -1,0 +1,13 @@
+M0:|c:E|m:2/4|r:12.13.11.11.|t:FFPM 1 - Holy, Holy, Holy|n:15|l:12.5|a:John B. Dykes, 1823-1876|h:Reginald Heber, 1783-1826
+S0:/|:! 
+T0:{D:R!M:F|D:R!M:F/|D:S.L!M:F|D:R!M:-/|D:S.L!M:F|[D:R]!M:F|D:R!M:-.F|D:-!F:-/|D:R!M:F|D:R!M:F/|D:S.L!M:F|D:R!M:-/|D:R!M:F|D:-!M:F/|D:R!M:-.F|D:-!-:}
+N1:ddmms-s-/l-llls-m/s-sssd'd'tsrslss-/ddmms-s-/l-llls-s/d'-sslm-/frrdd
+N2:s,s,dd(t,r)(dt,)/[l,t,-]drm-d/r(r-)mrdrrmrt,dt,t,-/s,s,dd(t,r)(dt,)/l,(t,-)drm-d/d-ddd(dT,)l,l,t,dd 
+N3:mmdd(rf)(ms)/[fs-]lt(d's)s/s(s-)ss(mF)sstsFs(sf)/mmdd(rf)(ms)/f(s-)lt(d's)m/(mf)sTls-/fffmm
+N4:ddl,l,s,-d-/f,-f,ffd-d/t,-t,dt,[l,l,]t,drrrs,s,-/ddl,l,s,-d-/f,-f,ffd-d/l,-m,m,f,d-/f,f,s,dd
+f,(f,-)s,f,(m,m,)f,s,l,l,l,r,t,,/t,,t,,m,m,(r,f,)(m,r,)/d,(r,-)m,f,
+L1:Ho_ly, _ho_ly, _ho_2ly! _2/Lord _3God _Al_mi_2ghty!/Ear_ly _2in _the _morn_2ing _our _song _shall _rise _to _thee /Ho_ly, _ho_ly, _ho_2ly, _2/mer_ci_2ful _and _mi_2ghty! /God _2in _three _per_sons, /ble_ssed _Tri_ni_ty!
+L2:Ho_ly, _ho_ly, _ho_2ly! _2/All _2the _saints _a_dore _2thee,/cast_ing _2down _their _gol_den _crowns _a_round _the _gla_ssy _sea;/che_ru_bim _and _sera_2phim _2/fall_2ing _down _be_fore _2thee,/which _2wert _and _art _and _2/e_ver_more _shalt _be.
+L3:Ho_ly, _ho_ly, _ho_2ly! _2/Though _2the _dark_ness _hide _2thee,/though _the _2eye _of _sin_ful _man _thy _glo_ry _may _not _see,/on_ly _thou _art _ho_2ly;_2/there _2is _none _be_side _2thee,/per_2fect _in _pow’r, _in _/love, _and _pu_ri_ty.
+L4:Ho_ly, _ho_ly, _ho_2ly! _2/Lord _3God _Al_mi_2ghty!/All _thy _2works _shall _praise _thy _name _in _earth, _and _sky _and _sea./Ho_ly, _ho_ly, _ho_2ly, _2/mer_ci_2ful _and _mi_2ghty! _/God _2in _three _per_sons,/ble_ssed _Tri_ni_ty!
+

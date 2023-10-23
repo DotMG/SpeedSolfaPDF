@@ -176,11 +176,23 @@ class Block
         }
         $this->unMark($i, '(');
       }
+      if (in_array('[', $markVoix)) {
+        if (substr($formatted, 0, 1) != '[') {
+          $formatted = "[$formatted";
+        }
+        $this->unMark($i, '[');
+      }
       if (in_array(')', $markVoix)) {
         if (!preg_match("/\\)$/", $formatted)) {
           $formatted = "$formatted)";
         }
         $this->unMark($i, ')');
+      }
+      if (in_array(']', $markVoix)) {
+        if (!preg_match("/\\]$/", $formatted)) {
+          $formatted = "$formatted]";
+        }
+        $this->unMark($i, ']');
       }
       $formatted = str_replace('-.-', '-', $formatted);
       $formatted = str_replace(
@@ -189,7 +201,9 @@ class Block
         $formatted
       );
       $formatted = str_replace('.-)', ')', $formatted);
+      $formatted = str_replace('.-]', ']', $formatted);
       $formatted = preg_replace('/\((.i*\'*,*)\)/', '\1', $formatted);
+      $formatted = preg_replace('/\[(.i*\'*,*)\]/', '\1', $formatted);
       $formatted = preg_replace('/\.,-$/', '', $formatted);
       $formatted = str_replace(',,', '₂', $formatted);
       $formatted = preg_replace('/(?<=[drmfsltia]),/', '₁', $formatted);
@@ -197,9 +211,13 @@ class Block
         $formatted = $match[1];
         $underlined[$i] = array(array('(', ')'));
       }
-      if (preg_match('/[\(\)]/', $formatted, $match)) {
+      if (preg_match('/^\[(.*)\]$/', $formatted, $match)) {
+        $formatted = $match[1];
+        $underlined[$i] = array(array('[', ']'));
+      }
+      if (preg_match('/[\(\)\[\]]/', $formatted, $match)) {
         $underlined[$i] = array($match);
-        $formatted = preg_replace('/[\(\)]/', '', $formatted);
+        $formatted = preg_replace('/[\(\)\[\]]/', '', $formatted);
         //print_r($formatted);
       }
       $return .= $formatted . "\n";

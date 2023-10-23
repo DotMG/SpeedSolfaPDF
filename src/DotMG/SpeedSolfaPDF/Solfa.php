@@ -257,6 +257,11 @@ class Solfa
               $this->noteMarq[$index][$noBlock][] = '(';
               unset($parenOpen[$index]);
             }
+            if (isset($squareBracketOpen[$index])) {
+              $this->noteMarq[$index][$noBlock][] = '[';
+              print_r($this->noteMarq[$index][$noBlock]);
+              unset($squareBracketOpen[$index]);
+            }
             break;
           }
           if ('|' == $oneNote) {
@@ -267,10 +272,18 @@ class Solfa
             unset($parenOpen[$index]);
             $this->noteMarq[$index][$noBlock][] = '(';
           }
+          if (isset($squareBracketOpen[$index])) {
+            unset($squareBracketOpen[$index]);
+            $this->noteMarq[$index][$noBlock][] = '[';
+          }
           break;
         case '(':
           $parenOpen[$index] = true;
           break;
+        case '[':
+          $squareBracketOpen[$index] = true;
+          break;
+        case ']':
         case ')':
           $this->noteMarq[$index][$noBlock][] = $oneNote;
           break;
@@ -477,16 +490,24 @@ class Solfa
         $nextX = $this->x + $this->pdf->blockWidth;
         $yLine = $this->pdf->getY() + $this->pdf->fontHeight * $ln - $this->pdf->fontHeight * 4 - $this->pdf->fontHeight / 16;
         $oneBlockMark = $oneBlock->getMark($ln);
-        if (in_array('(', $oneBlockMark)) {
+        if ( (in_array('(', $oneBlockMark)) || (in_array('[', $oneBlockMark)) ) {
           $mark[$ln] = array('x' => $this->x + ($this->pdf->blockWidth - $oneBlock->noteWidth) / 2, 'y' => $yLine);
         }
-        if (in_array(')', $oneBlockMark)) {
+        if ( (in_array(')', $oneBlockMark)) || (in_array(']', $oneBlockMark)) ) {
+          if (in_array(']', $oneBlockMark))
+          {
+            $this->pdf->setDash(0.6, 0.8);
+          }
           $nextX = $nextX - ($this->pdf->blockWidth - $oneBlock->noteWidth) / 2;
           if ($yLine != $mark[$ln]['y']) {
             $this->pdf->line($mark[$ln]['x'], $mark[$ln]['y'], $this->pdf->canvasLeft + $this->pdf->canvasWidth, $mark[$ln]['y']);
             $this->pdf->line($this->pdf->canvasLeft, $yLine, $nextX, $yLine);
           } else {
             $this->pdf->line($mark[$ln]['x'], $yLine, $nextX, $yLine);
+          }
+          if (in_array(']', $oneBlockMark))
+          {
+            $this->pdf->setDash();
           }
         }
       }
