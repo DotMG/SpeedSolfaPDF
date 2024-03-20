@@ -216,7 +216,7 @@ class Solfa
   }
   function loadNoteAtIndex($notes, $index)
   {
-    $notes = preg_replace_callback('/(.)(\d+)/', function ($matches) {
+    $notes = preg_replace_callback('/(.)([1-9]+)/', function ($matches) {
       return str_repeat($matches[1], $matches[2]);
     }, $notes);
     $aNotes = str_split($notes);
@@ -250,6 +250,7 @@ class Solfa
         case 't':
         case '|':
         case '-':
+        case '0':
           $this->note[$index][$noBlock] = $currentNote;
           $currentNote = $oneNote;
           if ('' == $this->note[$index][$noBlock]) {
@@ -301,6 +302,7 @@ class Solfa
   }
   function loadOneLyrics($lyrics, $index)
   {
+    $lyrics = preg_replace('/\{[^}]*}/', '', $lyrics);
     $lyrics = preg_replace_callback('/_(\d)/', function ($matches) {
       return str_repeat('_', $matches[1]);
     }, $lyrics);
@@ -488,7 +490,7 @@ class Solfa
       $this->pdf->multiCell($this->pdf->blockWidth, 0, $oneBlock->noteString, align: 'C');
       foreach (range(1, sizeof($this->note)) as $ln) {
         $nextX = $this->x + $this->pdf->blockWidth;
-        $yLine = $this->pdf->getY() + $this->pdf->fontHeight * $ln - $this->pdf->fontHeight * 4 - $this->pdf->fontHeight / 16;
+        $yLine = $this->y + $this->pdf->fontHeight * $ln;
         $oneBlockMark = $oneBlock->getMark($ln);
         if ( (in_array('(', $oneBlockMark)) || (in_array('[', $oneBlockMark)) ) {
           $mark[$ln] = array('x' => $this->x + ($this->pdf->blockWidth - $oneBlock->noteWidth) / 2, 'y' => $yLine);

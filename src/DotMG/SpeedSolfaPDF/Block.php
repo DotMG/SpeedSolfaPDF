@@ -18,64 +18,64 @@ class Block
   public static $nbBlock = 0;
   public static $noteToKey = array(
 'd,,'	=>	0,
-'di,,'	=>	1,
+'di,,'	=>	1, 'D,,'	=>	1,
 'r,,'	=>	2,
-'ri,,'	=>	3,
+'ri,,'	=>	3, 'R,,'	=>	3,
 'm,,'	=>	4,
 'f,,'	=>	5,
-'fi,,'	=>	6,
+'fi,,'	=>	6, 'F,,'   =>      6,
 's,,'	=>	7,
-'si,,'	=>	8,
+'si,,'	=>	8, 'S,,'	=>	8,
 'l,,'	=>	9,
-'ta,,'	=>	10,
+'ta,,'	=>	10, 'T,,'	=>	10,
 't,,'	=>	11,
 'd,'	=>	12,
-'di,'	=>	13,
+'di,'	=>	13, 'D,'	=>	13,
 'r,'	=>	14,
-'ri,'	=>	15,
+'ri,'	=>	15, 'R,'	=>	15,
 'm,'	=>	16,
 'f,'	=>	17,
-'fi,'	=>	18,
+'fi,'	=>	18, 'F,'	=>	18,
 's,'	=>	19,
-'si,'	=>	20,
+'si,'	=>	20, 'S,'	=>	20,
 'l,'	=>	21,
-'ta,'	=>	22,
+'ta,'	=>	22, 'T,'	=>	22,
 't,'	=>	23,
 'd'	=>	24,
-'di'	=>	25,
+'di'	=>	25, 'D'	=>	25,
 'r'	=>	26,
-'ri'	=>	27,
+'ri'	=>	27, 'R'	=>	27,
 'm'	=>	28,
 'f'	=>	29,
-'fi'	=>	30,
+'fi'	=>	30, 'F'	=>	30,
 's'	=>	31,
-'si'	=>	32,
+'si'	=>	32, 'S'	=>	32,
 'l'	=>	33,
-'ta'	=>	34,
+'ta'	=>	34, 'T'	=>	34,
 't'	=>	35,
 "d'"	=>	36,
-"di'"	=>	37,
+"di'"	=>	37, "D'"	=>	37,
 "r'"	=>	38,
-"ri'"	=>	39,
+"ri'"	=>	39, "R'"	=>	39,
 "m'"	=>	40,
 "f'"	=>	41,
-"fi'"	=>	42,
+"fi'"	=>	42, "F'"	=>	42,
 "s'"	=>	43,
-"si'"	=>	44,
+"si'"	=>	44, "S'"	=>	44,
 "l'"	=>	45,
-"ta'"	=>	46,
+"ta'"	=>	46, "T'"	=>	46,
 "t'"	=>	47,
 "d''"	=>	48,
-"di''"	=>	49,
+"di''"	=>	49, "D''"	=>	49,
 "r''"	=>	50,
-"ri''"	=>	51,
+"ri''"	=>	51, "R''"	=>	51,
 "m''"	=>	52,
 "f''"	=>	53,
-"fi''"	=>	54,
+"fi''"	=>	54, "F''"	=>	54,
 "s''"	=>	55,
-"si''"	=>	56,
+"si''"	=>	56, "S''"	=>	56,
 "l''"	=>	57,
-"ta''"	=>	58,
+"ta''"	=>	58, "T''"	=>	58,
 "t''"	=>	59
 
 );
@@ -195,6 +195,7 @@ class Block
         $this->unMark($i, ']');
       }
       $formatted = str_replace('-.-', '-', $formatted);
+      $formatted = str_replace('0.0', '', $formatted);
       $formatted = str_replace(
         array('D', 'R', 'F', 'S', 'T'),
         array('di', 'ri', 'fi', 'si', 'ta'),
@@ -220,6 +221,9 @@ class Block
         $formatted = preg_replace('/[\(\)\[\]]/', '', $formatted);
         //print_r($formatted);
       }
+      $formatted = preg_replace('/^0/', '', $formatted);
+      $formatted = preg_replace('/^\-\.,/', '.,', $formatted);
+      if (preg_match('/0/', $formatted)) var_dump($formatted);
       $return .= $formatted . "\n";
     }
     $this->noteString = rtrim($return);
