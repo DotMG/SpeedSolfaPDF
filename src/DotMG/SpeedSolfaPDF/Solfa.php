@@ -19,6 +19,7 @@ class Solfa
   private $y;
   private $pdf;
   private $options;
+  public  $midi;
   function __construct($sourceFile = 'assets/samples/solfa-60.txt', $options = array())
   {
     $this->options = $options;
@@ -115,7 +116,7 @@ class Solfa
     $numberToTonality = array('', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B');
     return $numberToTonality[$number];
   }
-  function tonalityToNumber($tonality)
+  static function tonalityToNumber($tonality)
   {
     $tonalityToNumber = array(
       'C' => 1,
@@ -419,6 +420,104 @@ class Solfa
     }
     return $nbBlocks;
   }
+  function midiSequence($noteString, $separator)
+  {
+$MIN_TRACK = 4;
+    $notes = explode("\n", $noteString);
+    for ($idx = 0; $idx < $MIN_TRACK; $idx++)
+    {
+      if (!isset($notes[$idx])) {
+        $notes[$idx] = '';
+      }
+      $vlu = $notes[$idx];
+      $this->analyseNote($vlu, $idx, $separator);
+    }
+    $dbg = [...$notes, $separator];
+    #print_r($dbg);
+  }
+  function analyseNote($vlu, $idx, $separator)
+  {
+    $duration = 4;
+    if ('' == $vlu)
+    {
+      $this->midiNewNote('', $idx);
+      $this->midiAddDuration($duration, $idx);
+      return;
+    }
+    $vlu = preg_replace("/[\\.,](?!d|r|m|f|s|l|t)/", "\\0-", $vlu);
+    $vlu = preg_replace("/^[\\.,]/", "-\\0", $vlu);
+    $letters = mb_str_split($vlu);
+    foreach ($letters as $letter)
+    {
+      switch($letter)
+      {
+      case '-':
+        $this->midiAddDuration($duration, $idx);
+        continue 2;
+      case '.':
+        $duration /= 2;
+        $this->midiAddDuration(-$duration, $idx);
+        continue 2;
+      case ',':
+        $duration /= 2;
+        $this->midiAddDuration(-$duration, $idx);
+        continue 2;
+      case 'd': case 'r': case 'm': case 'f': case 's': case 'l': case 't':
+        $this->midiNewNote($letter, $idx);
+        $this->midiAddDuration($duration, $idx);
+        continue 2;
+      case 'i': case '₁': case 'a':
+        $this->midiAlterNote($letter, $idx);
+        continue 2;
+      default:
+        die("ERRXD: [$letter] LEN:".strlen($letter). " ASCII:".ord($letter));
+      }
+    }
+  }
+  function midiNewNote($note, $idx)
+  {
+    if (!isset($this->midi[$idx]))
+    {
+      $this->midi[$idx] = array();
+    }
+    if (!isset($this->midi[$idx]["seq"]))
+    {
+      $this->midi[$idx]["seq"] = 0;
+    }
+    $_i = $this->midi[$idx]["seq"];
+    #if ($idx == 1) print ( "NEWNOTE: $idx {$this->midi[$idx]["n"][$_i]} / {$this->midi[$idx]["d"][$_i]}\n");
+    $this->midi[$idx]["seq"]++;
+    $_i = $this->midi[$idx]["seq"];
+    if (!isset($this->midi[$idx]["n"]))
+    {
+      $this->midi[$idx]["n"] = array();
+    }
+    $this->midi[$idx]["n"][$_i] = $note;
+  }
+  function midiAlterNote($alteration, $idx)
+  {
+    $_i = $this->midi[$idx]["seq"];
+    switch ($alteration) {
+    case 'i': case 'a':
+      $this->midi[$idx]["n"][$_i] = strtoupper($this->midi[$idx]["n"][$_i]);
+      return;
+    case '₁':
+      $this->midi[$idx]["n"][$_i] .= ',';
+    }
+  }
+  function midiAddDuration($duration, $idx)
+  {
+    $_i = $this->midi[$idx]["seq"];
+    if (!isset($this->midi[$idx]["d"]))
+    {
+      $this->midi[$idx]["d"] = array();
+    }
+    if (!isset($this->midi[$idx]["d"][$_i]))
+    {
+      $this->midi[$idx]["d"][$_i] = 0;
+    }
+    $this->midi[$idx]["d"][$_i] += $duration;
+  }
   function renderPDF()
   {
     //@todo : 
@@ -488,6 +587,7 @@ class Solfa
       $this->pdf->setXY($this->x, $this->y);
       $this->pdf->setFont('yan', '', $this->pdf->getFontSizeNote());
       $this->pdf->multiCell($this->pdf->blockWidth, 0, $oneBlock->noteString, align: 'C');
+      $this->midiSequence($oneBlock->noteString, $oneBlock->separator);
       foreach (range(1, sizeof($this->note)) as $ln) {
         $nextX = $this->x + $this->pdf->blockWidth;
         $yLine = $this->y + $this->pdf->fontHeight * $ln;
@@ -555,6 +655,23 @@ class Solfa
         }
       }
     }
+
+    foreach ($this->midi as $idx => $mididata)
+    {
+      for ($i = 1; $i <= $mididata["seq"]; $i++)
+      {
+        if ($mididata['n'][$i] ==  '')
+        {
+          echo "X ".$mididata['d'][$i]." ";
+        }
+        else
+        {
+          echo Block::midiTransposed($mididata['n'][$i], "G").'<'.$mididata['d'][$i]."> ";
+        }
+      }
+      echo "\n";
+    }
+    //print_r($this->midi);
     $this->pdf->output('F', 'pdfsolfa2.pdf');
   }
 } //class Solfa
