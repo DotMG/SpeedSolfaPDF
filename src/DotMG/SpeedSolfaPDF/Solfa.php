@@ -420,7 +420,7 @@ class Solfa
     }
     return $nbBlocks;
   }
-  function midiSequence($noteString, $separator)
+  function midiSequence($noteString, $separator, $marker)
   {
 $MIN_TRACK = 4;
     $notes = explode("\n", $noteString);
@@ -430,14 +430,18 @@ $MIN_TRACK = 4;
         $notes[$idx] = '';
       }
       $vlu = $notes[$idx];
-      $this->analyseNote($vlu, $idx, $separator);
+      $this->analyseNote($vlu, $idx, $separator, $marker);
     }
     $dbg = [...$notes, $separator];
     #print_r($dbg);
   }
-  function analyseNote($vlu, $idx, $separator)
+  function analyseNote($vlu, $idx, $separator, $marker)
   {
     $duration = 4;
+    if ($marker == '$Q')
+    {
+      $duration = 8;
+    }
     if ('' == $vlu)
     {
       $this->midiNewNote('', $idx);
@@ -466,7 +470,7 @@ $MIN_TRACK = 4;
         $this->midiNewNote($letter, $idx);
         $this->midiAddDuration($duration, $idx);
         continue 2;
-      case 'i': case '₁': case 'a':
+      case 'i': case '₁': case 'a': case "'":
         $this->midiAlterNote($letter, $idx);
         continue 2;
       default:
@@ -503,6 +507,10 @@ $MIN_TRACK = 4;
       return;
     case '₁':
       $this->midi[$idx]["n"][$_i] .= ',';
+      return;
+    case "'":
+      $this->midi[$idx]["n"][$_i] .= "'";
+      return;
     }
   }
   function midiAddDuration($duration, $idx)
@@ -561,6 +569,7 @@ $MIN_TRACK = 4;
     $this->pdf->setXY($this->x, $this->y);
     $mark = array();
     foreach ($this->template as $oneBlock) {
+      $hasMarker = null;
       if (is_array($oneBlock->marker) && sizeof($oneBlock->marker) > 0) {
         $yMarker = $this->y - $this->pdf->fontHeight;
         foreach ($oneBlock->marker as $oneMarker) {
@@ -575,6 +584,7 @@ $MIN_TRACK = 4;
             $this->pdf->setFont('fir', '', $this->pdf->getFontSizeLyrics());
             $this->pdf->cell($this->pdf->blockWidth, $this->pdf->fontHeight, "Ͼ", align: 'C');
             $yMarker -= $this->pdf->fontHeight;
+            $hasMarker = $oneMarker;
           }
           if ('${' == substr($oneMarker, 0, 2)) {   // this is for VIM }
             $this->pdf->setXY($this->x, $yMarker);
@@ -587,7 +597,7 @@ $MIN_TRACK = 4;
       $this->pdf->setXY($this->x, $this->y);
       $this->pdf->setFont('yan', '', $this->pdf->getFontSizeNote());
       $this->pdf->multiCell($this->pdf->blockWidth, 0, $oneBlock->noteString, align: 'C');
-      $this->midiSequence($oneBlock->noteString, $oneBlock->separator);
+      $this->midiSequence($oneBlock->noteString, $oneBlock->separator, $hasMarker);
       foreach (range(1, sizeof($this->note)) as $ln) {
         $nextX = $this->x + $this->pdf->blockWidth;
         $yLine = $this->y + $this->pdf->fontHeight * $ln;
@@ -656,22 +666,52 @@ $MIN_TRACK = 4;
       }
     }
 
+    $tracks = '';
+    $wait = 0;
+    $jsMidi = "import MidiWriter from 'midi-writer-js';
+    let note = null;\n";
+
     foreach ($this->midi as $idx => $mididata)
     {
+      if ($tracks)
+      {
+        $tracks .= ', ';
+      }
+      $tracks .= "track$idx";
+      $jsMidi .= "const track$idx = new MidiWriter.Track();
+      track$idx.addEvent(new MidiWriter.ProgramChangeEvent({instrument: 1}));\n";
       for ($i = 1; $i <= $mididata["seq"]; $i++)
       {
         if ($mididata['n'][$i] ==  '')
         {
-          echo "X ".$mididata['d'][$i]." ";
+          $wait += $mididata['d'][$i] * 32;
         }
         else
         {
-          echo Block::midiTransposed($mididata['n'][$i], "G").'<'.$mididata['d'][$i]."> ";
+          $G4 = Block::midiTransposed($mididata['n'][$i], "Ab");
+          $duration = $mididata['d'][$i] * 32;
+          $jsMidi .= "note = new MidiWriter.NoteEvent({pitch: ['$G4'], ";
+          if ($wait) 
+          {
+            $jsMidi .= "wait: 'T$wait', ";
+            $wait = 0;
+          }
+          if ($idx == 0)
+          {
+            $jsMidi .= "velocity: 95, ";
+          }
+          else
+          {
+            $jsMidi .= "velocity: 35, ";
+          }
+          $jsMidi .= "duration: 'T$duration'}); track$idx.addEvent(note);\n";
         }
       }
-      echo "\n";
     }
+    $jsMidi .= "const write = new MidiWriter.Writer([$tracks]);
+    write.stdout();\n";
     //print_r($this->midi);
     $this->pdf->output('F', 'pdfsolfa2.pdf');
+    echo $jsMidi;
   }
 } //class Solfa
