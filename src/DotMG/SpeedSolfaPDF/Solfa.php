@@ -448,7 +448,7 @@ $MIN_TRACK = 4;
       $this->midiAddDuration($duration, $idx);
       return;
     }
-    $vlu = preg_replace("/[\\.,](?!d|r|m|f|s|l|t)/", "\\0-", $vlu);
+    $vlu = preg_replace("/[\\.,](?!d|r|m|f|s|l|t|\-)/", "\\0-", $vlu);
     $vlu = preg_replace("/^[\\.,]/", "-\\0", $vlu);
     $letters = mb_str_split($vlu);
     foreach ($letters as $letter)
