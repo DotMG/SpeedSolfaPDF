@@ -236,6 +236,7 @@ class Block
       $formatted = preg_replace('/^0/', '', $formatted);
       $formatted = preg_replace('/^\.,0$/', '', $formatted);
       $formatted = preg_replace('/0$/', '', $formatted);
+      $formatted = preg_replace('/\(?0\.?,?$/', '', $formatted);
       $formatted = preg_replace('/^\-\.,/', '.,', $formatted);
       if (preg_match('/0/', $formatted)) var_dump($formatted);
       if (preg_match('/^\((.+)\)$/', $formatted, $match)) {

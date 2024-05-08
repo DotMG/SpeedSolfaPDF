@@ -473,6 +473,10 @@ $MIN_TRACK = 4;
       case 'i': case '₁': case 'a': case "'":
         $this->midiAlterNote($letter, $idx);
         continue 2;
+      case ' ': case '0':
+        $this->midiNewNote('', $idx);
+        $this->midiAddDuration($duration, $idx);
+        continue 2;
       default:
         die("ERRXD: [$letter] LEN:".strlen($letter). " ASCII:".ord($letter));
       }
@@ -667,12 +671,12 @@ $MIN_TRACK = 4;
     }
 
     $tracks = '';
-    $wait = 0;
     $jsMidi = "import MidiWriter from 'midi-writer-js';
     let note = null;\n";
 
     foreach ($this->midi as $idx => $mididata)
     {
+      $wait = 0;
       if ($tracks)
       {
         $tracks .= ', ';
