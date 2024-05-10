@@ -470,7 +470,7 @@ $MIN_TRACK = 4;
         $this->midiNewNote($letter, $idx);
         $this->midiAddDuration($duration, $idx);
         continue 2;
-      case 'i': case '₁': case 'a': case "'":
+      case 'i': case '₁': case 'a': case "'": case "₂":
         $this->midiAlterNote($letter, $idx);
         continue 2;
       case ' ': case '0':
@@ -511,6 +511,9 @@ $MIN_TRACK = 4;
       return;
     case '₁':
       $this->midi[$idx]["n"][$_i] .= ',';
+      return;
+    case '₂':
+      $this->midi[$idx]["n"][$_i] .= ',,';
       return;
     case "'":
       $this->midi[$idx]["n"][$_i] .= "'";
@@ -670,20 +673,15 @@ $MIN_TRACK = 4;
       }
     }
 
-    $tracks = '';
     $jsMidi = "import MidiWriter from 'midi-writer-js';
-    let note = null;\n";
+    let note = null;\nlet midiTrack = [];\n";
+    $instrum = array(1, 5, 19, 27, 59, 34, 42);
 
     foreach ($this->midi as $idx => $mididata)
     {
       $wait = 0;
-      if ($tracks)
-      {
-        $tracks .= ', ';
-      }
-      $tracks .= "track$idx";
-      $jsMidi .= "const track$idx = new MidiWriter.Track();
-      track$idx.addEvent(new MidiWriter.ProgramChangeEvent({instrument: 1}));\n";
+      $jsMidi .= "midiTrack[$idx] = new MidiWriter.Track();
+      midiTrack[$idx].addEvent(new MidiWriter.ProgramChangeEvent({channel: $idx, instrument: {$instrum[$idx]}}));\n";
       for ($i = 1; $i <= $mididata["seq"]; $i++)
       {
         if ($mididata['n'][$i] ==  '')
@@ -692,15 +690,16 @@ $MIN_TRACK = 4;
         }
         else
         {
-          $G4 = Block::midiTransposed($mididata['n'][$i], "Ab");
+          $G4 = Block::midiTransposed($mididata['n'][$i], "G");
+
           $duration = $mididata['d'][$i] * 32;
-          $jsMidi .= "note = new MidiWriter.NoteEvent({pitch: ['$G4'], ";
+          $jsMidi .= "note = new MidiWriter.NoteEvent({pitch: ['$G4'], channel: $idx, ";
           if ($wait) 
           {
             $jsMidi .= "wait: 'T$wait', ";
             $wait = 0;
           }
-          if ($idx == 0)
+          if ($idx == 2)
           {
             $jsMidi .= "velocity: 95, ";
           }
@@ -708,11 +707,11 @@ $MIN_TRACK = 4;
           {
             $jsMidi .= "velocity: 35, ";
           }
-          $jsMidi .= "duration: 'T$duration'}); track$idx.addEvent(note);\n";
+          $jsMidi .= "duration: 'T$duration'}); midiTrack[$idx].addEvent(note);\n";
         }
       }
     }
-    $jsMidi .= "const write = new MidiWriter.Writer([$tracks]);
+    $jsMidi .= "const write = new MidiWriter.Writer(midiTrack);
     write.stdout();\n";
     //print_r($this->midi);
     $this->pdf->output('F', 'pdfsolfa2.pdf');
