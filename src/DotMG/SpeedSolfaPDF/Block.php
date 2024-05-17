@@ -228,6 +228,8 @@ class Block
       );
       $formatted = str_replace('.-)', ')', $formatted);
       $formatted = str_replace('.-]', ']', $formatted);
+      $formatted = str_replace('(0', '0(', $formatted);
+      $formatted = str_replace('[0', '0[', $formatted);
       $formatted = preg_replace('/\((.i*\'*,*)\)/', '\1', $formatted);
       $formatted = preg_replace('/\[(.i*\'*,*)\]/', '\1', $formatted);
       $formatted = preg_replace('/\.,-$/', '', $formatted);

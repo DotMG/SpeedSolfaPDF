@@ -61,7 +61,7 @@ class Solfa
   {
     /* $_a_keyAbbrev = array(
       'a' => 'author',
-      'c' => 'tonality', 
+      'c' => 'tonality',
       'h' => 'composer',
       'i' => 'interligne',
       'l' => 'lyrics font size',
@@ -165,6 +165,7 @@ class Solfa
               $noteMarker .= ' (' . $this->numberToTonality($keyOrigin) . ')';
               $this->meta['transposeValue'] = $keyOrigin - $keyAsIf;
             }
+            $this->marker[] = $newTonalite;
           }
         }
 
@@ -399,12 +400,12 @@ class Solfa
    }
    $xRight = $leftMost + $nbBlocks;
     if ($xRight > 10 + $leftMost) {
-      while (($xRight > 5 + $leftMost) && ($this->separatorAt($xRight) != '/') 
+      while (($xRight > 5 + $leftMost) && ($this->separatorAt($xRight) != '/')
         && ($this->separatorAt($xRight) != '|')) {
         $xRight--;
       }
       if ($this->separatorAt($xRight) == '/') {
-        return $xRight-$leftMost; 
+        return $xRight-$leftMost;
       }
       if ($this->separatorAt($xRight) == '|') {
         for ($xDoubleBar = $xRight; $xDoubleBar > $xRight - 4; $xDoubleBar--) {
@@ -422,7 +423,8 @@ class Solfa
   }
   function midiSequence($noteString, $separator, $marker)
   {
-$MIN_TRACK = 4;
+    $MIN_TRACK = 4;
+    $this->midiKey = $this->meta['c'];
     $notes = explode("\n", $noteString);
     for ($idx = 0; $idx < $MIN_TRACK; $idx++)
     {
@@ -431,12 +433,18 @@ $MIN_TRACK = 4;
       }
       $vlu = $notes[$idx];
       $this->analyseNote($vlu, $idx, $separator, $marker);
+      if (is_array($marker) && in_array('$Q', $marker))
+      {
+        $this->midiNewNote('', $idx);
+        $this->midiAddDuration($duration=3, $idx);
+      }
     }
     $dbg = [...$notes, $separator];
     #print_r($dbg);
   }
   function analyseNote($vlu, $idx, $separator, $marker)
   {
+    $actualNote = '';
     $duration = 4;
     if ($marker == '$Q')
     {
@@ -448,8 +456,12 @@ $MIN_TRACK = 4;
       $this->midiAddDuration($duration, $idx);
       return;
     }
+    if (is_array($marker) && (preg_match('/\|([A-G]b?)\|/', '|'.join('|', $marker).'|', $midiKeyArray)))
+    {
+      $this->midiAddMarker($midiKeyArray[1], $idx);
+    }
     $vlu = preg_replace("/[\\.,](?!d|r|m|f|s|l|t|\-)/", "\\0-", $vlu);
-    $vlu = preg_replace("/^[\\.,]/", "-\\0", $vlu);
+    //$vlu = preg_replace("/^[\\.,]/", "-\\0", $vlu);
     $letters = mb_str_split($vlu);
     foreach ($letters as $letter)
     {
@@ -457,9 +469,15 @@ $MIN_TRACK = 4;
       {
       case '-':
         $this->midiAddDuration($duration, $idx);
+        $actualNote = '-';
         continue 2;
       case '.':
         $duration /= 2;
+        if ($actualNote == '')
+        {
+          $this->midiBlank($idx);
+          $this->midiAddDuration($duration*2, $idx);
+        }
         $this->midiAddDuration(-$duration, $idx);
         continue 2;
       case ',':
@@ -469,6 +487,7 @@ $MIN_TRACK = 4;
       case 'd': case 'r': case 'm': case 'f': case 's': case 'l': case 't':
         $this->midiNewNote($letter, $idx);
         $this->midiAddDuration($duration, $idx);
+        $actualNote = $letter;
         continue 2;
       case 'i': case '₁': case 'a': case "'": case "₂":
         $this->midiAlterNote($letter, $idx);
@@ -482,6 +501,20 @@ $MIN_TRACK = 4;
       }
     }
   }
+  function midiBlank($idx)
+  {
+    $this->midiNewNote('x', $idx);
+  }
+  function midiAddMarker($marker, $idx)
+  {
+    $_i = $this->midi[$idx]["seq"];
+    if (!isset($this->midi[$idx]["m"]))
+    {
+      $this->midi[$idx]["m"] = array();
+    }
+    $this->midi[$idx]["m"][$_i] = $marker;
+  }
+
   function midiNewNote($note, $idx)
   {
     if (!isset($this->midi[$idx]))
@@ -535,7 +568,7 @@ $MIN_TRACK = 4;
   }
   function renderPDF()
   {
-    //@todo : 
+    //@todo :
     $this->pdf = new PDF($this->meta);
     $this->pdf->setupSize();
     $nbBlocks = $this->pdf->recalcWidth();
@@ -546,7 +579,7 @@ $MIN_TRACK = 4;
     $this->x = $this->pdf->canvasLeft;
     $this->y = $this->pdf->canvasTop;
     // ecriture entete
-    //title 
+    //title
     $this->pdf->setXY($this->x, $this->y);
     $this->pdf->setFont('yan', '', $this->pdf->getFontSizeNote()+6);
     $this->pdf->cell($this->pdf->canvasWidth, $this->pdf->fontHeight, $this->meta['t'], align: 'C');
@@ -564,7 +597,7 @@ $MIN_TRACK = 4;
     $tonaliteRythme = 'Do dia ' . $this->meta["C"] . '       ' . $this->meta['m'];
     $this->pdf->setXY($this->x, $this->y);
     $this->pdf->cell($this->pdf->getStringWidth($tonaliteRythme), $this->pdf->fontHeight, $tonaliteRythme, align: 'L');
-    // speed 
+    // speed
     $this->pdf->setXY($this->x, $this->y);
     $this->pdf->cell($this->pdf->canvasWidth, $this->pdf->fontHeight, $this->meta['r'], ln: 0, align: 'C');
 
@@ -591,7 +624,11 @@ $MIN_TRACK = 4;
             $this->pdf->setFont('fir', '', $this->pdf->getFontSizeLyrics());
             $this->pdf->cell($this->pdf->blockWidth, $this->pdf->fontHeight, "Ͼ", align: 'C');
             $yMarker -= $this->pdf->fontHeight;
-            $hasMarker = $oneMarker;
+            $hasMarker[] = $oneMarker;
+          }
+          if (preg_match('/^[A-G]b?$/', $oneMarker))
+          {
+            $hasMarker[] = $oneMarker;
           }
           if ('${' == substr($oneMarker, 0, 2)) {   // this is for VIM }
             $this->pdf->setXY($this->x, $yMarker);
@@ -675,7 +712,7 @@ $MIN_TRACK = 4;
 
     $jsMidi = "import MidiWriter from 'midi-writer-js';
     let note = null;\nlet midiTrack = [];\n";
-    $instrum = array(1, 5, 19, 27, 59, 34, 42);
+    $instrum = array(1, 20, 43, 33, 59, 34, 42);
 
     foreach ($this->midi as $idx => $mididata)
     {
@@ -690,16 +727,29 @@ $MIN_TRACK = 4;
         }
         else
         {
-          $G4 = Block::midiTransposed($mididata['n'][$i], "G");
+          if ($mididata['n'][$i] == 'x')
+          {
+            $G4 = 'G4';
+            $mute = true;
+          }
+          else
+          {
+            $G4 = Block::midiTransposed($mididata['n'][$i], $this->midiKey);
+            $mute = false;
+          }
 
           $duration = $mididata['d'][$i] * 32;
           $jsMidi .= "note = new MidiWriter.NoteEvent({pitch: ['$G4'], channel: $idx, ";
-          if ($wait) 
+          if ($wait)
           {
             $jsMidi .= "wait: 'T$wait', ";
             $wait = 0;
           }
-          if ($idx == 2)
+          if ($mute)
+          {
+            $jsMidi .= "velocity: 0, ";
+          }
+          elseif ($idx == 2)
           {
             $jsMidi .= "velocity: 95, ";
           }
@@ -708,6 +758,10 @@ $MIN_TRACK = 4;
             $jsMidi .= "velocity: 35, ";
           }
           $jsMidi .= "duration: 'T$duration'}); midiTrack[$idx].addEvent(note);\n";
+        }
+        if (isset($mididata['m'][$i]))
+        {
+          $this->midiKey = $mididata['m'][$i];
         }
       }
     }
