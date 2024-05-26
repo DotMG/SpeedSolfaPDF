@@ -9,7 +9,11 @@ $shortOpts = ""
 $longOpts = array(
   "smart-width",
   "transposeto::",
-  "transposeasif::"
+  "transposeasif::",
+  "midispeed::",
+  "midifocuschannel::",
+  "midifocusvalue::",
+  "midifocusother::"
 );
 $restIndex = null;
 $options = getopt($shortOpts, $longOpts, $restIndex);

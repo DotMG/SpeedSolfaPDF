@@ -20,11 +20,27 @@ class Solfa
   private $pdf;
   private $options;
   public  $midi;
+  public  $midiSPEED = 32;
+  public  $midiFocusOther = 38;
+  public  $midiFocusValue = 88;
+  public  $midiFocusChannel = -1;
   function __construct($sourceFile = 'assets/samples/solfa-60.txt', $options = array())
   {
     $this->options = $options;
     $sourceAsArray = file($sourceFile); //@todo error handling
     array_walk($sourceAsArray, array($this, 'parseAllLines'));
+    if ($_midiSPEED = $this->getOpt('midispeed')) {
+      $this->midiSPEED = intval($_midiSPEED);
+    }
+    if ($_midiFocusOther = $this->getOpt('midifocusother')) {
+      $this->midiFocusOther = $_midiFocusOther;
+    }
+    if ($_midiFocusValue = $this->getOpt('midifocusvalue')) {
+      $this->midiFocusValue = $_midiFocusValue;
+    }
+    if ($_midiFocusChannel = $this->getOpt('midifocuschannel')) {
+      $this->midiFocusChannel = $_midiFocusChannel;
+    }
     $this->loadMeta();
     $this->loadSeparators();
     $this->loadNotes();
@@ -738,7 +754,7 @@ class Solfa
             $mute = false;
           }
 
-          $duration = $mididata['d'][$i] * 32;
+          $duration = $mididata['d'][$i] * $this->midiSPEED;
           $jsMidi .= "note = new MidiWriter.NoteEvent({pitch: ['$G4'], channel: $idx, ";
           if ($wait)
           {
@@ -749,13 +765,17 @@ class Solfa
           {
             $jsMidi .= "velocity: 0, ";
           }
-          elseif ($idx == 2)
+          elseif ($this->midiFocusChannel == -1)
           {
             $jsMidi .= "velocity: 95, ";
           }
+          elseif ($idx == $this->midiFocusChannel)
+          {
+            $jsMidi .= "velocity: {$this->midiFocusValue}, ";
+          }
           else
           {
-            $jsMidi .= "velocity: 35, ";
+            $jsMidi .= "velocity: {$this->midiFocusOther}, ";
           }
           $jsMidi .= "duration: 'T$duration'}); midiTrack[$idx].addEvent(note);\n";
         }
