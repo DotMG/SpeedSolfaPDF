@@ -451,8 +451,9 @@ class Solfa
       $this->analyseNote($vlu, $idx, $separator, $marker);
       if (is_array($marker) && in_array('$Q', $marker))
       {
+        $this->midiAddDuration($duration=5, $idx);
         $this->midiNewNote('', $idx);
-        $this->midiAddDuration($duration=3, $idx);
+        $this->midiAddDuration($duration=1, $idx);
       }
     }
     $dbg = [...$notes, $separator];
@@ -739,7 +740,7 @@ class Solfa
       {
         if ($mididata['n'][$i] ==  '')
         {
-          $wait += $mididata['d'][$i] * 32;
+          $wait += $mididata['d'][$i] * $this->midiSPEED;
         }
         else
         {
