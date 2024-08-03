@@ -451,9 +451,9 @@ class Solfa
       $this->analyseNote($vlu, $idx, $separator, $marker);
       if (is_array($marker) && in_array('$Q', $marker))
       {
-        $this->midiAddDuration($duration=5, $idx);
+        $this->midiAddDuration($duration=6, $idx);
         $this->midiNewNote('', $idx);
-        $this->midiAddDuration($duration=1, $idx);
+        $this->midiAddDuration($duration=2, $idx);
       }
     }
     $dbg = [...$notes, $separator];
@@ -731,13 +731,18 @@ class Solfa
     let note = null;\nlet midiTrack = [];\n";
     $instrum = array(1, 20, 43, 33, 59, 34, 42);
 
+    $introMidi = array();
+    $introMididur = 0;
     foreach ($this->midi as $idx => $mididata)
     {
       $wait = 0;
       $jsMidi .= "midiTrack[$idx] = new MidiWriter.Track();
-      midiTrack[$idx].addEvent(new MidiWriter.ProgramChangeEvent({channel: $idx, instrument: {$instrum[$idx]}}));\n";
+      midiTrack[$idx].addEvent(new MidiWriter.ProgramChangeEvent({channel: $idx, instrument: {$instrum[$idx]}}));\n//___MIDITRACK_DOTMG_$idx\n";
+      $introMidi[$idx] = '';
+      $introdur[$idx] = 0;
       for ($i = 1; $i <= $mididata["seq"]; $i++)
       {
+        $tjsMidi = '';
         if ($mididata['n'][$i] ==  '')
         {
           $wait += $mididata['d'][$i] * $this->midiSPEED;
@@ -756,35 +761,56 @@ class Solfa
           }
 
           $duration = $mididata['d'][$i] * $this->midiSPEED;
-          $jsMidi .= "note = new MidiWriter.NoteEvent({pitch: ['$G4'], channel: $idx, ";
+          $tjsMidi .= "note = new MidiWriter.NoteEvent({pitch: ['$G4'], channel: $idx, ";
           if ($wait)
           {
-            $jsMidi .= "wait: 'T$wait', ";
+            $tjsMidi .= "wait: 'T$wait', ";
+            $introwait = $wait;
             $wait = 0;
           }
           if ($mute)
           {
-            $jsMidi .= "velocity: 0, ";
+            $tjsMidi .= "velocity: 0, ";
           }
           elseif ($this->midiFocusChannel == -1)
           {
-            $jsMidi .= "velocity: 95, ";
+            $tjsMidi .= "velocity: 95, ";
           }
           elseif ($idx == $this->midiFocusChannel)
           {
-            $jsMidi .= "velocity: {$this->midiFocusValue}, ";
+            $tjsMidi .= "velocity: {$this->midiFocusValue}, ";
           }
           else
           {
-            $jsMidi .= "velocity: {$this->midiFocusOther}, ";
+            $tjsMidi .= "velocity: {$this->midiFocusOther}, ";
           }
-          $jsMidi .= "duration: 'T$duration'}); midiTrack[$idx].addEvent(note);\n";
+          $tjsMidi .= "duration: 'T$duration'}); midiTrack[$idx].addEvent(note);\n";
         }
         if (isset($mididata['m'][$i]))
         {
           $this->midiKey = $mididata['m'][$i];
         }
+        if ($i > $mididata["seq"] - 7) {
+          $introMidi[$idx] .= $tjsMidi;
+          if ($i == $mididata["seq"]) {
+            $introMidi[$idx] .= "note = new MidiWriter.NoteEvent({pitch: ['$G4'], channel: $idx, velocity: 50, duration: 'T160'}); midiTrack[$idx].addEvent(note);";
+          }
+          $introdur[$idx] += $duration + $introwait;
+          $introwait = 0;
+        }
+        $jsMidi .= $tjsMidi;
       }
+      if ($idx == 0) {
+        $introMididur = $introdur[$idx];
+      }
+      $pause = '';
+      if ($introMididur > $introdur[$idx]) {
+        $pause = "note = new MidiWriter.NoteEvent({pitch: ['G4'], channel: $idx, velocity: 0, duration: 'T".($introMididur - $introdur[$idx])."'}); midiTrack[$idx].addEvent(note);";
+      }
+      if ($introMididur < $introdur[$idx]) {
+        // @todo: replace all //dn
+      }
+      $jsMidi = str_replace("//___MIDITRACK_DOTMG_$idx", "//d$idx - {$introdur[$idx]}\n$pause{$introMidi[$idx]}\n//e$idx\n", $jsMidi);
     }
     $jsMidi .= "const write = new MidiWriter.Writer(midiTrack);
     write.stdout();\n";
