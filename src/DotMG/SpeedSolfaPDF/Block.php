@@ -109,9 +109,9 @@ class Block
   {
     $this->template = str_replace(array('{', '}'), '', $templateNote);
     $this->separator = $separator;
-    $this->nbNote = strlen(preg_replace('/[^DRMFSLT]/', '', $templateNote));
+    $this->nbNote = strlen(preg_replace('/[^DRMFSLTdrmftsl]/', '', $templateNote));
     $templateSyllable = preg_replace('/\([^\)]*\)/', 'D', $templateNote);
-    $this->nbLyrics = strlen(preg_replace('/[^DRMFSLT]/', '', $templateSyllable));
+    $this->nbLyrics = strlen(preg_replace('/[^DRMFSLTdrmftsl]/', '', $templateSyllable));
     $this->marker = $marker;
     $this->meta = $meta;
     $this->numBlock = Block::$nbBlock;
@@ -178,7 +178,7 @@ class Block
   }
   function noteAsMultistring()
   {
-    $format = preg_replace('/[DRMFSLT]/', '%s', $this->template);
+    $format = preg_replace('/[DRMFSLTdrmfslt]/', '%s', $this->template);
     $return = '';
     $underlined = array();
     foreach ($this->note as $i => $note) {

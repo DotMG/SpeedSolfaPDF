@@ -60,7 +60,16 @@ class Solfa
       $val = substr($line, 4);
     }
     if ('' != trim($key)) {
-      $this->fileData[$key][$index] = rtrim($val);
+      if (($key == 'T') && ($index == 0)) {
+        if (!isset($this->fileData['T'][0])) {
+          $this->fileData['T'] =  array(rtrim($val));
+        } else {
+          $this->fileData['T'][0] .= '/'. rtrim($val);
+        }
+      }
+      else {
+        $this->fileData[$key][$index] = rtrim($val);
+      }
     }
   }
   function debug()
