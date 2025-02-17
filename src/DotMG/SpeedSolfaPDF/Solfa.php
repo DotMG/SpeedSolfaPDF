@@ -742,6 +742,7 @@ class Solfa
       $introdur[$idx] = 0;
       for ($i = 1; $i <= $mididata["seq"]; $i++)
       {
+        $introwait = 0;
         $tjsMidi = '';
         if ($mididata['n'][$i] ==  '')
         {
