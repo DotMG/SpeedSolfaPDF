@@ -323,10 +323,27 @@ class Solfa
   }
   function loadAllLyrics()
   {
-    foreach ($this->fileData['L'] as $index => $lyrics) {
-      $this->loadOneLyrics($lyrics, $index);
+    if (isset($this->fileData['L'])) {
+      foreach ($this->fileData['L'] as $index => $lyrics) {
+        $this->loadOneLyrics($lyrics, $index);
+      }
+    }
+    if (isset($this->fileData['Y'])) {
+      foreach ($this->fileData['Y'] as $index => $lyrics) {
+        $this->loadSmartLyrics($lyrics, $index);
+      }
     }
   }
+  function loadSmartLyrics($lyrics, $index)
+  {
+    $lyrics = preg_replace('/[aeiouyàéỳ,;\.\-:](?![ aeiouyàéỳ,;\.\-:])/i', '\0_', $lyrics);
+    $lyrics = preg_replace('/([aeiouyàéỳ,;\.\-:])__/i', '\1_', $lyrics);
+    $lyrics = preg_replace('/ /', ' _', $lyrics);
+    $lyrics = preg_replace('/_\//', '/', $lyrics);
+    $lyrics = preg_replace('/_0/', '', $lyrics);
+    $this->loadOneLyrics($lyrics, $index);
+  }
+
   function loadOneLyrics($lyrics, $index)
   {
     $lyrics = preg_replace('/\{[^}]*}/', '', $lyrics);
