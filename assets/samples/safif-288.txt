@@ -1,0 +1,20 @@
+M0:|c:Db|m:4/4|r:Famindràna marisika|t:Fifohazana 288|n:15|l:10|a:J.W. Rahamefison|h:J.W. Rahamefison
+S0:/|:! 
+T0:{|d.,r:m.,f![s:-.s]|d.,t:d.,l!s:-
+T0:d.,r:m.,f!s:-|l.,s:f.,m!r.,f:m.,r
+T0:d.,r:m.,f![s:-.s]|d.,t:d.,l!s:-
+T0:d.,r:m.,f!s:-.f|m.,m:r.,r!d
+T0:d.,d|l:f!f.d:t.,l|s:d!m.d
+T0:d.,s|f.,m:r.,m!f.,s:l.,l|s:f!s
+T0:d.,d|l:f!f.d:t.,l|s:d!m.d
+T0:d.,s|f.,m:r.,m!f.,s:l.,t|d:-!d
+T0:${ff}${$}d.,t|d:d!d.d:d.,t|d:d!s.d
+T0:s.,d|t.,l:s.l!t.,d:r.,t|${[I}d:-!${DS}s:${I]}0|${[II}d:-!${Fin}d:${II]}0
+N1:drmfssd'td'ls     /drmfslsfmr---  /drmfssd'td'ls     /drmfsfmmrrd      /ddl--d'tls-(m-)      /dsfmrmfsll(sF)s    /ddl--d'tls-(m-)    /dsfmrmfsltd'd'      /d'td'-(l-)d'td'-(s-)        /sd'tlsltd'r'td'sd'd'
+N2:dddrmmlSlfm       /dddrmddddt,--- /dddrmmlSlfm       /ddddddddt,t,d    /00f--lsfm-(d-)       /dmrdt,drmff(mR)m   /00f--lsfm-(d-)    /dmrdt,drmfrmm      /lSl-(f-)ffm-(m-)           /mmrrrrrrffmmmm
+N3:mfssd'd'd'd'd'd'd'/mfssd'fssss---/mfssd'dd''d'd'd'd'/mfssd'lssffm   /00ffff00d'd'd'd'     /d'd'ssssssssd'0d' /00ffff00d'd'd'd'/d'd'ssssssssd'd'   /00dddd00d'd'd'd'       /sssssssssssd'ss
+N4:ddddddffffd       /dddddfmrd(sfmr)/ddddddfffld       /dddddfssssd    /00ffff00dddd         /ddssssssssd0d     /00ffff00dddd   /ddssssssssdd        /00ffdd00dddd           /s,s,s,s,s,s,s,s,m,s,s,ddd
+Y0:Herinao Jeso _no manafaka/Ny fatorana sy ny gadra koa/Fahafahana _no manafaka/Tanindrazantsika mba ho sambatra./Asandra_3to ny fane_2va/Fa Jesosy no Mpanjaka era0n-ta_2ny/Halelo_3ia, Halelo_2ia/Fa Jesosy no Mpanjaka era0n-tany./Asandra_3to ny fane_2va/Fa Jesosy no Mpanjaka era0n-tany tany
+Y1:Herinao Jeso, _mampitovy zo/I0zao tontolo 0izao, tena 0iraitampo/Fitovi_a0n-tena mahasambatra/Azo taminao, ry Jesoa Tompo soa./
+Y2:Herinao, Jeso, _mampifankatia,/Ho mpirahala0hy tena 0irai-tampo./I0zay mifankatia _dia ho sambatra :/Tena 0iray tokoa ny tena sy ny fo./
+Y3:Ny fitiavanao ry Jesoa Tompo soa/Ranovelona i0zay mahafa-po,/Loharano soa _tsy mba ritra koa./Dera, 0halelo_ia, hosana ho Anao./

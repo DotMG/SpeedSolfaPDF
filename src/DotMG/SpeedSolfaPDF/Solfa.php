@@ -15,6 +15,7 @@ class Solfa
   private $marker;
   private $lyricsLine = 0;
   private $hairpin = null;
+  private $alternate = [];
   private $x;
   private $y;
   private $pdf;
@@ -192,6 +193,9 @@ class Solfa
             }
             $this->marker[] = $newTonalite;
           }
+          if (preg_match('/[IV]/', $noteMarker)) {
+            $this->marker[] = $noteMarker.'}';
+          }
         }
 
         $noteMarker .= $noteSymbol;
@@ -213,7 +217,7 @@ class Solfa
       }
       $templateNotes .= $noteSymbol;
     }
-    if ($templateNotes) {
+    if ($templateNotes || ('' != $noteSymbol )) {
       $this->nextNote($templateNotes);
     }
   }
@@ -398,6 +402,38 @@ class Solfa
     }
     $this->i_lyrics += $nbLyrics;
     return $subLyrics;
+  }
+  function setAlternate($marker) {
+    $this->alternate[$marker] = $this->x;
+  }
+  function getAlternate($matchMarker) {
+    if (empty($this->alternate)) {
+      return null;
+    }
+    if ('' == $matchMarker) {
+      $x0 = array_pop($this->alternate);
+      return $x0;
+    }
+    if (isset($this->alternate[$matchMarker])) {
+      $x0 = $this->alternate[$matchMarker];
+      unset($this->alternate[$matchMarker]);
+      return $x0;
+    }
+    return null;
+  }
+  function drawAlternate($matchMarker)  {
+    $x0 = $this->getAlternate($matchMarker);
+    if (null == $x0) {
+      return;
+    }
+    $yMarker = $this->y - $this->pdf->fontHeight;
+    $upp = $this->pdf->fontHeight / 2;
+    $baseY = $yMarker + $this->pdf->fontHeight / 2;
+    $this->pdf->line($x0, $baseY, $x0, $baseY - $upp);
+    $this->pdf->line($x0, $baseY-$upp, $this->x, $baseY - $upp);
+    $this->pdf->line($this->x, $baseY, $this->x, $baseY - $upp);
+    $this->pdf->SetXY($x0 + ($this->x - $x0 ) / 4, $baseY - 3* $upp - 1 );
+    $this->pdf->cell(8, 4, $matchMarker);
   }
   /**
    * Set Hairpin : mark the start of a crescendo or a diminuendo
@@ -656,6 +692,14 @@ class Solfa
       if (is_array($oneBlock->marker) && sizeof($oneBlock->marker) > 0) {
         $yMarker = $this->y - $this->pdf->fontHeight;
         foreach ($oneBlock->marker as $oneMarker) {
+          if (preg_match('/^..\[([IV]+)\}$/', $oneMarker, $matchMarker)) {
+            $this->setAlternate($matchMarker[1]);
+            $oneMarker = '';
+          }
+          if (preg_match('/^..([IV]*)\]\}$/', $oneMarker, $matchMarker)) {
+            $this->drawAlternate($matchMarker[1]);
+            $oneMarker = '';
+          }
           if ($oneMarker == '$<' || $oneMarker == '$>') {
             $this->setHairpin($oneMarker);
           }
