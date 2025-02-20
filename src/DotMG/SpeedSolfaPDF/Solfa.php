@@ -423,7 +423,7 @@ class Solfa
   }
   function drawAlternate($matchMarker)  {
     $x0 = $this->getAlternate($matchMarker);
-    if (null == $x0) {
+    if (null == $x0 || ($this->x - $x0 < 3)) {
       return;
     }
     $yMarker = $this->y - $this->pdf->fontHeight;
@@ -433,6 +433,7 @@ class Solfa
     $this->pdf->line($x0, $baseY-$upp, $this->x, $baseY - $upp);
     $this->pdf->line($this->x, $baseY, $this->x, $baseY - $upp);
     $this->pdf->SetXY($x0 + ($this->x - $x0 ) / 4, $baseY - 3* $upp - 1 );
+    $this->pdf->setFont('fir', '', ($this->pdf->getFontSizeNote() + $this->pdf->getFontSizeLyrics()) / 2);
     $this->pdf->cell(8, 4, $matchMarker);
   }
   /**
@@ -472,32 +473,23 @@ class Solfa
    * the solfa line on either double-bar or single vertical bar
    */
   function smartWidth($leftMost = 0) {
-   $nbBlocks = intval($this->pdf->canvasWidth / Block::$maxWidth);
+   $nbBlocks = intval(($this->pdf->canvasWidth - $this->pdf->canvasLeft) / Block::$maxWidth);
+   $xRight = $leftMost + $nbBlocks;
    if (!isset($this->options['s']) && !isset($this->options['smart-width'])) {
      return $nbBlocks;
    }
-   $xRight = $leftMost + $nbBlocks;
-    if ($xRight > 10 + $leftMost) {
-      while (($xRight > 5 + $leftMost) && ($this->separatorAt($xRight) != '/')
-        && ($this->separatorAt($xRight) != '|')) {
-        $xRight--;
-      }
-      if ($this->separatorAt($xRight) == '/') {
-        return $xRight-$leftMost;
-      }
-      if ($this->separatorAt($xRight) == '|') {
-        for ($xDoubleBar = $xRight; $xDoubleBar > $xRight - 4; $xDoubleBar--) {
-          if ($this->separatorAt($xDoubleBar) == '/') {
-            return $xDoubleBar-$leftMost;
-          }
-        }
-        return $xRight-$leftMost;
-      }
-      if ($xRight == 5 + $leftMost) {
-        return $nbBlocks;
-      }
-    }
-    return $nbBlocks;
+   if ($xRight >= sizeof($this->template)) {
+     return $nbBlocks;
+   }
+   $rightSeparator = $this->separatorAt($xRight);
+   while (($rightSeparator != '/') && ($rightSeparator != '|') && ($xRight > $leftMost + 3)) {
+     $xRight --;
+     $rightSeparator = $this->separatorAt($xRight);
+   }
+   if ($xRight < $leftMost + 3) {
+     return $nbBlocks;
+   }
+   return $xRight-$leftMost;
   }
   function midiSequence($noteString, $separator, $marker)
   {
@@ -651,7 +643,7 @@ class Solfa
     $this->pdf = new PDF($this->meta);
     $this->pdf->setupSize();
     $nbBlocks = $this->pdf->recalcWidth();
-    $newNbBlocks = $this->smartWidth()+1;
+    $newNbBlocks = $this->smartWidth();
     if ($newNbBlocks != $nbBlocks) {
      $this->pdf->blockWidth = $this->pdf->canvasWidth / $newNbBlocks;
     }
@@ -719,7 +711,7 @@ class Solfa
           }
           if ('${' == substr($oneMarker, 0, 2)) {   // this is for VIM }
             $this->pdf->setXY($this->x, $yMarker);
-            $this->pdf->setFont('fir', '', $this->pdf->getFontSizeLyrics());
+            $this->pdf->setFont('fir', '', ($this->pdf->getFontSizeNote() + $this->pdf->getFontSizeLyrics()) / 2 );
             $this->pdf->cell($this->pdf->blockWidth, $this->pdf->fontHeight, substr($oneMarker, 2, strlen($oneMarker)-3), align: 'C');
             $yMarker -= $this->pdf->fontHeight;
           }
@@ -764,23 +756,31 @@ class Solfa
       }
       if ($oneBlock->template != '') {
         $this->x += $this->pdf->blockWidth;
-      } else {
-        $this->x += $this->pdf->blockWidth / 4;
+      // } else {
+      //  $this->x += 0;
       }
       $this->pdf->setXY($this->x, $this->y);
-      $this->pdf->setFont('yan', '', $this->pdf->getFontSizeNote());
-      $this->pdf->printSeparator($oneBlock->separator, $oneBlock->getNoteHeight());
+      if (($this->x < $this->pdf->canvasWidth + $this->pdf->canvasLeft) || ($oneBlock->separator == '/')) {
+        $this->pdf->setFont('yan', '', $this->pdf->getFontSizeNote());
+        $this->pdf->printSeparator($oneBlock->separator, $oneBlock->getNoteHeight());
+      } else {
+        $this->pdf->image("assets/accoladef.png", $this->x - 2, $this->y + 1, 0, $deltaY * 0.92 );
+      }
       $this->pdf->setFont('yan', '', $this->pdf->getFontSizeLyrics());
-      if ($this->x >= 0 * $this->pdf->canvasLeft + $this->pdf->canvasWidth) {
+      if ($this->x >= $this->pdf->canvasLeft + $this->pdf->canvasWidth) {
         $hairPin = $this->getHairpin();
         if ($hairPin != null) {
           $this->drawHairpin();
         }
+        if (!empty($this->alternate)) {
+          foreach ($this->alternate as $ky => $vl) {
+            $this->drawAlternate($ky);
+            $this->alternate[$ky] = $this->pdf->canvasLeft;
+          }
+        }
         $this->x = $this->pdf->canvasLeft;
         $newNbBlocks = $this->smartWidth($oneBlock->getNum());
-        if ($newNbBlocks != $nbBlocks) {
-         $this->pdf->blockWidth = $this->pdf->canvasWidth / $newNbBlocks;
-        }
+        $this->pdf->blockWidth = $this->pdf->canvasWidth / $newNbBlocks;
         if ($hairPin) {
           list($_, $hairpinSign) = $hairPin;
           $this->setHairpin($hairpinSign);
@@ -794,6 +794,10 @@ class Solfa
           $this->y = $this->pdf->canvasTop;
           $this->pdf->addPage();
         }
+
+        $this->pdf->SetXY($this->x+1, $this->y);
+        $this->pdf->setFont('yan', '', $this->pdf->getFontSizeNote());
+        $this->pdf->printSeparator($this->separatorAt($oneBlock->getNum()), $oneBlock->getNoteHeight());
       }
     }
 

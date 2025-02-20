@@ -1,4 +1,4 @@
-M0:|c:Db|m:4/4|r:Famindràna marisika|t:Fifohazana 288|n:15|l:10|a:J.W. Rahamefison|h:J.W. Rahamefison
+M0:|c:Db|m:4/4|r:Famindràna marisika|t:Fifohazana 288|n:16|l:9|a:J.W. Rahamefison|h:J.W. Rahamefison
 S0:/|:! 
 T0:{|d.,r:m.,f![s:-.s]|d.,t:d.,l!s:-
 T0:d.,r:m.,f!s:-|l.,s:f.,m!r.,f:m.,r
@@ -9,7 +9,7 @@ T0:d.,s|f.,m:r.,m!f.,s:l.,l|s:f!s
 T0:d.,d|l:f!f.d:t.,l|s:d!m.d
 T0:d.,s|f.,m:r.,m!f.,s:l.,t|d:-!d
 T0:${ff}${$}d.,t|d:d!d.d:d.,t|d:d!s.d
-T0:s.,d|t.,l:s.l!t.,d:r.,t|${[I}d:-!${DS}s:${I]}0|${[II}d:-!${Fin}d:${II]}0
+T0:s.,d|t.,l:s.,l!t.,d:r.,t|${[I}d:-!${DS}s:${I]}0|${[II}d:-!${Fin}d:${II]}0
 N1:drmfssd'td'ls     /drmfslsfmr---  /drmfssd'td'ls     /drmfsfmmrrd      /ddl--d'tls-(m-)      /dsfmrmfsll(sF)s    /ddl--d'tls-(m-)    /dsfmrmfsltd'd'      /d'td'-(l-)d'td'-(s-)        /sd'tlsltd'r'td'sd'd'
 N2:dddrmmlSlfm       /dddrmddddt,--- /dddrmmlSlfm       /ddddddddt,t,d    /00f--lsfm-(d-)       /dmrdt,drmff(mR)m   /00f--lsfm-(d-)    /dmrdt,drmfrmm      /lSl-(f-)ffm-(m-)           /mmrrrrrrffmmmm
 N3:mfssd'd'd'd'd'd'd'/mfssd'fssss---/mfssd'dd''d'd'd'd'/mfssd'lssffm   /00ffff00d'd'd'd'     /d'd'ssssssssd'0d' /00ffff00d'd'd'd'/d'd'ssssssssd'd'   /00dddd00d'd'd'd'       /sssssssssssd'ss
